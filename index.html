@@ -1836,6 +1836,23 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
 /* 补：结局页那一张"只写给自己"的卡片，是这一轮扫描才看见的漏网——
    正文的"为什么是这个结局"行名 11.5、卡片里那句"不上传、不联网"的说明 11.5、
    右下角 0/120 计数 11。它们都在最后一屏，读的人最累的时候。 */
+
+/* ---------- 九、"这一路记下的"跟着最近的一笔走 ----------
+   不是要它"更热闹"，是要它别再让人找。原来每点一次选项，面板里的位置按上一次的
+   阅读位置保留，看到的多半仍是几笔之前的记录，最新那一笔藏在下面，得自己往下翻——
+   回看旧记录是偶尔的，确认"我刚选的那一步记上了"是每一幕都要做的事。
+   所以新记的一笔把面板钉到底部，最新那条起一道淡边淡一下（1.5 秒就退干净）；
+   往上翻旧记录当然随时可以，只要没有新的一笔，字一个字都不会动。
+   底色只借 --opt-hover（两个主题各自调过），不新造颜色。 */
+.logEntry.is-new{ animation: xgLogNew 1500ms var(--ease) 1 both; }
+@keyframes xgLogNew{
+  from{ background-color: var(--opt-hover); box-shadow: inset 2px 0 0 var(--seal); }
+  to{ background-color: transparent; box-shadow: inset 2px 0 0 transparent; }
+}
+@media (prefers-reduced-motion:reduce){
+  /* 不闪、不淡出：只留一道静态的探边，下一次换幕时随 innerHTML 一起退场。 */
+  .logEntry.is-new{ animation: none; box-shadow: inset 2px 0 0 var(--seal); }
+}
 </style>
 </head><body class="xg-startup-active">
 <div id="xg-ambience" aria-hidden="true"><span class="glow"></span><span class="glow low"></span><span class="field"></span></div>
@@ -2355,7 +2372,7 @@ function startFromSave(){
   if(!o) return false;
   S = o;
   clampAll();
-  hdr.hidden = false; renderLog(); showEvent();
+  hdr.hidden = false; renderLog(true); showEvent();
   return true;
 }
 /* 换册：只切"当前是哪一位"，不动任何一册的数据；切完统一回到封面，
@@ -2538,7 +2555,7 @@ function goBack(){
   const prev = S.history.pop();
   const hist = S.history;
   S = {...prev, history:hist};
-  renderLog();
+  renderLog(true);
   showEvent();
 }
 
@@ -3117,29 +3134,46 @@ function orderedOpts(ev){
 
 function logEntry(ev, o, isGS){
   S.log.push({year: ev.year||'', title: ev.title||'', choice: o.t||'', res: o.res||'', gs: !!isGS});
-  renderLog();
+  renderLog(true, true);
 }
-function renderLog(){
+/* 这一路记下的：默认跟着最近的一笔走。
+   原来只在"面板刚展开"或"人已经贴着底部"时才跳到最新，于是每点一次选项，
+   看到的多半还是几笔之前的记录，最新那一笔藏在下面，得自己往下翻。
+   回看旧记录是偶尔的，确认"刚选的那一步记上了"是每一幕都要做的事，
+   所以改成：新记一笔就钉到底部并轻淡一下；往上翻旧记录随时可以，
+   只要没有新的一笔，这里一个字都不会动。 */
+let logSeenCount = 0;
+function renderLog(showLatest, markNew){
   const wrap = document.getElementById('logWrap');
   const panel = document.getElementById('logPanel');
   const count = document.getElementById('logCount');
   if(count) count.textContent = S.log.length;
-  if(!S.log.length){ wrap.hidden = true; return; }
+  if(!S.log.length){ wrap.hidden = true; logSeenCount = 0; return; }
   const wasHidden = wrap.hidden;
-  /* 只有"面板刚展开"或"用户本来就贴在底部"时才跳到最新一条；
-     往上翻旧记录的时候，新一幕的渲染不能把阅读位置拽走。 */
+  const grew = S.log.length > logSeenCount;
+  logSeenCount = S.log.length;
   const nearBottom = panel.scrollHeight - panel.scrollTop - panel.clientHeight <= 48;
   const keepTop = panel.scrollTop;
+  const fresh = (markNew && grew) ? S.log.length - 1 : -1;
   wrap.hidden = false;
-  panel.innerHTML = S.log.map(e=>`
-    <article class="logEntry ${e.gs?'gs':''}">
+  panel.innerHTML = S.log.map((e,i)=>`
+    <article class="logEntry ${e.gs?'gs':''}${i===fresh?' is-new':''}">
       <div class="le-year">${e.year}</div>
       <div class="le-body">
         <div class="le-line1"><span class="le-title">${e.title}</span><span class="le-arrow">→</span>${e.choice}</div>
         <div class="le-line2">${e.res}</div>
       </div>
-    </article>`).join('') + `<p class="logTail">这一页先记到这里 · 往上翻还能看见前面的</p>`;
-  panel.scrollTop = (wasHidden || nearBottom) ? panel.scrollHeight : keepTop;
+    </article>`).join('') + `<p class="logTail">最新的一笔在这儿 · 往上翻还能看见前面的</p>`;
+  const pin = showLatest || wasHidden || nearBottom;
+  panel.scrollTop = pin ? panel.scrollHeight : keepTop;
+  if(pin){
+    /* 字号/行高有时在下一拍才落定，第一下会钉在"差半行"的位置；
+       补两次（0ms 与 90ms），确保真的停在最新那一笔上。
+       不用 rAF：旧版在不绘制的页面里 rAF 不跑，钉位会悄悄失效。 */
+    const pinNow = ()=>{ try{ panel.scrollTop = panel.scrollHeight; }catch(_){ } };
+    setTimeout(pinNow, 0);
+    setTimeout(pinNow, 90);
+  }
 }
 
 function fmtSaved(ts){
