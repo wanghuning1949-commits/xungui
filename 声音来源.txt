@@ -1,0 +1,548 @@
+﻿寻归荒野 · 声音与照片来源
+
+（这一份文件只在包里，不进页面、不进浏览器，页面上也不出现它说的任何一个站名。）
+产品里只听得出"这一段海""这片林子"；出处、作者、许可、原始地址，全部只留在这里。
+
+一共有六类条目：
+  壹 · 包里的 12 段开放许可录音——林间够不着原处时放的就是它。
+  贰 · "听海"那 15 个声层，原样收进包里——就是原站页面上并列的那 15 条。
+  叁 · 联网时优先去够的"原处那一条"——林间 27 片林子自己的录音与照片。
+  肆 · 画面上的配图：听海 15 枚原站线描小图，林间 26 张是林子自己的封面照。
+  伍 · 那片实时算出来的海：引擎、着色器与两张原站贴图。
+  陆 · 够不着的部分，以及为什么够不着（有实测数字，不是猜的）。
+
+────────────────────────────────────────
+壹 · 包里的 12 段开放许可录音（Wikimedia Commons）
+────────────────────────────────────────
+
+每一段都写明白：原始文件 / 作者 / 许可 / 原始页面，以及它在这个产品里被用在哪儿。
+原始文件多是 .wav/.ogg，包内统一转成了 .mp3；转格式不改声音内容。
+
+—— 林（包内 assets/ambience/ 下的 12 段，是 27 片林子的替身）——
+
+这 12 段自己不在页面上占曲目：它们是"林间"那 27 片林子联网够不着时放的那一份。
+每一段下面都写清了它叫哪个文件名、替哪几片林子出声——许可对着文件，不靠猜。
+
+1. 林间的呼吸
+   包内文件：assets/ambience/forest-amb1.mp3
+   原始文件：Forest ambience (Gravity Sound).wav
+   作者：Gravity Sound
+   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_(Gravity_Sound).wav
+
+   用在这儿：林间 3 片原处那条不通时放它 —— 美国 · 塞拉内华达、波兰 · 鲁马内克、巴西 · 坎塔雷拉三
+
+2. 午后的树影
+   包内文件：assets/ambience/forest-amb2.mp3
+   原始文件：Forest ambience 2 (Gravity Sound).wav
+   作者：Gravity Sound
+   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_2_(Gravity_Sound).wav
+
+   用在这儿：林间 5 片原处那条不通时放它 —— 爱尔兰 · 卡帕达夫、斯洛文尼亚 · 维帕瓦、意大利 · 拉斯科山、巴西 · 佩德拉格兰德、德国 · 不伦瑞克
+
+3. 深处的光
+   包内文件：assets/ambience/forest-amb3.mp3
+   原始文件：Forest ambience 3 (Gravity Sound).wav
+   作者：Gravity Sound
+   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_3_(Gravity_Sound).wav
+
+   用在这儿：林间 3 片原处那条不通时放它 —— 立陶宛 · 维茹奥纳、德国 · 黑尔湖、巴西 · 大西洋林
+
+4. 旧林的静谧
+   包内文件：assets/ambience/forest-nille.mp3
+   原始文件：20090610 0 ambience.ogg
+   作者：nille
+   许可：公有领域（Public domain）
+   来源：https://commons.wikimedia.org/wiki/File:20090610_0_ambience.ogg
+
+   用在这儿：林间 1 片原处那条不通时放它 —— 奥地利 · 施文贝格
+
+5. 尼尔吉里山的黎明
+   包内文件：assets/ambience/forest-dawn-india.mp3
+   原始文件：Dawn chorus at Glencairnie big bungalow Craigmore DM.ogg
+   作者：DivyaCM
+   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Dawn_chorus_at_Glencairnie_big_bungalow_Craigmore_DM.ogg
+
+   用在这儿：林间 1 片原处那条不通时放它 —— 智利 · 瓦尔迪维亚
+
+6. 德拉肯斯堡的清晨
+   包内文件：assets/ambience/forest-dawn-safrica.mp3
+   原始文件：Royal Natal National Park dawn chorus (W1CDR0001146 BD3).ogg
+   作者：British Library（大英图书馆数字馆藏）
+   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Royal_Natal_National_Park_dawn_chorus_(W1CDR0001146_BD3).ogg
+
+   用在这儿：林间 1 片原处那条不通时放它 —— 瑞典 · 什恩斯卡特贝里
+
+7. 雨林的午后
+   包内文件：assets/ambience/forest-thailand.mp3
+   原始文件：Jungle Sound Thailand Phuket.flac
+   作者：Amada44
+   许可：CC BY-SA 3.0（https://creativecommons.org/licenses/by-sa/3.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Jungle_Sound_Thailand_Phuket.flac
+
+   用在这儿：林间 3 片原处那条不通时放它 —— 厄瓜多尔 · 阿南古湖、厄瓜多尔 · 亚苏尼、斐济 · 卡达武岛
+
+8. 拉明顿的鸟径
+   包内文件：assets/ambience/forest-australia.mp3
+   原始文件：Short nature soundscape, Lamington National Park, Australia.ogg
+   作者：ssimple
+   许可：CC BY 3.0（https://creativecommons.org/licenses/by/3.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Short_nature_soundscape,_Lamington_National_Park,_Australia.ogg
+
+   用在这儿：林间 4 片原处那条不通时放它 —— 德国 · 哈斯贝格、法国 · 贝勒加德圣玛丽、巴西 · 坎塔雷拉二、法国 · 科隆贝尔
+
+9. 松林里的风
+   包内文件：assets/ambience/forest-sweden.mp3
+   原始文件：Wind in Swedish pine forest at 25 mps.ogg
+   作者：W.carter
+   许可：CC BY-SA 4.0（https://creativecommons.org/licenses/by-sa/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Wind_in_Swedish_pine_forest_at_25_mps.ogg
+
+   用在这儿：林间 1 片原处那条不通时放它 —— 斯洛文尼亚 · 特尔诺沃
+
+10. 伯恩林地的风
+   包内文件：assets/ambience/forest-uk.mp3
+   原始文件：Bourne woods windy 2020-05-05 0753.mp3
+   作者：Robert EA Harvey
+   许可：CC BY-SA 4.0（https://creativecommons.org/licenses/by-sa/4.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Bourne_woods_windy_2020-05-05_0753.mp3
+
+   用在这儿：林间 2 片原处那条不通时放它 —— 香港 · 大屿山、澳大利亚 · 芬尼斯谷
+
+11. 木屋边的溪
+   包内文件：assets/ambience/forest-stream-canada.mp3
+   原始文件：Hemlock stream.ogg
+   作者：Dirtslayer
+   许可：公有领域（Public domain）
+   来源：https://commons.wikimedia.org/wiki/File:Hemlock_stream.ogg
+
+   用在这儿：林间 2 片原处那条不通时放它 —— 德国 · 美因蔡尔、斐济 · 阿巴卡瀑布径
+
+12. 峡谷里的小溪
+   包内文件：assets/ambience/forest-brook-turkey.mp3
+   原始文件：Brook sound.ogg
+   作者：TwoWings
+   许可：CC BY 3.0（https://creativecommons.org/licenses/by/3.0/）
+   来源：https://commons.wikimedia.org/wiki/File:Brook_sound.ogg
+   用在这儿：林间 1 片原处那条不通时放它 —— 德国 · 朗根巴赫谷
+
+────────────────────────────────────────
+贰 · "听海"那 15 个声层（原站那一套，整段收进包里）
+────────────────────────────────────────
+
+原站页面把 15 段环境声并排放在一起，每段各自循环、可以叠加；这一版把 15 段全部收进
+包内 assets/ambience/sea-layers/，一段不少，音频字节原样，没有转码、没有剪辑。
+页面上"听海"这间房就是这 15 条：前三条是三片海，彼此互斥，一次只响一条；
+其余十二条是围在四周的声音，想叠几层就叠几层。
+
+下面每一行的"原站层名"是原站页面上自己的写法，一字未改；"本产品曲名"是页面上显示的名字；
+最后一列是这一段在原站页面上的文件地址——包内那一份就是从这条地址原样取回的。
+
+ 层  原站层名               本产品曲名     包内文件                    原处那条
+  1  calm waves            平静的海       calm-waves.mp3              https://thesnds.b-cdn.net/sounds/ocean/calm-waves.mp3
+  2  ocean                 辽阔的海       ocean.mp3                   https://thesnds.b-cdn.net/sounds/hipster/ocean.mp3
+  3  rough storm           风暴将至       rough-sea.mp3               https://ambicular.com/sounds/ocean/rough-sea.mp3
+  4  rowing                划桨的小船     rowing.mp3                  https://ambicular.com/sounds/defonicprem/rowing160.mp3
+  5  deck                  桅杆与钢索     deck.mp3                    https://thesnds.b-cdn.net/sounds/ocean/steelcable-deck160.mp3
+  6  seagulls              海鸥           seagulls.mp3                https://thesnds.b-cdn.net/sounds/ocean/seagulls160.mp3
+  7  Sailboat interior     帆船舱里       sailboat-interior.mp3       https://thesnds.b-cdn.net/sounds/ocean/sailboat-160.mp3
+  8  Distant foghorn       远处的雾号     foghorn.mp3                 https://thesnds.b-cdn.net/sounds/ocean/foghorn-160.mp3
+  9  dolphins              海豚           dolphins.mp3                https://thesnds.b-cdn.net/sounds/ocean/dolphin-screaming160.mp3
+ 10  walking gravel        沙滩上的脚步   walking-gravel.mp3          https://thesnds.b-cdn.net/sounds/people/walking-gravel160.mp3
+ 11  underwater diving     潜水           underwater.mp3              https://thesnds.b-cdn.net/sounds/ocean/scuba-tanks-160.mp3
+ 12  ambient music         潜艇里         ambient-music.mp3           https://thesnds.b-cdn.net/sounds/music/water-pad160.mp3
+ 13  corals                浮标的铃       corals.mp3                  https://thesnds.b-cdn.net/sounds/ocean/bells160.mp3
+ 14  forest                岸上           island-forest.mp3           https://thesnds.b-cdn.net/sounds/hipster/fryers-forest160.mp3
+ 15  motor boat            摩托艇         motor-boat.mp3              https://ambicular.com/sounds/ocean/motor-boat160.mp3
+
+包内这 15 个文件合计约 235 MB，最长的 rowing 约 46 分钟，最短的 foghorn 约 50 秒；
+每一段的字节数与上面那条地址上的文件逐条对过，15 条全部一致。
+播放时全部从包内读取、循环播放，不向上面任何地址发请求，断网也一样响；
+没有"连上了再放"这一步，也就不存在卡住、换源、声画对不上的情况。
+
+────────────────────────────────────────
+叁 · 联网时优先去够的"原处那一条"（27 条）
+────────────────────────────────────────
+
+规则（应用里就是这么做的）：
+  · 断网、或这一趟已经判定某条不行 → 直接放壹里那份，不等；
+  · 否则先连原处那条，同时挂三把保险：连不上/报错、7 秒还没真正出声、
+    起播后头 15 秒里卡满 4 秒或卡满 4 回（或有一回一声不响超过 8 秒）；
+  · 任一保险触发 → 这一趟不再试这条，改放壹里那份，全程不弹错误、不留空播放；
+  · 网络恢复时清空"不再试"的记录，下次点击再试一次原处。
+  界面上始终不写这是从哪儿来的——两边都只听得出"这一段海""这片林子"。
+
+—— 林：27 片（“林间”整间房）——
+
+  页面：https://tree.fm/forest/<编号>（下面每片都写了自己的编号页）
+  “地点原文”是那一片林子页面上自己写的那行字，一字未改；本产品不再另起中文名，
+  曲名就是"国家 · 地点"，副标题用原文。
+  “封面”是那一片页面自己配的那张图，已按比例缩到最长边 1600 存进包内，并改了名。
+
+ 1. 美国 · 塞拉内华达
+   地点原文：USA, California, Sierra Nevada
+   原站那页：https://tree.fm/forest/11
+   原处那条：https://newnow.cool/forest/sierranevade.mp3（256 kbps，8.7 MB）
+   录音者：Golden Laure
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/5f8497ce11d5bc7087d21f49_raquel-smith-bFFJj1UM8N0-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t11.jpg
+   不通时放：forest-amb1.mp3
+
+ 2. 立陶宛 · 维茹奥纳
+   地点原文：Lithuania, Vyžuonos
+   原站那页：https://tree.fm/forest/40
+   原处那条：https://newnow.cool/forest/Baltys-Soundscape.mp3（320 kbps，15.3 MB）
+   录音者：alas23/sala
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66182f221d4f59dfecc1a197_ugne-vasyliute-Dag9cv89jb4-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t40.jpg
+   不通时放：forest-amb3.mp3
+
+ 3. 爱尔兰 · 卡帕达夫
+   地点原文：Ireland, Cappaduff, County Clare
+   原站那页：https://tree.fm/forest/41
+   原处那条：https://newnow.cool/forest/LightRainBirdsAmbics.mp3（320 kbps，16.3 MB）
+   录音者：alfa00
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183062d63743ce7b07cd4f_jay-gomez-Y1ni57HUblc-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t41.jpg
+   不通时放：forest-amb2.mp3
+
+ 4. 奥地利 · 施文贝格
+   地点原文：Austria, Schwendberg
+   原站那页：https://tree.fm/forest/42
+   原处那条：https://newnow.cool/forest/HochschwendbergOvernightAT.mp3（320 kbps，6.9 MB）
+   录音者：Anton Acher
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661830e0c540863dbbb621cd_stijn-te-strake-deHOBa4iYpY-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t42.jpg
+   不通时放：forest-nille.mp3
+
+ 5. 德国 · 美因蔡尔
+   地点原文：Germany, Zeil am Main
+   原站那页：https://tree.fm/forest/43
+   原处那条：https://newnow.cool/forest/LangenbachEisWasser.mp3（320 kbps，27.6 MB）
+   录音者：beckhanspeter
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618313e2de2c83b81a7e916_karsten-wurth-algc0FKHeMA-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t43.jpg
+   不通时放：forest-stream-canada.mp3
+
+ 6. 德国 · 朗根巴赫谷
+   地点原文：Germany, Langenbachtal
+   原站那页：https://tree.fm/forest/44
+   原处那条：https://newnow.cool/forest/AuenwaldWasser.mp3（320 kbps，25.7 MB）
+   录音者：beckhanspeter
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618319779bc5b8360fa23e8_rach-sam-oQ5O2ExIlbw-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t44.jpg
+   不通时放：forest-brook-turkey.mp3
+
+ 7. 德国 · 黑尔湖
+   地点原文：Germany, Höllsee
+   原站那页：https://tree.fm/forest/45
+   原处那条：https://newnow.cool/forest/BundorfWaldsee.mp3（320 kbps，45.9 MB）
+   录音者：beckhanspeter
+   封面：那一片页面上本身就没有配图（CSS 写的是 background-image:none），所以这里也没有。
+   不通时放：forest-amb3.mp3
+
+ 8. 德国 · 哈斯贝格
+   地点原文：Germany, Haßberge
+   原站那页：https://tree.fm/forest/46
+   原处那条：https://newnow.cool/forest/DrflisWieseJune.mp3（320 kbps，45.9 MB）
+   录音者：beckhanspeter
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618319779bc5b8360fa23e8_rach-sam-oQ5O2ExIlbw-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t46.jpg
+   不通时放：forest-australia.mp3
+
+ 9. 斯洛文尼亚 · 维帕瓦
+   地点原文：Slovenia, Vipava
+   原站那页：https://tree.fm/forest/47
+   原处那条：https://newnow.cool/forest/RadioAporeePrikoi.mp3（320 kbps，13.7 MB）
+   录音者：Bojan Marusic
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661832a1fd4eab473d127cd4_eran-menashri-NiVvk2yVils-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t47.jpg
+   不通时放：forest-amb2.mp3
+
+10. 斯洛文尼亚 · 特尔诺沃
+   地点原文：Slovenia, Trnovo
+   原站那页：https://tree.fm/forest/48
+   原处那条：https://newnow.cool/forest/TrnovoForestWind.mp3（320 kbps，50.7 MB）
+   录音者：Bojan Marusic
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618332c25b446a79b405de4_eran-menashri-IvqOPaFzA-I-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t48.jpg
+   不通时放：forest-sweden.mp3
+
+11. 意大利 · 拉斯科山
+   地点原文：Italy, Monte Raschio
+   原站那页：https://tree.fm/forest/49
+   原处那条：https://newnow.cool/forest/MonteRaschioOriolo.mp3（320 kbps，101.5 MB）
+   录音者：fabfur
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618339d00e6cd1124324e50_mushegh-hakobyan-m4d2SGnkLaQ-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t49.jpg
+   不通时放：forest-amb2.mp3
+
+12. 厄瓜多尔 · 阿南古湖
+   地点原文：Ecuador, Añangu Lake, Yasuní
+   原站那页：https://tree.fm/forest/50
+   原处那条：https://newnow.cool/forest/FrancescoFabrisYasuniNight.mp3（320 kbps，13.1 MB）
+   录音者：Francesco Fabris
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661833f0dde00e8d29ac589b_nick-van-den-berg-5KlR81Vtgsc-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t50.jpg
+   不通时放：forest-thailand.mp3
+
+13. 厄瓜多尔 · 亚苏尼
+   地点原文：Ecuador, Yasuní
+   原站那页：https://tree.fm/forest/51
+   原处那条：https://newnow.cool/forest/FrancescoFabrisYasuni07.mp3（320 kbps，3.1 MB）
+   录音者：Francesco Fabris
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183487d4021d9281b627dd_lingchor-lDy1K7RkLeA-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t51.jpg
+   不通时放：forest-thailand.mp3
+
+14. 智利 · 瓦尔迪维亚
+   地点原文：Chile, Valdivia
+   原站那页：https://tree.fm/forest/52
+   原处那条：https://newnow.cool/forest/MorningBirds.mp3（320 kbps，15.4 MB）
+   录音者：henry.yohann
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661834e76670a18703024443_marcelo-rivas-jx0EplqJg3w-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t52.jpg
+   不通时放：forest-dawn-india.mp3
+
+15. 法国 · 贝勒加德圣玛丽
+   地点原文：France, Bellegarde-Sainte-Marie
+   原站那页：https://tree.fm/forest/53
+   原处那条：https://newnow.cool/forest/AbbeySainte-MarieDesertBird01.mp3（320 kbps，7.9 MB）
+   录音者：kaoss012
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618356f2fa28c05414befbb_rachel-omnes-90mSnV4I8FU-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t53.jpg
+   不通时放：forest-australia.mp3
+
+16. 波兰 · 鲁马内克
+   地点原文：Polska, Rumianek
+   原站那页：https://tree.fm/forest/54
+   原处那条：https://newnow.cool/forest/DolonaSamy.mp3（320 kbps，7.2 MB）
+   录音者：Maciej Janasik
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661835d34381d15b9e59bc11_mareks-steins-Fyy-V6i9m38-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t54.jpg
+   不通时放：forest-amb1.mp3
+
+17. 斐济 · 卡达武岛
+   地点原文：Fiji, Vunisea-Namara Road
+   原站那页：https://tree.fm/forest/55
+   原处那条：https://newnow.cool/forest/VuniseaNamaraRoadSound.mp3（320 kbps，13.3 MB）
+   录音者：matthias.feuersenger
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618361230270a937ef0475b_cristina-seaborn-07vx3Ig3YZE-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t55.jpg
+   不通时放：forest-thailand.mp3
+
+18. 斐济 · 阿巴卡瀑布径
+   地点原文：Fiji, Abaca Waterfall Track
+   原站那页：https://tree.fm/forest/56
+   原处那条：https://newnow.cool/forest/SoundscapeAbaca09Uhr10.mp3（320 kbps，17.1 MB）
+   录音者：matthias.feuersenger
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618365204e93a8b466272cb_michael-olsen--QhgUs8ZnJc-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t56.jpg
+   不通时放：forest-stream-canada.mp3
+
+19. 巴西 · 大西洋林
+   地点原文：Brazil, Atlantic Forest
+   原站那页：https://tree.fm/forest/57
+   原处那条：https://newnow.cool/forest/LargoCarpasexp.mp3（320 kbps，6.6 MB）
+   录音者：Melissa Pons
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661836f345e1d67c52021921_jonatan-lewczuk-vjjvhJoqz1Q-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t57.jpg
+   不通时放：forest-amb3.mp3
+
+20. 巴西 · 佩德拉格兰德
+   地点原文：Brazil, Pedra Grande
+   原站那页：https://tree.fm/forest/58
+   原处那条：https://newnow.cool/forest/RadioAporeeT023.mp3（320 kbps，4.6 MB）
+   录音者：Melissa Pons
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618386330270a937ef2757f_marco-marques-dJ_Zl5LpPto-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t58.jpg
+   不通时放：forest-amb2.mp3
+
+21. 巴西 · 坎塔雷拉三
+   地点原文：Brazil, Cantareira Ⅲ
+   原站那页：https://tree.fm/forest/59
+   原处那条：https://newnow.cool/forest/RadioAporeeT06502300443RX.mp3（320 kbps，5.1 MB）
+   录音者：Melissa Pons
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661838c1a8946018b905673e_jonatan-lewczuk-vjjvhJoqz1Q-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t59.jpg
+   不通时放：forest-amb1.mp3
+
+22. 巴西 · 坎塔雷拉二
+   地点原文：Brazil, Cantareira Ⅱ
+   原站那页：https://tree.fm/forest/60
+   原处那条：https://newnow.cool/forest/RXimgradioaporee.mp3（320 kbps，4.6 MB）
+   录音者：Melissa Pons
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618392d232a396d6031da9d_mche-lee-ZtDzjkicXk0-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t60.jpg
+   不通时放：forest-australia.mp3
+
+23. 香港 · 大屿山
+   地点原文：Hong Kong, Lantau Island
+   原站那页：https://tree.fm/forest/61
+   原处那条：https://newnow.cool/forest/ShekPikCountryTrailSound.mp3（320 kbps，2.4 MB）
+   录音者：Nature Field Recording HK
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618398937fb02d68319e287_ben-tatlow-RF4oVd4aQQM-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t61.jpg
+   不通时放：forest-uk.mp3
+
+24. 法国 · 科隆贝尔
+   地点原文：France, Colombelles
+   原站那页：https://tree.fm/forest/62
+   原处那条：https://newnow.cool/forest/OiseauxGrandeHalle190418.mp3（320 kbps，4.2 MB）
+   录音者：Nicolas Germain
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661839ecfb51a1aa00aafcbc_dale-nibbe-6mU7uCAO64I-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t62.jpg
+   不通时放：forest-australia.mp3
+
+25. 瑞典 · 什恩斯卡特贝里
+   地点原文：Sweden, Skinnskatteberg
+   原站那页：https://tree.fm/forest/63
+   原处那条：https://newnow.cool/forest/BirdsSweden.mp3（320 kbps，26.2 MB）
+   录音者：Øivind Weingaarde
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183a2c7d666097563537ec_oskars-sylwan-uJEX3Ju1NAc-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t63.jpg
+   不通时放：forest-dawn-safrica.mp3
+
+26. 德国 · 不伦瑞克
+   地点原文：Germany, Brunswick
+   原站那页：https://tree.fm/forest/64
+   原处那条：https://newnow.cool/forest/Soundsof.mp3（320 kbps，18.6 MB）
+   录音者：Peter Cusack
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183a94b03ba2c3e615d6d4_marko-lengyel-tMUskfDC6Gc-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t64.jpg
+   不通时放：forest-amb2.mp3
+
+27. 澳大利亚 · 芬尼斯谷
+   地点原文：Australia, Finniss Vale
+   原站那页：https://tree.fm/forest/65
+   原处那条：https://newnow.cool/forest/RemousmerSecondValleySA.mp3（320 kbps，2.5 MB）
+   录音者：Pode
+   封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183ad280c87204866b56a7_our-life-in-pixels-MMTul0TsFfk-unsplash.jpg
+   封面在包内：./assets/ambience/forest-photos/t65.jpg
+   不通时放：forest-uk.mp3
+
+────────────────────────────────────────
+肆 · 画面上的配图
+────────────────────────────────────────
+
+海这边只有原站那 15 枚线描小图，林那边是 26 张林子自己的封面，分开写：
+
+—— 听海那 15 枚线描小图（原站自己画的那一套）——
+
+原站页面在这 15 段声音旁边各放了一枚黑线描小图（SVG 矢量，单色描边）。
+这一版把 15 枚全部原样拷进 assets/ambience/sea-icons/orig/，保持原文件名，
+线条一根没动。原站哪一段声音配哪一枚，包里就配哪一枚——不是挑相似的图凑的。
+
+它们出现在两处：曲目那块方形小图，和房卡角落 / 全屏顶上那张小图。
+小图底下垫一张浅纸、图缩在中间不裁切；深色模式下把黑线反过来印成浅色——
+这两条只是显示处理，不改图形本身。页面上不出现这套图标的出处，也不出现站名。
+
+  曲目          原站层名            包内文件
+  平静的海      calm waves          waves1.svg
+  辽阔的海      ocean               waves2.svg
+  风暴将至      rough storm         waves3.svg
+  划桨的小船    rowing              boat.svg
+  桅杆与钢索    deck                mast.svg
+  海鸥          seagulls            birds.svg
+  海豚          dolphins            dolphin.svg
+  帆船舱里      Sailboat interior   volant.svg
+  远处的雾号    Distant foghorn     foghorn.svg
+  沙滩上的脚步  walking gravel      walk.svg
+  潜水          underwater diving   air.svg
+  潜艇里        ambient music       ambient.svg
+  浮标的铃      corals              bell.svg
+  摩托艇        motor boat          motor.svg
+  岸上          forest              island.svg
+
+原图都是方形 viewBox，15 个文件合计约 158 KB。
+
+—— 林（26 张，都是那 27 片林子自己的页面配的图）——
+
+这一轮把林的封面整批改成了原站自己的那张：每片的"封面原址 / 包内文件名"
+逐条写在叁里，一行不落。第 27 片（"那一片页面本身没有配图"）在叁里也写明了。
+上一版那 12 张 Unsplash 林间照片（forest-photos/f1…f12.jpg）已经随着换封面从包里删掉了；
+图片 ID 留在下面备查，删掉的文件不用再来这份里找许可。
+
+ 1. 林间的呼吸        photo-1448375240586-882707db888b
+ 2. 午后的树影        photo-1441974231531-c6227db76b6e
+ 3. 深处的光         photo-1513836279014-a89f7a76ae86
+ 4. 旧林的静谧        photo-1418065460487-3e41a6c84dc5
+ 5. 尼尔吉里山的黎明     photo-1425913397330-cf8af2ff40a1
+ 6. 德拉肯斯堡的清晨     photo-1511497584788-876760111969
+ 7. 雨林的午后        photo-1440342359743-84fcb8c21f21
+ 8. 拉明顿的鸟径       photo-1447752875215-b2761acb3c5d
+ 9. 松林里的风        photo-1476231682828-37e571bc172f
+10. 伯恩林地的风       photo-1507041957456-9c397ce39c97
+11. 木屋边的溪        photo-1518173946687-a4c8892bbd9f
+12. 峡谷里的小溪       photo-1433086966358-54859d0ed716
+
+—— 两张旧全屏头图（这一轮一并清掉的）——
+
+assets/ambience/hero-sea.jpg、hero-forest.jpg 是最早那版的全屏背景图，
+这一轮之后代码里没有任何地方再引用它们（连拼出来的路径都没有，是逐文件查过的），
+而它们的出处没有留下可核对的记录。查不清来源的文件不该留在要交付的包里，
+所以这两个已从包内删除；页面少这两张不会有任何变化——本来就没在用。
+
+────────────────────────────────────────
+伍 · 实时海面（"听海"整间房的画面）
+────────────────────────────────────────
+
+“听海”整间房在播放时看到的不是照片，也不是任何网站提供的图片，
+而是一片在浏览器里实时算出来的海面：浪的形状、天空的颜色、浪尖上的碎光、
+水面上的九十根木桩与它们的倒影，都是本机用 WebGL 一帧帧画出来的。
+
+· 引擎：three.js r82，MIT 许可
+  主页：https://threejs.org/
+  版权：Copyright © 2010-2017 three.js authors
+  许可全文随包附上：assets/three/LICENSE.txt
+· 海面：原站页面用的 Water 着色器与 Mirror 反射，MIT 许可
+  包内：assets/three/vt/WaterShader.js、assets/three/vt/Mirror.js
+· 天空：原站页面用的 Sky 着色器（Preetham 解析日光模型），MIT 许可
+  包内：assets/three/vt/SkyShader-day.js
+· 两张贴图：水面法线 water-normals.jpg、木纹 wood.jpg，都是原站页面自己用的那两张，
+  原样收进包内 assets/ambience/sea-visual/；为了双击 file:// 也能画出来，
+  assets/sea-visual.js 里另存了一份同字节的 data URL。
+· 这套海用的是原站那组常量：水色、日光色、太阳方位角与倾角、畸变、反射相机 55°，
+  一项项照搬，不是"照着感觉调得像"。
+· 一处为铺满整页做的改动，写在这里：原站镜头上下起伏是 ±4.5，画面底边会被页脚盖住；
+  这里铺满整页没有页脚可挡，起伏收在 15 ± 1.2，海仍是活的，贴图边不会翻出来。
+· 页面不引用任何外部 CDN、不嵌入原站页面、不向原站要任何资源。
+· 房卡角落那张小图是原站自己的线描小图（见肆），不再是图库照片。
+· 整页铺满：听海出声时，这片海铺到游戏背景（body.xg-sea-bg），盖住场景插画；
+  暂停/停止就收回；切到后台自动停帧，系统开了"减少动态效果"时只画一帧静止的海。
+
+────────────────────────────────────────
+陆 · 够不着的部分（实测，写清楚）
+────────────────────────────────────────
+
+1. 那 15 个海声层，早先只有 3 个能在浏览器里直接连到；另外 12 个放在 thesnds.b-cdn.net 上，
+   不带原站来路去要会被挡（HTTP 403）。这一版换了做法：不再让浏览器去连，
+   而是在构建时就把 15 段整段取回、原样存进包里。
+   页面播放的是包内文件，不再有防盗链、不再看网速，15 层一层不少。
+   （这些文件原站页面上没有标许可证；层名与文件地址都写在上面的贰里，便于核对。）
+
+2. 林间那 27 条仍在原处（newnow.cool），服务器不在我们这边，慢是它的常态。本机实测：
+   · newnow.cool：27 条，共约 510 MB，码率 256/320 kbps，本机稳态吞吐约 131 kbps
+   盯 60 秒实测（原处那条到底连不连续）：
+     · 林间第 1 片：音频只走了 30.8 秒 / 墙上 60.0 秒 = 0.51，卡 8 次共 29.3 秒
+   也就是说：从这台机器连过去，原处那条多数会中途卡住，应用会在十几秒内自动换成壹里那份。
+   换到别的网络上（更快、或离那台服务器更近）就可能一直是原处那条——这是设计想要的样子，
+   两条路都不会出现"点开了却没声音"。包内那 12 段林间替身是开放许可录音（见壹），
+   但它们不是那一片林子自己的声音——这一处还没补上，明写在这里。
+
+3. 这些"原处那一条"和它们的封面，那个站点没有在页面上标注许可证。
+   上面能查到的事实（页面地址、站点自己的署名、文件地址）都写全了，没有凭印象补。
+   如果不想让产品去够外面的文件，把 assets/music-player.js 里每一条的 remote 删掉即可：
+   删掉之后就只剩壹那 12 段与贰那 15 层，断网也能听，页面其余部分一行都不用改。
+
+────────────────────────────────────────
+附 · 这一份和页面对不上的时候，以页面对得上为准
+────────────────────────────────────────
+
+页面上的层级、曲目、地址都写在 assets/music-player.js 的 SEA / FOREST 两张表里（听海 15 层、林间 27 片）。
+这一份是照包内实际文件与两张表逐条核对后写的；对不上的时候，以页面和包内文件为准。
+核对日期：2026-10-30（GitHub Pages 预览版）

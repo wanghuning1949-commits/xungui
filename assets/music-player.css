@@ -85,6 +85,12 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
 }
 .mlp-tab:hover { background: #eaf1e4; color: #38543c; }
 .mlp-tab.on { background: #5c8457; border-color: transparent; color: #fffdf6; }
+/* 手指点的时候，四个页签各多 10px 上下热区（看得见的高度不变），
+   实测 375 宽只有 25px 高，容易点偏。 */
+@media (pointer: coarse) {
+  .mlp-tab { position: relative; }
+  .mlp-tab::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; bottom: -10px; }
+}
 @media (prefers-color-scheme: dark) {
   .mlp-tab { border-color: #3e5845; color: #aabbab; }
   .mlp-tab:hover { background: #2b4533; color: #dbead0; }
@@ -190,6 +196,36 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
 }
 @media (prefers-color-scheme: dark) {
   .mlp-num { background: #334f3a; color: #aecfa4; }
+}
+/* 列表左边那一小格：原站照片的缩略；没有照片的曲目就是一块编号牌。
+   尺寸统一，两行字始终对齐。 */
+.mlp-cover {
+  position: relative; flex: 0 0 auto;
+  width: 46px; height: 32px; border-radius: 7px; overflow: hidden;
+  display: grid; place-items: center;
+  background: #e5eedd; color: #557b4d;
+  pointer-events: none;
+}
+.mlp-cover-n {
+  position: relative; z-index: 0;
+  font: 700 12px/1 ui-monospace, monospace; letter-spacing: .02em;
+}
+.mlp-cover img {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(.92) contrast(1.02);
+}
+@media (prefers-color-scheme: dark) {
+  .mlp-cover { background: #334f3a; color: #aecfa4; }
+  .mlp-cover img { filter: saturate(.82) contrast(1.04) brightness(.86); }
+}
+/* 听海那一列用的是原站的黑线描小图：一张浅纸当底，图缩在中间不裁切。
+   深色下把线条翻成浅色，纸底也随之压深——和照片缩略不一样，这里不能模糊填满。 */
+.mlp-cover-ico { background: #f3efe2; box-shadow: inset 0 0 0 1px rgba(60,80,60,.14); }
+.mlp-cover-ico img { object-fit: contain; padding: 3px 5px; filter: none; }
+@media (prefers-color-scheme: dark) {
+  .mlp-cover-ico { background: #26382b; box-shadow: inset 0 0 0 1px rgba(180,205,175,.18); }
+  .mlp-cover-ico img { filter: invert(.88) sepia(.04); }
 }
 .mlp-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mlp-eq { flex: 0 0 auto; display: none; align-items: flex-end; gap: 2.5px; height: 12px; }
@@ -301,6 +337,11 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
 .mlp-row:focus-visible, .mlp-btn:focus-visible {
   outline: 3px solid rgba(98, 146, 82, .55); outline-offset: 2px;
 }
+/* 新增的三枚控件也补上焦点环：随机、铺满屏幕 */
+.mlp-room-shuffle:focus-visible, .mlp-room-fs:focus-visible,
+.mlp-im-shuffle:focus-visible {
+  outline: 3px solid rgba(247, 243, 230, .85); outline-offset: 2px;
+}
 
 /* 触控屏：34px 的点击区对拇指仍偏小，统一撑到 44×44（图标本身尺寸不变）。
    设置页也加载这份样式，所以规则放在这里而不是只写在首页的覆盖层。 */
@@ -353,6 +394,13 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
   min-width:21px; height:auto; border-radius:0; background:none;
   color:#46653f; font:700 12px/1 "JetBrains Mono",ui-monospace,monospace; letter-spacing:.04em;
 }
+/* 缩略图在纸墨风格里也收成小方片：细边、直角，和名字牌上的小图一致 */
+.mlp-cover {
+  width:44px; height:30px; border-radius:2px;
+  background:rgba(70,100,70,.08); color:#46653f;
+  border:1px solid rgba(207,200,180,.7);
+}
+.mlp-cover-ico { background:#f6f2e5; box-shadow:none; }
 .mlp-eq i { background:#46653f; }
 .mlp-track { border-radius:2px; background:#ded7c4; }
 .mlp-fill { border-radius:2px; background:#46653f; }
@@ -380,6 +428,8 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
   .mlp-list button.mlp-row:hover { background:rgba(169,199,155,.07); }
   .mlp-list li.active button.mlp-row { background:rgba(169,199,155,.12); box-shadow:inset 2px 0 0 #a9c79b; }
   .mlp-num { color:#a9c79b; }
+  .mlp-cover { background:rgba(169,199,155,.12); color:#a9c79b; border-color:#3c4a3e; }
+  .mlp-cover-ico { background:#1a241e; box-shadow:none; }
   .mlp-eq i { background:#a9c79b; }
   .mlp-track { background:#3c4a3e; }
   .mlp-fill { background:#a9c79b; }
@@ -390,4 +440,557 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
   .mlp-toggle:hover { background:#bcd4ad; color:#16211a; }
   .mlp-volume input[type="range"] { accent-color:#a9c79b; }
   .mlp-footnote { color:#a7b0a2; }
+}
+
+/* ============================================================
+   2026-10 · 声音档案：四间房（音笺 / 听海 / 林间 / 找歌）
+   听海、林间是两间可以一直开着的房间：头图是一张水彩的景，
+   播放时画面慢慢起伏，海面有光、林子里有细小的浮尘。
+   只讲风景，页面上不出现任何站点或作者名（来源见包内「声音来源.txt」）。
+   ============================================================ */
+.mlp-lede {
+  margin: 0 0 10px; font-size: 12px; line-height: 1.7;
+  letter-spacing: .03em; color: #6b7a68;
+}
+
+/* 四个标签收成纸上的小标题：选中只多一道下划线，不抢注意力 */
+.mlp-tab {
+  border: 0; border-bottom: 1px solid transparent; border-radius: 0;
+  background: transparent; padding: 7px 2px 6px;
+  font-size: 12px; letter-spacing: .12em;
+}
+.mlp-tab:hover { background: transparent; color: #46653f; }
+.mlp-tab.on {
+  background: transparent; border-bottom-color: #2f4536;
+  color: #23322a; font-weight: 700;
+}
+
+.mlp-room {
+  position: relative; margin: 0 0 9px; overflow: hidden;
+  border: 1px solid #cfc8b4; border-radius: 2px; background: #d9d4c1;
+  --mlp-veil: 19,29,23;
+}
+/* 实时海面铺在上面时，遮罩从"森绿"换成"夜蓝"：透明度一位不改，
+   只是不再把蓝色的海压成灰绿。字对比度另在牌子那一处补了一层（见 .mlp-room-cap）。 */
+.mlp-room.sea-live { --mlp-veil: 8,17,22; }
+/* 画面本体：canvas 铺满卡片，播放时 JS 让它活着 */
+.mlp-room-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block;
+}
+/* 听海换上 three.js 实时海面时，是在这张 2D 画布旁边再叠一张 WebGL 的，
+   位置尺寸完全照抄，两张只露一张；WebGL 用不了就退回下面这张。 */
+canvas.mlp-sea3d { display: block; }
+canvas.mlp-sea3d-drag { cursor: grab; touch-action: none; }
+canvas.mlp-sea3d-drag:active { cursor: grabbing; }
+.mlp-room-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(19,29,23,.12) 0%, rgba(19,29,23,.03) 26%, rgba(19,29,23,.06) 46%, rgba(19,29,23,.60) 100%),
+    linear-gradient(90deg, rgba(19,29,23,.08), rgba(19,29,23,0) 48%);
+  /* 用变量那一套；不支持 var 的浏览器就用上面这行绿色原样。
+     上半这道原先 .30，是按旧那套墨绿海面配的；海面回到原站的青之后，
+     它把整片天压成了灰的——降到 .12，海和天重新露出来。底部 .60
+     （原 .66）仍旧够：白题词与两枚圆钮另有自己的深底，牌子 .74。 */
+  background:
+    linear-gradient(180deg, rgba(var(--mlp-veil),.12) 0%, rgba(var(--mlp-veil),.03) 26%, rgba(var(--mlp-veil),.06) 46%, rgba(var(--mlp-veil),.60) 100%),
+    linear-gradient(90deg, rgba(var(--mlp-veil),.08), rgba(var(--mlp-veil),0) 48%);
+}
+.mlp-room-tools {
+  position: absolute; top: 8px; right: 8px; z-index: 4;
+  display: flex; gap: 6px;
+}
+.mlp-room-copy {
+  position: relative; z-index: 2;
+  min-height: 156px; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 13px 14px 12px; color: #f7f3e6;
+}
+.mlp-room-line {
+  margin: 5px 0 11px; font-size: 17.5px; font-weight: 600;
+  letter-spacing: .1em; line-height: 1.35;
+  text-shadow: 0 1px 12px rgba(15,24,18,.5);
+}
+/* 此刻这一段海 / 这片林子的名字牌（满屏那行小字的卡片版）
+   左边一小张"这个地方"的照片，右边是名字和地点 */
+.mlp-room-cap {
+  position: absolute; z-index: 3; top: 9px; left: 10px; margin: 0;
+  display: flex; align-items: center; gap: 8px;
+  max-width: calc(100% - 100px);
+  padding: 5px 9px 5px 8px; border-radius: 2px;
+  background: rgba(19,29,23,.74);
+  border-left: 2px solid rgba(169,199,155,.85);
+  color: #f7f3e6; pointer-events: none;
+}
+/* 牌子底 .74 是量出来的，不是随手定的。这里原先是 .44，换上二十七片新封面之后
+   左上角普遍比旧那批亮（最亮的一片实测 215 上下），.44 压不住那种天：
+   12px 的曲名最差只剩 3.95:1、地点只剩 2.64:1，两条都低于该守的 4.5:1。
+   垫到 .74 之后逐条复量（Temp/contrast_rooms.py，九段海 + 二十七片林全量），
+   最差的一片曲名 8.50:1、地点 5.48:1，最倒霉的那一笔也还有 7.58 与 5.03。
+   实时海面的上半是更亮的天光，同样 .44 时实测只剩 4.25 与 3.23，
+   所以海面上换成同透明度、但属于海的那一支：复量最差 9.87 与 6.90。
+   两边的竖线与字色一位没动。 */
+.mlp-room.sea-live .mlp-room-cap {
+  background: rgba(6,14,20,.74);
+  border-left-color: rgba(154,206,206,.85);
+}
+.mlp-cap-photo {
+  flex: none; width: 28px; height: 28px; object-fit: cover; display: block;
+  border: 1px solid rgba(247,243,230,.5); border-radius: 2px;
+  background: rgba(10,18,14,.4);
+  filter: saturate(.9) contrast(1.02);
+}
+.mlp-cap-photo[hidden] { display: none; }
+.mlp-room-cap-txt {
+  display: flex; flex-direction: column; gap: 1px; min-width: 0; overflow: hidden;
+}
+.mlp-room-cap-name {
+  font-size: 12px; line-height: 1.45; font-weight: 600; letter-spacing: .06em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  text-shadow: 0 1px 8px rgba(15,24,18,.5);
+}
+.mlp-room-cap-sub {
+  font-size: 12px; line-height: 1.4; letter-spacing: .04em;
+  color: rgba(247,243,230,.78);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mlp-room-actions { display: flex; align-items: center; gap: 8px; }
+.mlp-room-play {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(247,243,230,.45); border-radius: 999px;
+  background: rgba(19,29,23,.42); color: #f7f3e6;
+  font-family: inherit; font-size: 12px; letter-spacing: .16em;
+  padding: 8px 14px 8px 12px; min-height: 38px; cursor: pointer;
+  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-room-play:hover { background: rgba(19,29,23,.6); border-color: rgba(247,243,230,.72); }
+.mlp-room-play-ic { display: grid; place-items: center; width: 14px; height: 14px; }
+.mlp-room-play .mlp-room-play-ic svg { width: 13px; height: 13px; }
+.mlp-room-play .icn-pause { display: none; }
+.mlp-room-play.playing .icn-play { display: none; }
+.mlp-room-play.playing .icn-pause { display: block; }
+/* 「随机去一片」：轻轻一枚圆钮，和播放键并排 */
+.mlp-room-shuffle {
+  display: grid; place-items: center;
+  width: 38px; min-height: 38px; padding: 0;
+  border: 1px solid rgba(247,243,230,.32); border-radius: 999px;
+  background: rgba(19,29,23,.3); color: rgba(247,243,230,.92);
+  cursor: pointer;
+  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-room-shuffle svg { width: 15px; height: 15px; }
+.mlp-room-shuffle:hover { background: rgba(19,29,23,.55); border-color: rgba(247,243,230,.66); transform: rotate(18deg); }
+.mlp-room-shuffle:active { transform: rotate(18deg) scale(.94); }
+
+.mlp-room-note {
+  margin: 0 0 8px; padding: 0 2px;
+  font-size: 12px; line-height: 1.7; letter-spacing: .02em;
+  color: #5c6e5c;
+}
+
+/* ============================================================
+   听海 · 十五层混音板
+   三片海一排（互斥），其余十二层三列排开（可叠加）。
+   小图一律用原站那套线描图，不外画任何一张。
+   开着的层染成深绿、线条翻成纸色；正在出声的那几枚角上有一点微光。
+   ============================================================ */
+.mlp-mix { margin: 0 0 4px; }
+.mlp-mix[hidden], .mlp-list[hidden] { display: none !important; }
+.mlp-mix-h {
+  margin: 2px 2px 7px;
+  font-size: 12px; line-height: 1.4; letter-spacing: .12em;
+  color: #5c6e5c;
+}
+.mlp-mix-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px; margin: 0 0 10px;
+}
+.mlp-mix-tile {
+  position: relative; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 8px 3px 7px;
+  border: 1px solid rgba(207,200,180,.95); border-radius: 2px;
+  background: #fffdf4; color: #3d4d3f;
+  font-family: inherit; font-size: 12px; line-height: 1.3; letter-spacing: .03em;
+  cursor: pointer; text-align: center;
+  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-mix-tile:hover { background: #f2f4e7; border-color: #98ab8c; }
+.mlp-mix-tile.main { padding-top: 10px; padding-bottom: 9px; }
+.mlp-mix-tile.on { background: #2f4536; border-color: #2f4536; color: #f7f3e6; }
+.mlp-mix-tile.on:hover { background: #3a5744; border-color: #3a5744; }
+.mlp-mix-ic { display: grid; place-items: center; width: 100%; height: 26px; }
+.mlp-mix-tile.main .mlp-mix-ic { height: 30px; }
+.mlp-mix-ic img {
+  width: 26px; height: 26px; max-width: 100%; object-fit: contain; display: block;
+  filter: none; transition: filter var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-mix-tile.main .mlp-mix-ic img { width: 30px; height: 30px; }
+.mlp-mix-tile.on .mlp-mix-ic img { filter: invert(1) brightness(1.08); }
+.mlp-mix-name {
+  display: block; max-width: 100%; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.mlp-mix-tile.live::after {
+  content: ""; position: absolute; top: 6px; right: 6px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: #cfe3c2; box-shadow: 0 0 0 2px rgba(207,227,194,.18);
+  animation: mlpMixBreathe 2.4s ease-in-out infinite;
+}
+@keyframes mlpMixBreathe {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+/* 十五层放在一张小卡里，一屏看不完：让这一块自己轻轻滚动 */
+.mlp-mix {
+  max-height: 214px; overflow-y: auto; overscroll-behavior: contain;
+  padding-right: 2px; scrollbar-gutter: stable;
+  scrollbar-width: thin; scrollbar-color: rgba(70,100,70,.32) transparent;
+}
+/* 桌面高一点：三片海与十二层环境尽量多露几行，少翻一次 */
+@media (min-height: 800px) { .mlp-mix { max-height: 300px; } }
+@media (min-height: 960px) { .mlp-mix { max-height: 372px; } }
+.mlp-mix::-webkit-scrollbar { width: 6px; }
+.mlp-mix::-webkit-scrollbar-thumb { background: rgba(70,100,70,.28); border-radius: 99px; }
+.mlp-mix::-webkit-scrollbar-track { background: transparent; }
+.mlp-mix-tile:focus-visible {
+  outline: 3px solid rgba(98,146,82,.55); outline-offset: 2px;
+}
+/* 听海没有"随机去一片"：哪几层出声由上面这十五枚决定 */
+.mlp-room[data-room="sea"] .mlp-room-shuffle,
+.mlp-immerse[data-room="sea"] .mlp-im-shuffle { display: none; }
+
+/* 细一点的滚动条，别打断纸面 */
+.mlp-list { scrollbar-width: thin; scrollbar-color: rgba(70,100,70,.32) transparent; }
+.mlp-list::-webkit-scrollbar { width: 6px; }
+.mlp-list::-webkit-scrollbar-thumb { background: rgba(70,100,70,.28); border-radius: 99px; }
+.mlp-list::-webkit-scrollbar-track { background: transparent; }
+
+/* 房间模式：进度条和播放控制收起来，只留头图、说明和一张声音清单 */
+.room-open .mlp-controls { display: none; }
+/* 清单正好露出三整行（每行 58.84px），不让第四行断在半截字上 */
+.room-open .mlp-list { max-height: 177px; }
+.music-lib-panel.room-open {
+  width: min(340px, calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+}
+
+@media (prefers-color-scheme: dark) {
+  .mlp-lede { color: #93a38e; }
+  .mlp-tab { border-bottom-color: transparent; color: #c4c0ae; }
+  .mlp-tab:hover { background: transparent; color: #ece6d6; }
+  .mlp-tab.on { background: transparent; border-bottom-color: #a9c79b; color: #ece6d6; }
+  .mlp-room { border-color: #3c4a3e; background: #202d25; }
+  .mlp-room-note { color: #a7b0a2; }
+  .mlp-list { scrollbar-color: rgba(169,199,155,.35) transparent; }
+  .mlp-list::-webkit-scrollbar-thumb { background: rgba(169,199,155,.3); }
+  .mlp-mix-h { color: #93a38e; }
+  .mlp-mix-tile { background: #1a241e; border-color: #3c4a3e; color: #c4c0ae; }
+  .mlp-mix-tile:hover { background: #243329; border-color: #5a715c; }
+  .mlp-mix-tile.on { background: #a9c79b; border-color: #a9c79b; color: #16211a; }
+  .mlp-mix-tile.on:hover { background: #bcd4ad; border-color: #bcd4ad; }
+  .mlp-mix-tile.on .mlp-mix-ic img { filter: none; }
+  /* 原站那套线描图是深墨画的：暗色下放在 #1a241e 的牌子上等于看不见。
+     没选中的那几枚反过来印成浅色；选中那枚仍是浅底深墨。 */
+  .mlp-mix-tile:not(.on) .mlp-mix-ic img { filter: invert(1) brightness(1.06); opacity: .88; }
+  .mlp-mix-tile.live::after { background: #16211a; box-shadow: 0 0 0 2px rgba(22,33,26,.18); }
+  .mlp-mix { scrollbar-color: rgba(169,199,155,.35) transparent; }
+  .mlp-mix::-webkit-scrollbar-thumb { background: rgba(169,199,155,.3); }
+}
+
+@media (max-width: 420px) {
+  /* 手机上房卡原本压到 112px，左上角的名字牌（47px 高）和房间里那句
+     "让大海陪着你"会叠在一起：实测 375×667 重叠 32.5px、375×812 同样重叠。
+     卡片抬回桌面那一档的高度，两行字各占各的位置。 */
+  .mlp-room-copy { min-height: 158px; padding: 13px 12px 11px; }
+  .mlp-room-line { font-size: 16.5px; }
+  .music-lib-panel.room-open { width: min(335px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right))); }
+  /* 窄屏把每行收矮一点，156px 里正好放三整行（3 × 50.84px），不留半截字 */
+  .room-open .mlp-list button.mlp-row { padding-top: 6px; padding-bottom: 6px; }
+  .room-open .mlp-list { max-height: 153px; }
+  .mlp-mix { max-height: 196px; }
+  .mlp-mix-grid { gap: 5px; }
+  .mlp-mix-tile { padding: 7px 2px 6px; }
+}
+@media (max-height: 620px) {
+  .mlp-room-copy { min-height: 100px; }
+  .room-open .mlp-list { max-height: 118px; }
+  .mlp-mix { max-height: 150px; }
+  /* 屏幕不够高时面板已经顶到上沿，卡片不能再长：这一档收掉名字牌，
+     当前播的是哪一段，下面的清单里高亮的那一行已经说清楚了。 */
+  .mlp-room-cap { display: none; }
+}
+
+@media (pointer: coarse) {
+  .mlp-room-play { min-height: 44px; }
+}
+
+.mlp-room-play:focus-visible {
+  outline: 3px solid rgba(247, 243, 230, .85);
+  outline-offset: 2px;
+}
+
+/* ---------- 铺满屏幕：头图上的一枚小按钮 ---------- */
+.mlp-room-fs {
+  position: absolute; top: 8px; right: 8px; z-index: 3;
+  width: 34px; height: 34px; min-height: 34px; padding: 0;
+  display: grid; place-items: center;
+  border: 1px solid rgba(247,243,230,.38); border-radius: 2px;
+  background: rgba(19,29,23,.42); color: #f7f3e6;
+  cursor: pointer;
+  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
+              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-room-fs svg { width: 14px; height: 14px; }
+.mlp-room-fs:hover { background: rgba(19,29,23,.62); border-color: rgba(247,243,230,.7); }
+.mlp-room-fs:focus-visible { outline: 3px solid rgba(247,243,230,.85); outline-offset: 2px; }
+
+/* ============================================================
+   全屏收听：同一间房，画面铺满，文字只留一句题词
+   盖住音乐库面板，但低于启动画面、公告与结局视频
+   ============================================================ */
+html.mlp-immersed, html.mlp-immersed body { overflow: hidden; }
+
+.mlp-immerse {
+  position: fixed; inset: 0; z-index: 9550;
+  overflow: hidden; background: #13211b;
+  --mlp-veil: 19,29,23;
+  opacity: 0; visibility: hidden;
+  transition: opacity 600ms ease, visibility 0s linear 600ms;
+}
+.mlp-immerse.sea-live { --mlp-veil: 8,17,22; }
+.mlp-immerse[hidden] { display: none; }
+.mlp-immerse:not(.open) { pointer-events: none; }
+.mlp-immerse.open {
+  opacity: 1; visibility: visible;
+  transition: opacity 700ms ease;
+}
+
+.mlp-im-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block;
+}
+.mlp-im-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(125% 95% at 50% 8%, rgba(19,29,23,0) 30%, rgba(19,29,23,.08) 78%, rgba(19,29,23,.20) 100%),
+    radial-gradient(90% 78% at 4% 96%, rgba(19,29,23,.74) 0%, rgba(19,29,23,.52) 42%, rgba(19,29,23,0) 78%),
+    linear-gradient(180deg, rgba(19,29,23,.12) 0%, rgba(19,29,23,.02) 24%, rgba(19,29,23,.03) 60%, rgba(19,29,23,.16) 100%);
+  /* 顶部原先 .46——那一层是给墨绿的海配的，原站的青天一上来就被罩成了阴天。
+     现在只留 .12；底部也不再整条压黑（.72），改成左下角一团深水，
+     正好托住题词与那行小字，右边整片海仍然是亮的。 */
+  background:
+    radial-gradient(125% 95% at 50% 8%, rgba(var(--mlp-veil),0) 30%, rgba(var(--mlp-veil),.08) 78%, rgba(var(--mlp-veil),.20) 100%),
+    radial-gradient(90% 78% at 4% 96%, rgba(var(--mlp-veil),.74) 0%, rgba(var(--mlp-veil),.52) 42%, rgba(var(--mlp-veil),0) 78%),
+    linear-gradient(180deg, rgba(var(--mlp-veil),.12) 0%, rgba(var(--mlp-veil),.02) 24%, rgba(var(--mlp-veil),.03) 60%, rgba(var(--mlp-veil),.16) 100%);
+}
+.mlp-im-top {
+  position: absolute; z-index: 3; left: 0; right: 0; top: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: calc(16px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) 0 calc(18px + env(safe-area-inset-left));
+}
+.mlp-im-kicker {
+  font-size: 12px; line-height: 1.2; letter-spacing: .34em; text-indent: .34em;
+  /* 手机上海天空几乎发白，.42 的底托不住白字（实测 3.4:1）；压到 .64 才稳 */
+  color: #f7f3e6; background: rgba(19,29,23,.64);
+  padding: 6px 12px 6px 15px; border-radius: 2px;
+}
+.mlp-im-close {
+  flex: none; width: 40px; height: 40px; min-height: 40px; padding: 0;
+  display: grid; place-items: center;
+  border: 1px solid rgba(247,243,230,.4); border-radius: 999px;
+  background: rgba(19,29,23,.6); color: #f7f3e6;
+  font-family: inherit; font-size: 20px; line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-fast, 200ms) ease, border-color var(--dur-fast, 200ms) ease;
+}
+.mlp-im-close:hover { background: rgba(19,29,23,.62); border-color: rgba(247,243,230,.72); }
+
+.mlp-im-copy {
+  position: absolute; z-index: 3;
+  left: calc(clamp(22px, 6vw, 76px) + env(safe-area-inset-left));
+  right: calc(clamp(22px, 8vw, 96px) + env(safe-area-inset-right));
+  bottom: calc(clamp(30px, 9vh, 88px) + env(safe-area-inset-bottom));
+  max-width: 620px; color: #f7f3e6;
+}
+.mlp-im-line {
+  margin: 0; font-size: clamp(26px, 4.4vw, 44px); font-weight: 600;
+  letter-spacing: .16em; line-height: 1.3;
+  text-shadow: 0 2px 26px rgba(10,18,14,.55);
+}
+/* 「此刻在你耳边 · 曲名 · 地点」：满屏画面上的那行小字。
+   这块和房卡左上角那枚是同一张牌子，所以底也垫成一样：原先只有一道竖线、
+   字直接浮在照片上，逐条量过二十七片林子的封面（Temp/contrast_rooms.py）才露出来——
+   有一片（法国 · 贝勒加德圣玛丽）地点那行中位只剩 4.13:1、运气最差的那一笔
+   掉到 2.60:1，都守不住 12px 该过的 4.5:1；「此刻在你耳边」中位 4.86 也只是擦过。
+   海面那一档本来就够（地点 8.22），垫上底只会更好，
+   两间房也就仍是同一张牌子，不是两套东西。 */
+.mlp-im-cap {
+  margin: 14px 0 0; display: flex; align-items: baseline; flex-wrap: wrap;
+  column-gap: 10px; row-gap: 2px;
+  padding: 6px 12px 6px 11px; border-left: 2px solid rgba(169,199,155,.85);
+  border-radius: 2px; background: rgba(19,29,23,.74);
+}
+/* 海面上那道竖线换成海里的青色，牌子底也跟着换成海里那支，跟房卡一致 */
+.mlp-immerse.sea-live .mlp-im-cap {
+  border-left-color: rgba(154,206,206,.85);
+  background: rgba(6,14,20,.74);
+}
+.mlp-im-cap-lead {
+  font-size: 12px; letter-spacing: .18em; color: rgba(247,243,230,.66);
+}
+.mlp-im-cap-name {
+  font-size: 15px; font-weight: 600; letter-spacing: .08em;
+  text-shadow: 0 1px 14px rgba(10,18,14,.5);
+}
+.mlp-im-cap-sub {
+  font-size: 12px; letter-spacing: .06em; color: rgba(247,243,230,.72);
+}
+/* 满屏画面上的地点小图 + 「这片海是实时画的」提示 */
+.mlp-im-cap-photo {
+  flex: none; align-self: center; width: 44px; height: 44px; object-fit: cover;
+  display: block; margin-right: 2px;
+  border: 1px solid rgba(247,243,230,.5); border-radius: 2px;
+  background: rgba(10,18,14,.4);
+  filter: saturate(.9) contrast(1.02);
+}
+.mlp-im-cap-photo[hidden] { display: none; }
+/* 原站线描小图当小照时：不裁切、垫一张浅纸，黑线才落得住 */
+.mlp-cap-photo.is-ico,
+.mlp-im-cap-photo.is-ico {
+  object-fit: contain; padding: 3px;
+  background: #f3efe2; filter: none;
+}
+.mlp-im-drag-hint {
+  margin: 12px 0 0; font-size: 12px; line-height: 1.7; letter-spacing: .05em;
+  color: rgba(247,243,230,.74);
+  text-shadow: 0 1px 14px rgba(10,18,14,.6);
+}
+.mlp-im-drag-hint[hidden] { display: none; }
+.mlp-im-note {
+  margin: 12px 0 0; max-width: 30em;
+  font-size: 13px; line-height: 1.85; letter-spacing: .03em;
+  color: rgba(247,243,230,.84);
+  text-shadow: 0 1px 14px rgba(10,18,14,.45);
+}
+.mlp-im-actions {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.mlp-im-play {
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 48px; padding: 12px 22px 12px 18px;
+  border: 1px solid rgba(247,243,230,.6); border-radius: 999px;
+  background: rgba(247,243,230,.94); color: #1c2a22;
+  font-family: inherit; font-size: 13px; letter-spacing: .18em;
+  cursor: pointer;
+  transition: background var(--dur-fast, 200ms) ease, transform var(--dur-fast, 200ms) ease;
+}
+.mlp-im-play:hover { background: #fff; }
+.mlp-im-play:active { transform: translateY(1px); }
+.mlp-im-play-ic { display: grid; place-items: center; width: 16px; height: 16px; }
+.mlp-im-play-ic svg { width: 14px; height: 14px; }
+.mlp-im-play .icn-play { display: block; }
+.mlp-im-play .icn-pause { display: none; }
+.mlp-im-play.playing .icn-play { display: none; }
+.mlp-im-play.playing .icn-pause { display: block; }
+/* 全屏里的「随机去一片」：描边胶囊，安静地挨着播放键 */
+.mlp-im-shuffle {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 48px; padding: 12px 20px 12px 17px;
+  border: 1px solid rgba(247,243,230,.5); border-radius: 999px;
+  background: rgba(19,29,23,.35); color: #f7f3e6;
+  font-family: inherit; font-size: 13px; letter-spacing: .14em;
+  cursor: pointer;
+  transition: background var(--dur-fast, 200ms) ease, border-color var(--dur-fast, 200ms) ease;
+}
+.mlp-im-shuffle svg { width: 15px; height: 15px; }
+.mlp-im-shuffle:hover { background: rgba(19,29,23,.55); border-color: rgba(247,243,230,.75); }
+.mlp-im-shuffle:active { transform: translateY(1px); }
+.mlp-im-hint {
+  font-size: 12px; letter-spacing: .04em;
+  color: rgba(247,243,230,.62);
+}
+
+@media (max-width: 600px) {
+  .mlp-im-copy { bottom: calc(26px + env(safe-area-inset-bottom)); right: calc(20px + env(safe-area-inset-right)); }
+  .mlp-im-line { letter-spacing: .12em; }
+  .mlp-im-cap-lead { display: none; }
+  .mlp-im-note { font-size: 12px; line-height: 1.8; }
+  .mlp-im-hint { display: none; }
+  .mlp-im-top { padding-top: calc(12px + env(safe-area-inset-top)); }
+  .mlp-im-shuffle { min-height: 44px; padding: 10px 16px 10px 14px; }
+  .mlp-im-play { min-height: 44px; padding: 10px 18px 10px 15px; }
+}
+
+@media (pointer: coarse) {
+  .mlp-room-fs { width: 40px; height: 40px; min-height: 40px; }
+  .mlp-room-shuffle { width: 44px; min-height: 44px; }
+  .mlp-room-play { min-height: 44px; }
+  .mlp-im-close { width: 44px; height: 44px; min-height: 44px; }
+  .mlp-im-shuffle { min-height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-immerse, .mlp-immerse.open { transition: none; }
+  .mlp-room-shuffle:hover { transform: none; }
+}
+
+/* ============================================================
+   2026-10 · 两间声音房换上"活画面"，面板再往安静里磨了一遍
+   - 听海：每段海画一片自己的海面（canvas，见 music-player.js 场景引擎）
+   - 林间：每片林子画一片自己的林相（canvas）
+   - 房卡左上角一枚名字牌，全屏画面上有"此刻在你耳边"
+   - 随机去一片：面板房间与全屏层各一枚
+   - 面板：更轻的边、更静的过渡、列表与状态提示更柔
+   字号地板仍是 12px，焦点环、减少动态效果、暗色主题都跟上。
+   ============================================================ */
+
+/* 状态提示像一句轻话：淡入，不跳 */
+.mlp-status { animation: mlpStatusIn .45s var(--ease, cubic-bezier(.32,.72,0,1)); }
+@keyframes mlpStatusIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 列表行：悬停时名字轻轻向右一点，像被指了一下 */
+.mlp-list button.mlp-row .mlp-name,
+.mlp-list button.mlp-row .mlp-sub {
+  transition: transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+}
+.mlp-list button.mlp-row:hover .mlp-name { transform: translateX(2px); }
+
+/* 页签之间的一次呼吸：切换时内容整体轻轻浮现 */
+.music-lib-panel .mlp-list,
+.music-lib-panel .mlp-room,
+.music-lib-panel .mlp-search,
+.music-lib-panel .mlp-mix {
+  animation: mlpTabIn .38s var(--ease, cubic-bezier(.32,.72,0,1)) both;
+}
+@keyframes mlpTabIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 面板边线再轻半档，少一点"框住"的感觉 */
+.music-lib-panel { border-color: rgba(190, 182, 160, .8); }
+@media (prefers-color-scheme: dark) {
+  .music-lib-panel { border-color: rgba(78, 94, 80, .8); }
+}
+
+/* 名字牌在窄卡里也别顶到按钮 */
+@media (max-width: 420px) {
+  .mlp-room-cap { max-width: calc(100% - 92px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mlp-status, .music-lib-panel .mlp-list,
+  .music-lib-panel .mlp-room, .music-lib-panel .mlp-search,
+  .music-lib-panel .mlp-mix { animation: none !important; }
+  .mlp-list button.mlp-row .mlp-name,
+  .mlp-list button.mlp-row .mlp-sub { transition: none !important; }
+  .mlp-mix-tile.live::after { animation: none !important; opacity: .8; }
 }

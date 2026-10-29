@@ -1,16 +1,13 @@
 
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=e5c8843e-c4e2-4486-8ac8-ee51c8902840
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <title>寻归荒野 · 总理三十年 1974—2023</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="以公开履历为骨架的历史启发式政治叙事游戏：54 个抉择场景、161 个选项、15 个结局。不用注册，进度只存在这台设备。">
 <!-- 站点图标是自己画的几何山形（assets/favicon.svg），不使用任何第三方商标。
      theme-color 让手机浏览器的地址栏跟着明/暗主题走，两档各给一条。 -->
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f3e9">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#17271f">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ece8d7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a241e">
 <!-- 部署在 Netlify Drop 上时域名每次都可能不同，所以 canonical 与 og:image 在运行时补成当前地址；
      抓取器不执行脚本，源文件里保留相对路径，能在解析相对地址的客户端里正常工作。 -->
 <link rel="canonical" id="canonical-link" href="./">
@@ -492,7 +489,7 @@ footer { margin-top:54px; text-align:center; font-size:11px; color:var(--muted);
 
 
 <link rel="stylesheet" href="./assets/announcement.css">
-<link rel="stylesheet" href="./assets/music-player.css">
+<link rel="stylesheet" href="./assets/music-player.css?v=20261029b">
 <link rel="stylesheet" href="./assets/ending-video.css">
 <style>
 /* 冷启动阶段只显示启动图片；其余页面元素暂时完全隐藏，防止公告抢先出现。 */
@@ -680,24 +677,29 @@ body.xg-modal-open { overflow:hidden; }
    规则全部落在最后一层：同权重时覆盖前面的主题层。
    ============================================================ */
 :root{
-  --paper:#f2efe3; --paper2:#e9e4d2;
+  /* 2026-10-27 按读者反馈把纸色调深一档：原 #f2efe3 偏白，压到 #ece8d7——
+     仍是纸，但更像架上有年头的档案纸。对比度全部实测（1440 浅色、合成底色）：
+     ink 10.9:1、ink-soft 6.0:1、灰绿小字 4.8–5.4:1、good/bad 均 ≥4.8:1（≥4.5 达标）。
+     注意：这里 --muted 会被后面 1646 行那层 #675b43 盖掉（正文区实际生效的是它，
+     实测 5.42:1）；封面小字走 --cv-soft，这里收深到 #57695a 后实测 4.78:1。 */
+  --paper:#ece8d7; --paper2:#e4deca;
   --ink:#23322a; --ink-soft:#485a4c;
   --seal:#46653f; --seal-soft:#6e8a63;
   --archive:#456a63; --archive-soft:#7f9f96;
-  --line:#cfc8b4; --muted:#5c6e5c;
+  --line:#cfc8b4; --muted:#57695a;
   --good:#3e6f4c; --bad:#9a4b39;
-  --card:#f8f5ea;
+  --card:#f4f1e2;
   --shadow:0 1px 0 rgba(35,50,42,.05), 0 18px 40px rgba(35,50,42,.05);
   --radius-xl:4px; --radius-lg:4px; --radius-md:3px; --radius-sm:2px;
   --cinnabar:#a3483a;
   --btn-bg:#2f4536; --btn-hover:#46653f; --btn-ink:#f7f3e6;
-  --panel-soft:#f6f2e5; --opt-bg:transparent; --opt-hover:rgba(70,100,70,.06);
+  --panel-soft:#f2eee0; --opt-bg:transparent; --opt-hover:rgba(70,100,70,.06);
   --opt-picked:rgba(70,100,70,.1); --opt-picked-gs:rgba(69,106,99,.1);
   --opt-arrow-bg:transparent; --opt-arrow-gs-bg:transparent;
   --num-bg:transparent; --num-gs-bg:transparent;
   --num-ink:#46653f; --num-gs-ink:#456a63;
-  --divider-bg:#f5f2e6; --cutscene-bg:#f4f0e3;
-  --stamp-bg:#f6f2e6; --stamp-bg-gs:#f2f3e8;
+  --divider-bg:#f1eddc; --cutscene-bg:#efebda;
+  --stamp-bg:#f2eee0; --stamp-bg-gs:#eeefe3;
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark){
@@ -1096,18 +1098,18 @@ body{
   #hdr .file-id{flex:0 0 100%; width:100%; text-align:right;}
 }
 </style>
-<style id="infp-pass">
+<style id="quiet-pass">
 /* ============================================================
-   2026-10-26 · INFP 轮：从"档案室"调到"深夜桌前的一册私记"
-   依据 personality-database.com 对 INFP 的原文描述：
-     · INFP is an Introverted Feeling Type.
+   2026-10-26 · 这一型 轮：从"档案室"调到"深夜桌前的一册私记"
+   依据 personality-database.com 对 这一型 的原文描述：
+     · 这一型 is an Introverted Feeling Type.
        Common traits: "Value, above all, harmony in the inner life of feeling"
        "Have feelings that are deep but seldom expressed, because inner tenderness
         and passionate conviction are both masked by reserve and repose"
        "Maintain independence from judgement of others, being bound by inner moral law"
      · "dreamers / idealists, moved by authenticity and driven to express their truth
         through art, writing, or relationships"
-     · insights/infp: "need emotional safety … space for their inner world —
+     · insights/…: "need emotional safety … space for their inner world —
         time alone, creative outlets, depth in conversation"
    对应到界面只有四件事：去掉评判感（Fi 讨厌被打分）、去掉刺眼的光（高敏感）、
    给情绪留一个不必公开的出口（deep but seldom expressed）、让阅读与反馈慢下来。
@@ -1157,12 +1159,13 @@ body{
 
 /* ---------- 2. 封面不再是一块白板：夜间改成"暗色印张" ---------- */
 :root{
-  --cv-bg:#f4f1e4; --cv-line:#cfc8b4; --cv-ink:#23322a; --cv-soft:#5c6e5c; --cv-body:#4a5a4c;
+  /* 封面那层纸跟全局纸色一起加深（2026-10-27）：cv-soft 同步收深，保住 4.5:1。 */
+  --cv-bg:#ece8d7; --cv-line:#cfc8b4; --cv-ink:#23322a; --cv-soft:#57695a; --cv-body:#4a5a4c;
   --cv-disc:#e5d4ae; --cv-disc-op:.62; --cv-disc-line:rgba(150,128,86,.22);
   --cv-btn:#2f4536; --cv-btn-hover:#46653f; --cv-btn-ink:#f7f3e6;
-  --cv-rule:rgba(70,100,70,.26); --cv-doc-bg:rgba(251,248,238,.72); --cv-doc-line:rgba(70,100,70,.18);
+  --cv-rule:rgba(70,100,70,.26); --cv-doc-bg:rgba(246,243,230,.74); --cv-doc-line:rgba(70,100,70,.18);
   --cv-gi:#4f6555; --cv-gi-line:rgba(70,100,70,.34); --cv-gi-on:#33502f; --cv-gi-on-bg:rgba(70,100,70,.09);
-  --cv-card:rgba(252,249,240,.76); --cv-thread:#46653f; --cv-num:#23322a; --cv-chip-bg:rgba(250,252,240,.74);
+  --cv-card:rgba(249,246,235,.78); --cv-thread:#46653f; --cv-num:#23322a; --cv-chip-bg:rgba(246,248,236,.76);
   --cv-seal:#a3483a;
 }
 @media (prefers-color-scheme:dark){
@@ -1334,7 +1337,7 @@ body{
 </style>
 <style>/* ============ archive-pass · 档案库 ============
    这一层只做"架子"，不碰上面任何已调好的字色与对比度。
-   INFP 的原话在这里落成三件事：
+   这一型 的原话在这里落成三件事：
    · Fi——"being bound by inner moral law"：册名由你自己定，界面不替你宣布你是什么。
    · Ne——"explore possibilities"：几册并行，同一段路可以摆着好几种活法，不分高下。
    · Si——keepsake：每一册留住自己走过的收束，是一册纪念物，不是一张成绩单。
@@ -1433,7 +1436,7 @@ body{
 .arch-row-wrap{display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:18px}
 
 /* ---------- 同一层里的第二件事：顶上那排数字可以先收着 ----------
-   Te 是 INFP 最弱的一档功能：常驻数值面板给人的感觉是"在被打分"，
+   Te 是 这一型 最弱的一档功能：常驻数值面板给人的感觉是"在被打分"，
    而不是"我在乎这件事"。收起的只是页眉那排总数——
    每一笔的增减照样写在结果页上，判定、数值、存档一个字都不动。 */
 #stats.nums-off{display:block}
@@ -1455,7 +1458,7 @@ body{
 </style>
 <style id="quiet-pass">
 /* ============ quiet-pass · 安静的翻页 ============
-   personality-database 写 INFP 的两句原话最影响界面：
+   personality-database 写 这一型 的两句原话最影响界面：
      "Have feelings that are deep but seldom expressed"（感受很深，却很少说出口）
      "Are independent of the judgements of others, being bound by an inner moral law"
    前者要一个不必表演的阅读姿势，后者要一个不被系统评判、也不被催的界面。
@@ -1547,7 +1550,7 @@ body{
 </style>
 <style id="ink-pass">
 /* ============ ink-pass · 落墨 ============
-   personality-database 写 INFP 的两句原话，落到画面上是两件事：
+   personality-database 写 这一型 的两句原话，落到画面上是两件事：
      "Are especially reserved and shy but passionate about defending the weak"
        —— 画面要安静，不能抢在字前面；
      "dreamers / idealists … express their truth through art, writing"
@@ -1626,7 +1629,7 @@ body{
 }
 </style>
 <style id="head-pass">/* ============ 抬头 · 第九轮：字要读得动，入口要在眼前 ============
-   INFP 的原文这一轮只落两件事，都不是"更好看"：
+   这一型 的原文这一轮只落两件事，都不是"更好看"：
    · "Are especially reserved and shy" + Big Five 的 Low E / Avoidant——
      这样的人不会满页找按钮，更不会开口问。玩法与存档若藏在页边一枚 32px 的竖条里，
      就等于没有；实测那两枚竖条在 390px 上还直接压在正文上。所以它们搬到顶栏，一直摆着。
@@ -1721,9 +1724,12 @@ button.tool:hover .tool-n{ color:var(--seal); }
   -webkit-mask:var(--ic) center / contain no-repeat; mask:var(--ic) center / contain no-repeat;
   opacity:.9;
 }
-.ic-help{ --ic:url("./assets/ink/ic-help.webp"); }
-.ic-arch{ --ic:url("./assets/ink/ic-arch.webp"); }
-.ic-save{ --ic:url("./assets/ink/ic-save.webp"); }
+/* 这三枚图标内联在 CSS 里，不指外部文件：CSS 的 mask 是按 CORS 取图的，
+   双击本地文件（file://）时浏览器会拒收外部图片，图标就空了。
+   三张图各不到 0.4KB，写进来本地和线上都能画。 */
+.ic-help{ --ic:url("data:image/webp;base64,UklGRkYBAABXRUJQVlA4WAoAAAAQAAAAXwAAXwAAQUxQSOcAAAABFzD/EREG3Np2Gzl/vcl95FdSFypiPmUi34cvgblsozsYAIOJpCii/wzcto2jZL3bOdnxCPyBbO7lYwIUbQc3zEc4dlwSvhtcUpBIjlSuKWFpj1WeEqkV5G9bsEqUVg5LZcJZsUlZaF4cUTq6Nh9ZLSaWBvq1uTspQFuIZloxpoAYa2kIiDE8h5M6OSkCcut/jrViDNlGPUb/cHPaJmH5by5GmsPN5SSb2gIO8ndCnns28WnYA5cuem0A147OGYSdm8UQqLhe6L+7D7Uwfo9PqUIeAoYXojOBbU/XE2DXhsNWS/z7GAAAVlA4IDgAAACQBACdASpgAGAAPikUiUOhoSEQdAAYAoS0gAADuyq+XuNPeTfTp06dOnTpvgAA/v7AqAAAAAAAAA=="); }
+.ic-arch{ --ic:url("data:image/webp;base64,UklGRgQBAABXRUJQVlA4WAoAAAAQAAAAXwAAXwAAQUxQSKYAAAABFzD/ERGGG21700ZLUti9l8H36M608z24e2gtV8cs6lFMY0T/Fbhto2R4jK8A95TxJJnc5vPZSv6jPfgS8dcpQ1s9AnWqlb//gP1dAjxK3J/2eMJT9g1JvFeBRvXlyPSJjr+ajEfvkkpBfcdeaKvdRbD/H08ZqioxVtt5/PAPU6YgAMbq/3/26j7zfaYxLA5wLqfPZzA8YRK25slsLYd5+C8FcDwBVlA4IDgAAACQBACdASpgAGAAPikUiUOhoSEQdAAYAoS0gAADuyq+XuNPeTfTp06dOnTpvgAA/v7AqAAAAAAAAA=="); }
+.ic-save{ --ic:url("data:image/webp;base64,UklGRjABAABXRUJQVlA4WAoAAAAQAAAAXwAAXwAAQUxQSNEAAAABFzD/ERGG29i2G+XhTWSV46GMLcGbkFIU0sASE9Lnoqc/0oc4ov8M3DZSlN2DHN/AJ/Db437f35fLubXHz/M9Z5QVHYZRcyoxhopSgl/SRV3pj1ug/IYXjXGuAknUelNaDyrzFT7+kQ/rz2PUuOmpQz19pyfOkSV8v+jNiymlt01SKbDCSzqglnEBWpksgIeMIQC/uJ9RSpj0pF5xHIkEJxM+vtxR42EgBs7wwT6i9HFxSX0MXKwPkMHpnSiP24KR0FU9ZFjKC3TsGGPOCn9pAABWUDggOAAAAJAEAJ0BKmAAYAA+KRSJQ6GhIRB0ABgChLSAAAO7Kr5e4095N9OnTp06dOm+AAD+/sCoAAAAAAAA"); }
 /* 图标没加载上时（离线、旧缓存）字还在，位置也不塌 */
 @supports not (mask:none) and (-webkit-mask:none){ .tool-ic{ display:none; } }
 
@@ -1813,7 +1819,7 @@ body.xg-ending #hdr{ padding-bottom:12px; }
 /* ---------- 八、12px 地板：这一轮剩下的小字一次收干净 ----------
    正文 16.5、选项 14 已经抬上去了，页面上还留着几处 11px 的短标签：
    章节签、年份、"进度会自己留着"那句、封面的题头、图鉴里的册名。
-   每一处只有一小串字，可每一幕都要过一遍眼睛——INFP 不会说"这行我看不清"，
+   每一处只有一小串字，可每一幕都要过一遍眼睛——这一型 不会说"这行我看不清"，
    只会慢慢少看两页。12px 是这一版的地板，图标与 ✎ 这类符号不算字。 */
 .tag, .year, .rest-line .rest-note, #title-screen .kicker,
 .gi, #title-screen .gi, .gi-lead, .gi-notes b{ font-size:12px; }
@@ -1838,11 +1844,10 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
    右下角 0/120 计数 11。它们都在最后一屏，读的人最累的时候。 */
 
 /* ---------- 九、"这一路记下的"跟着最近的一笔走 ----------
-   不是要它"更热闹"，是要它别再让人找。原来每点一次选项，面板里的位置按上一次的
-   阅读位置保留，看到的多半仍是几笔之前的记录，最新那一笔藏在下面，得自己往下翻——
-   回看旧记录是偶尔的，确认"我刚选的那一步记上了"是每一幕都要做的事。
-   所以新记的一笔把面板钉到底部，最新那条起一道淡边淡一下（1.5 秒就退干净）；
-   往上翻旧记录当然随时可以，只要没有新的一笔，字一个字都不会动。
+   不是要它"更热闹"，是要它别再让人找。面板里的记录改成最新一笔排最上面
+   （展示层倒排，见 renderLog 旁的注释），点完选项抬眼就是刚记下的那笔；
+   新的一笔起一道淡边淡一下（1.5 秒就退干净）。往下拉随时能翻到前面的旧记录，
+   只要没有新的一笔，字一个字都不会动。
    底色只借 --opt-hover（两个主题各自调过），不新造颜色。 */
 .logEntry.is-new{ animation: xgLogNew 1500ms var(--ease) 1 both; }
 @keyframes xgLogNew{
@@ -1854,9 +1859,987 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
   .logEntry.is-new{ animation: none; box-shadow: inset 2px 0 0 var(--seal); }
 }
 </style>
-</head><body class="xg-startup-active">
+<style id="audit-pass">
+/* ============================================================
+   2026-10-27 · 审计修复轮（只动呈现，不动游戏内容）
+   依据同日《审视报告》的"如果只做三件事"。本块放在所有样式层之后，
+   所以同权重时它才有最终话语权——前面 #a11y-tuning 里那批 :root 覆写
+   其实又被后面的 #art-pass 盖回去了（复测：--bad 实际生效 #9a4b39）。
+   剧情、选项、数值、结局、公告文本一律没碰；启动时长仍是 6 秒。
+   ============================================================ */
+
+/* —— 1. 启动画面：信箱区不再是刺眼的纯白 ——
+   splash.jpg 是 4:3，object-fit:contain 在 16:9 横屏上会上下留出约 43%（375 竖屏约 50%）
+   的空白，底色原本写死 #fff，冷启动第一眼就是"白闪"。改成跟随纸色，
+   只换底色，图片本身、显示时长、6 秒计时都不动。 */
+#xg-splash { background:var(--paper); }
+
+/* —— 2. 顶栏：第一次选择后不再往下跳 41px ——
+   实测（1440×900）：#backBtn 一出现，.hdr-right 从 106.5px 变 197px，
+   780px 容器里的 brandrow 正好越过换行阈值，整条顶栏从 147.2px 长到 188.2px。
+   缺陷不是"两行"，是"第一次选择时突然多出一行"。
+   做法：≥661px 时给隐藏态的 #backBtn 永久留位（visibility:hidden：不进 Tab、
+   不可点、读屏不播），行宽从此与进度无关；再收 26px 内外边距，
+   让留位后仍能排进一行（690px 可用 vs 686.9px 需要）。 */
+@media (min-width:661px) {
+  #hdr .backbtn { display:inline-flex; align-items:center; justify-content:center; }
+  /* 站点里 [hidden]{display:none!important} 是全局规则，这里必须用同样的 !important 把它按住，
+     否则"留位"根本不生效（第一次实测就是这样：跳动没了，但靠的只是收紧后的宽度余量）。 */
+  #backBtn[hidden] { display:inline-flex !important; visibility:hidden; pointer-events:none; }
+  #hdr .brandrow { gap:8px; }
+  #hdr .hdr-right { gap:8px; }
+  #hdr .hdr-tools { gap:4px; }
+  #hdr .tool { padding-left:9px; padding-right:9px; }
+  #hdr .backbtn { padding-left:11px; padding-right:11px; }
+  /* 字距收回 0.04em 只发生在 11px 的状态小字上，肉眼几乎看不出，
+     但正好换来第 10 步那一行数字不再把顶栏顶到第二行。 */
+  #hdr .file-id { letter-spacing:.02em; }
+  /* 册名是玩家自己起的，长度不可控。≤1100 早就给它加了省略号上限，
+     这里把同一条上限铺到整段宽屏，别让一册长名字把顶栏挤成两行。 */
+  #hdr .tool-arch .tool-n { max-width:9em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+}
+
+/* —— 3. 触控屏：常驻顶栏的控件给到 44px 命中高 ——
+   实测 768×1024（pointer:coarse）：三枚功能件 38px、音效与上一步 33px。
+   44 是这套界面已有的既有约定（.cover-tools .tool、.lightbtn、.mlp-close 都是 44），
+   只是顶栏漏了。窄屏 ≤660 原本就有 44px 规则，不动。 */
+@media (pointer:coarse) and (min-width:661px) {
+  #hdr .tool, #hdr .sfxbtn, #hdr .backbtn { min-height:44px; }
+  .skip-link { min-height:44px; }
+  /* 清扫剩余的触控目标：封面两枚工具（≤660 早就是 44，661—1100 漏了）、
+     底部"回封面"、音乐库页签与列表行。音乐库小按钮（26×30 的改名/删除）过 24px 下限，不动。 */
+  .cover-tools .tool, #restBtn { min-height:44px; }
+  .mlp-tab, .mlp-list button.mlp-row { min-height:44px; }
+}
+
+/* —— 4. 音量滑条：命中区撑到 44px，视觉粗细不变 ——
+   .mlp-volume 的 range 盒子只有 16px（≤420px 时 20px），连 WCAG 2.5.8 的 24px 下限都没到。
+   用 content-box 的上下内边距把可点区撑开，再用等值负外边距把布局还原，
+   轨道仍然画在 16px 的内容盒里，面板高度一格没变。 */
+@media (pointer:coarse) {
+  .mlp-volume input[type="range"],
+  .xgegv-vol {
+    box-sizing:content-box; height:16px; padding:14px 0; margin:-14px 0;
+  }
+  .xgegv-track { height:32px; }
+  .xgegv-timeline { height:32px; }
+  .xgegv-buffer, .xgegv-played { top:14px; }
+}
+/* 音效面板里的音量条由 assets/feedback.js 自己注入样式（28px，已过 24px 下限），
+   注入时机比这一层晚，这里不去和它抢，免得把面板高度搞乱。 */
+
+/* —— 5. 缩放键"到底了"时的样子 ——
+   .mlp-zoom:disabled 是 #b7c3b0，对面板底色 #f8f5ea 只有 1.64:1。禁用态按 WCAG 1.4.3 是豁免的，
+   但它同时也是"这个按钮现在没用"的信号，灰到看不见会让人以为点坏了。提到 3.3:1：仍然明显比
+   可用态淡，但一眼看得出那是个不能按的键。 */
+.mlp-zoom:disabled { color:#7c8a77; }
+@media (prefers-color-scheme: dark) {
+  .mlp-zoom:disabled { color:#6f8070; }
+}
+</style>
+<style id="scene-art-pass">/* ============ 场景插画 · 安静地垫在纸后 ============
+   每一个场景都发生在具体的地方：东陵的田、未名湖的秋、河南的麦、辽宁的厂房、
+   北京的深秋与风雪。插画固定铺满视口，覆在纸色之下；纸页只透出极淡的一层。
+   对比度：正文墨色在 90% 纸色底上实测仍 > 9:1，小字灰 > 5:1（见交付说明验收数字）。 */
+#sceneArt{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:0; transition:opacity 1.1s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+#sceneArt img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center 42%;
+  filter:saturate(.78) contrast(.97) brightness(1.04);
+  opacity:0; transition:opacity 1s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+#sceneArt img.on{opacity:1;}
+/* 纸色的雾：让画和纸化在一起，而不是"贴了一张照片" */
+#sceneArt::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(74% 60% at 50% 38%, rgba(236,232,215,.14) 0%, rgba(236,232,215,.60) 64%, rgba(236,232,215,.84) 100%),
+    linear-gradient(180deg, rgba(236,232,215,.72), rgba(236,232,215,.55) 32%, rgba(236,232,215,.76));
+}
+body.art-on #sceneArt{opacity:.64;}
+/* 阅读的纸页让出极薄的一层：只看得出纸后有画，不参与正文的底 */
+body.art-on .card,
+body.art-on .outcome,
+body.art-on .cutscene,
+body.art-on .divider{
+  background-color:rgba(244,241,226,.90);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) #sceneArt img{filter:saturate(.6) brightness(.48) contrast(1.02);}
+  :root:not([data-theme="light"]) #sceneArt::after{
+    background:
+      radial-gradient(74% 60% at 50% 38%, rgba(26,36,30,.10) 0%, rgba(26,36,30,.62) 64%, rgba(26,36,30,.86) 100%),
+      linear-gradient(180deg, rgba(26,36,30,.74), rgba(26,36,30,.56) 32%, rgba(26,36,30,.78));
+  }
+  :root:not([data-theme="light"]) body.art-on .card,
+  :root:not([data-theme="light"]) body.art-on .outcome,
+  :root:not([data-theme="light"]) body.art-on .cutscene,
+  :root:not([data-theme="light"]) body.art-on .divider{
+    background-color:rgba(32,45,37,.92);
+  }
+}
+:root[data-theme="dark"] #sceneArt img{filter:saturate(.6) brightness(.48) contrast(1.02);}
+:root[data-theme="dark"] #sceneArt::after{
+  background:
+    radial-gradient(74% 60% at 50% 38%, rgba(26,36,30,.10) 0%, rgba(26,36,30,.62) 64%, rgba(26,36,30,.86) 100%),
+    linear-gradient(180deg, rgba(26,36,30,.74), rgba(26,36,30,.56) 32%, rgba(26,36,30,.78));
+}
+:root[data-theme="dark"] body.art-on .card,
+:root[data-theme="dark"] body.art-on .outcome,
+:root[data-theme="dark"] body.art-on .cutscene,
+:root[data-theme="dark"] body.art-on .divider{
+  background-color:rgba(32,45,37,.92);
+}
+@media (prefers-reduced-motion: reduce){
+  #sceneArt, #sceneArt img{transition:none;}
+}
+</style>
+<style id="photo-pass">/* ============ 照片轮 · 第二版：字底下一定有一张纸 ============
+   照片比水彩亮，也比水彩忙。上一版把雾做成一根只罩住正文 ±150px 的柱子，
+   结果幕标年份、结局印章、结局引言这些排在柱子外面的裸字，直接坐到了照片上。
+   这一版换了个思路：
+   1) 柱子加宽到正好盖住整根阅读栏（680px 的壳子），浓到 .92，但仍不是一堵墙；
+   2) 真正需要保证的是"每一个字的底下是纸"——所以年份做成和幕标同款的标签，
+      结局页整页垫一张纸（--paper，比卡片纸深一档，里面的档案表就浮得出来），
+      印章恢复纸底；
+   3) 深色那两个序号小方块（--num-bg/--num-gs-bg）和点中之后的底色，
+      按浅色的做法一起改成透明，字直接坐在卡片纸上；点中那一格的序号改用正文墨色。
+   卡片本身回到 .985——读者视线停留最久的地方，底是纸，不是照片。 */
+:root{
+  --art-veil:236,232,215;
+  --art-half:560px; --art-in:430px; --art-core:.92; --art-plate:.985;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --art-veil:28,24,17; }
+}
+:root[data-theme="dark"]{ --art-veil:28,24,17; }
+
+body.art-on #sceneArt{opacity:1;}
+#sceneArt img{
+  object-position:center 45%;
+  filter:saturate(.82) contrast(1.06) brightness(.99);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #sceneArt img{filter:saturate(.66) contrast(1.1) brightness(.58);}
+}
+:root[data-theme="dark"] #sceneArt img{filter:saturate(.66) contrast(1.1) brightness(.58);}
+
+/* 一根正好罩住阅读栏的柱子：±340px 以内都是厚雾，外面才让照片露出来 */
+#sceneArt::after{
+  background:
+    linear-gradient(90deg,
+      rgba(var(--art-veil),0)                  calc(50% - var(--art-half)),
+      rgba(var(--art-veil),.55)                calc(50% - var(--art-in)),
+      rgba(var(--art-veil),var(--art-core))    calc(50% - 340px),
+      rgba(var(--art-veil),var(--art-core))    calc(50% + 340px),
+      rgba(var(--art-veil),.55)                calc(50% + var(--art-in)),
+      rgba(var(--art-veil),0)                  calc(50% + var(--art-half))),
+    linear-gradient(180deg,
+      rgba(var(--art-veil),.34),
+      rgba(var(--art-veil),.14) 20%,
+      rgba(var(--art-veil),.20) 62%,
+      rgba(var(--art-veil),.42));
+}
+
+/* ---- 纸页：正文的底 ---- */
+body.art-on .card,
+body.art-on .outcome,
+body.art-on .cutscene,
+body.art-on .divider{background-color:rgba(244,241,226,var(--art-plate));}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on .card,
+  :root:not([data-theme="light"]) body.art-on .outcome,
+  :root:not([data-theme="light"]) body.art-on .cutscene,
+  :root:not([data-theme="light"]) body.art-on .divider{background-color:rgba(32,45,37,var(--art-plate));}
+}
+:root[data-theme="dark"] body.art-on .card,
+:root[data-theme="dark"] body.art-on .outcome,
+:root[data-theme="dark"] body.art-on .cutscene,
+:root[data-theme="dark"] body.art-on .divider{background-color:rgba(32,45,37,var(--art-plate));}
+
+/* ---- 年份：以前只是飘在照片上的两个数字，现在和幕标做成一对标签 ---- */
+.tag-row .year{
+  background:var(--card); border:1px solid var(--line); border-bottom:0;
+  border-radius:2px 2px 0 0; padding:6px 11px 8px; line-height:1.35;
+}
+.tag-row .tag{padding-bottom:8px;}
+
+/* ---- 结局页：整页垫一张纸，比卡片深一档，里面的档案表与便签就浮得出来 ---- */
+body.art-on .ending{
+  background-color:var(--paper); background-image:var(--grain);
+  border:1px solid var(--line); border-radius:3px; box-shadow:var(--shadow);
+  padding-left:clamp(18px,3.4vw,34px); padding-right:clamp(18px,3.4vw,34px);
+}
+/* 印章在照片轮那一版被抽掉了纸底，这里补回来：朱砂字要有纸 */
+body.art-on .ending .stamp2{background:var(--stamp-bg);}
+body.art-on .ending.gs .stamp2{background:var(--stamp-bg-gs);}
+
+/* ---- 深色序号方块：浅色早就透明了，深色是被特异度更高的那层卡住 ---- */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --num-bg:transparent; --num-gs-bg:transparent;
+    --opt-arrow-bg:transparent; --opt-arrow-gs-bg:transparent;
+  }
+}
+:root[data-theme="dark"]{
+  --num-bg:transparent; --num-gs-bg:transparent;
+  --opt-arrow-bg:transparent; --opt-arrow-gs-bg:transparent;
+}
+/* 点中之后那一格底色最深，序号再沿用主题色就顶不到 4.5——改用正文墨色 */
+.opt.xg-picked .num, .opt.gs.xg-picked .num{color:var(--ink);}
+
+/* ---- 封面那两段被自己的透明度扣掉一档的字 ---- */
+#title-screen .privacy{opacity:1;}
+.cover-seal{opacity:.92;}
+
+/* 平板：柱子跟着壳子收窄，别把照片整张糊掉 */
+@media (max-width:1080px){ :root{ --art-half:420px; --art-in:330px; --art-core:.90; } }
+/* 手机：阅读栏本来占满，摊平成一层均匀的雾，对比度交给纸页去守 */
+@media (max-width:760px){ :root{ --art-half:260px; --art-in:170px; --art-core:.86; }
+  .tag-row .year{padding:5px 9px 7px;} }
+@media (prefers-reduced-motion: reduce){ #sceneArt, #sceneArt img{transition:none;} }
+</style>
+<style id="landing-pass">/* ============ 起始页 · 借一套滚动式 landing 的骨架，装这一册的内容 ============
+   结构是这一类页面的通行做法（不指向某一个具体的站，产品文件里不留别人的名字）：
+   压在实景照片上的磨砂卡 → 悬停时同伴退后的 bento 时段格 → 随滚动逐字点亮的巨型标题
+   → 全幅跑马灯 → 深色页脚与巨型字标。
+   不套现成的西文字体，用的是这一册自己的东西：宋体做标题、等宽做眉标、
+   朱砂做唯一的电压色，照片是用户提供的那一组实拍（人像两张没有收进来）。
+   可读性优先：磨砂卡、时段格、页脚各自带底，正文从不直接压在照片上。
+   这一层每条选择器都从 #title-screen 起头 —— 前面十几层里带 id 的封面规则权重更高，
+   不带 id 的写了也不作数。 */
+body.xg-landing{ overflow-x:clip; }
+body.xg-landing #shell{ max-width:none; padding-inline:0; padding-top:0; padding-bottom:0; }
+body.xg-landing #stage{ margin-top:0; }
+body.xg-landing #shell::before, body.xg-landing #shell::after{ display:none; }
+body.xg-landing #xg-ambience{ opacity:.35; }
+
+/* 色板挂在 body 上，不挂在 #title-screen 上：起始页末尾还有一行站脚（.site-foot），
+   它是 #stage 的兄弟、不在封面里，只有从 body 往下传才拿得到这几个变量。 */
+body.xg-landing{
+  --ld-paper-rgb:236,232,215; --ld-paper:#ece8d7; --ld-ink:#23322a; --ld-soft:#57695a;
+  --ld-body:#4a5a4c; --ld-line:#cfc8b4; --ld-volt:#a3483a; --ld-tile-plate:#1c2b21;
+  --ld-foot-bg:#22352a; --ld-foot-ink:#f2ecdd; --ld-foot-soft:#c1ccb9; --ld-foot-line:rgba(242,236,221,.20);
+  --ld-volt-dk:#eabfae; --ld-volt-dk-line:#cf8271;
+  --ld-sheen:rgba(255,255,255,.26); --ld-edge:rgba(255,255,255,.5); --ld-edge-in:rgba(255,255,255,.5);
+  --ld-btn:#2f4536; --ld-btn-ink:#f7f3e6; --ld-btn-hover:#46653f;
+}
+#title-screen{
+  background-color:transparent; border:0; border-radius:0; box-shadow:none;
+  padding:0; margin:0; text-align:left; overflow:visible;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.xg-landing{
+    --ld-paper-rgb:33,44,38; --ld-paper:#212c26; --ld-ink:#ece6d6; --ld-soft:#a7b0a2;
+    --ld-body:#c4c0ae; --ld-line:#3f4e42; --ld-volt:#d98a76; --ld-tile-plate:#131e18;
+    --ld-foot-bg:#101a14; --ld-sheen:rgba(226,236,222,.07); --ld-edge:rgba(226,236,222,.22); --ld-edge-in:rgba(226,236,222,.14);
+    --ld-btn:#a9c79b; --ld-btn-ink:#16211a; --ld-btn-hover:#bcd4ad; }
+}
+:root[data-theme="dark"] body.xg-landing{
+  --ld-paper-rgb:33,44,38; --ld-paper:#212c26; --ld-ink:#ece6d6; --ld-soft:#a7b0a2;
+  --ld-body:#c4c0ae; --ld-line:#3f4e42; --ld-volt:#d98a76; --ld-tile-plate:#131e18;
+  --ld-foot-bg:#101a14; --ld-sheen:rgba(226,236,222,.07); --ld-edge:rgba(226,236,222,.22); --ld-edge-in:rgba(226,236,222,.14);
+  --ld-btn:#a9c79b; --ld-btn-ink:#16211a; --ld-btn-hover:#bcd4ad; }
+#title-screen > *{ position:relative; z-index:1; }
+#title-screen::before, #title-screen::after{ display:none; }
+#title-screen .ld-inner{ width:min(100% - 36px, 1040px); margin-inline:auto; }
+
+/* ---- 顶部导航：粘住；右侧让开音乐那颗悬浮标。底色是实纸，不透明 ---- */
+#title-screen .ld-nav{
+  position:sticky; top:0; z-index:6; display:flex; align-items:center; gap:16px;
+  padding:10px clamp(84px,8vw,112px) 10px clamp(16px,4vw,40px);
+  background:var(--ld-paper); border-bottom:1px solid var(--ld-line);
+}
+#title-screen .ld-nav-brand{ font-size:16px; font-weight:700; letter-spacing:.14em; color:var(--ld-ink); }
+#title-screen .ld-nav-meta{ font-size:12px; letter-spacing:.16em; color:var(--ld-soft); margin-right:auto; }
+#title-screen .ld-nav-cta{
+  font:inherit; font-size:13px; letter-spacing:.14em; padding:9px 18px; cursor:pointer;
+  color:var(--ld-btn-ink); background:var(--ld-btn); border:1px solid var(--ld-btn); border-radius:0;
+  transition:background .28s var(--ease,cubic-bezier(.32,.72,0,1));
+}
+#title-screen .ld-nav-cta:hover{ background:var(--ld-btn-hover); }
+
+/* ---- 一屏 hero：一张实纸卡片浮在封面照片上（不做半透明——半透明的字守不住 4.5） ---- */
+/* 导航实测 60px 高，这里就按 60px 让位：整屏刚好一屏，折线处不会露出下一节的一截 */
+#title-screen .ld-hero{
+  min-height:clamp(560px, calc(100vh - 60px), 860px); min-height:clamp(560px, calc(100svh - 60px), 860px);
+  display:grid; place-items:center;
+  padding:clamp(34px,6vh,74px) clamp(16px,4vw,40px) clamp(40px,7vh,84px);
+}
+#title-screen .ld-hero-card{
+  position:relative; width:min(840px,100%); text-align:center; border-radius:clamp(18px,1.6vw,28px);
+  padding:clamp(28px,4.2vw,56px) clamp(18px,3.6vw,48px) clamp(24px,3.2vw,40px);
+  border:1px solid var(--ld-edge);
+  background:linear-gradient(150deg, var(--ld-sheen), rgba(255,255,255,0) 46%), var(--ld-paper);
+  box-shadow:0 36px 80px -24px rgba(16,38,24,.34), inset 0 1px 0 var(--ld-edge-in), inset 0 0 0 1px var(--ld-edge-in);
+  animation:ld-rise 1.15s var(--ease,cubic-bezier(.25,0,.15,1)) both;
+}
+#title-screen .ld-eyebrow{ margin:0 0 18px; font-size:12px; letter-spacing:.26em; color:var(--ld-soft); }
+#title-screen .ld-title{ margin:0; font-size:clamp(44px,8.2vw,96px); line-height:1.08; letter-spacing:.06em;
+  padding-left:.06em; font-weight:700; color:var(--ld-ink); text-shadow:none; }
+#title-screen .ld-sub{ margin:14px 0 0; font-size:14px; letter-spacing:.22em; color:var(--ld-soft); }
+#title-screen .ld-lede{ margin:22px auto 0; max-width:38ch; font-size:16px; line-height:1.95;
+  color:var(--ld-body); text-align:left; border-left:2px solid var(--ld-volt); padding-left:16px; }
+#title-screen .ld-cta-row{ margin-top:28px; }
+#title-screen .ld-cue{ margin:26px 0 0; font-size:12px; letter-spacing:.2em; color:var(--ld-soft); }
+#title-screen .ld-hero-card .savecard{ max-width:none; margin:22px auto 0; padding:16px 18px;
+  border:1px solid var(--ld-line); border-radius:3px; background:none; box-shadow:none; }
+#title-screen .ld-hero-card .savecard::before{ display:none; }
+#title-screen .ld-hero-card .cover-tools{ margin-top:22px; }
+@keyframes ld-rise{ from{ opacity:0; transform:translateY(42px) scale(.976); } to{ opacity:1; transform:none; } }
+
+/* ---- 六个时段：鼠标停住的那格留下，其余的往后退 ----
+   格子自己带一层不透明的深底，往后退的只是照片，字始终压在同一块深底上。 */
+#title-screen .ld-acts{ background:var(--ld-paper);
+  border-top:1px solid var(--ld-line); padding:clamp(42px,7vh,88px) 0 clamp(36px,6vh,72px); }
+#title-screen .ld-kicker{ margin:0 0 12px; font-size:12px; letter-spacing:.24em; color:var(--ld-volt); }
+#title-screen .ld-h2{ margin:0; font-size:clamp(28px,4.2vw,50px); line-height:1.25; letter-spacing:.03em;
+  font-weight:700; color:var(--ld-ink); }
+#title-screen .ld-sec-note{ margin:14px 0 0; max-width:56ch; font-size:15px; line-height:1.9; color:var(--ld-body); }
+#title-screen .ld-bento{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:28px; }
+#title-screen .ld-tile{ position:relative; overflow:hidden; min-height:200px; display:flex; flex-direction:column;
+  justify-content:flex-end; gap:4px; padding:20px 20px 22px; background:var(--ld-tile-plate);
+  border:1px solid rgba(20,33,25,.5);
+  transition:transform .45s var(--ease,cubic-bezier(.25,0,.15,1)); }
+/* 第 1、6 格各占半幅；第 7 格（异线）单独铺满一整行 ——
+   四列网格里只让它占两格的话，右边会空出一截，看着像没排完。 */
+#title-screen .ld-tile:nth-child(1), #title-screen .ld-tile:nth-child(6){ grid-column:span 2; }
+#title-screen .ld-tile:nth-child(7){ grid-column:1 / -1; min-height:184px; }
+#title-screen .ld-tile-bg{ position:absolute; inset:0; background-size:cover; background-position:center 42%;
+  opacity:.9; transition:opacity .45s var(--ease,cubic-bezier(.25,0,.15,1)), transform .6s var(--ease,cubic-bezier(.25,0,.15,1)); }
+#title-screen .ld-tile::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(14,24,18,.34) 0%, rgba(15,25,19,.72) 46%, rgba(13,22,17,.93) 100%); }
+#title-screen .ld-tile > span:not(.ld-tile-bg){ position:relative; z-index:1; display:block; }
+#title-screen .ld-tile-k{ font-size:12px; letter-spacing:.16em; color:#e6eede; }
+#title-screen .ld-tile-y{ font-size:12px; letter-spacing:.12em; color:#c8d4c1; }
+#title-screen .ld-tile-t{ margin-top:8px; font-size:16px; line-height:1.75; color:#f8f5ec; }
+#title-screen .ld-tile.alt .ld-tile-k{ color:#f2d8d0; }
+#title-screen .ld-tile.alt .ld-tile-bg{ opacity:.62; }
+@media (hover:hover){
+  #title-screen .ld-bento:hover .ld-tile:not(:hover) .ld-tile-bg{ opacity:.4; }
+  #title-screen .ld-tile:hover{ transform:translateY(-2px); }
+  #title-screen .ld-tile:hover .ld-tile-bg{ transform:scale(1.035); }
+}
+
+/* ---- 四字标题：滚到哪，亮到哪 ---- */
+#title-screen .ld-maskwrap{ text-align:center;
+  padding:clamp(48px,11vh,128px) clamp(16px,4vw,40px);
+  background:var(--ld-paper); border-top:1px solid var(--ld-line); }
+#title-screen .ld-mask{ margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(4px,1.6vw,26px);
+  font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(60px,15vw,196px); line-height:1;
+  letter-spacing:.01em; font-weight:700; }
+#title-screen .ld-mask .wm{ color:var(--ld-ink); opacity:.72;
+  transition:opacity .55s var(--ease,cubic-bezier(.25,0,.15,1)), color .55s var(--ease,cubic-bezier(.25,0,.15,1)); }
+#title-screen .ld-mask .wm.on{ color:var(--ld-volt); opacity:1; }
+#title-screen .ld-mask-sub{ margin:24px auto 0; max-width:26em; font-size:15px; line-height:1.9; color:var(--ld-body); }
+#title-screen .ld-mask-cta{ margin:28px 0 0; }
+
+/* ---- 细边的哑光按钮，只在起始页用 ---- */
+#title-screen .ld-ghost{ font:inherit; font-size:14px; letter-spacing:.16em; padding:14px 28px; cursor:pointer;
+  color:var(--ld-volt); background:transparent; border:1.5px solid var(--ld-volt); border-radius:0;
+  transition:background .3s var(--ease,cubic-bezier(.25,0,.15,1)), color .3s var(--ease,cubic-bezier(.25,0,.15,1)); }
+#title-screen .ld-ghost:hover{ background:var(--ld-volt); color:var(--ld-paper); }
+#title-screen .ld-ghost.on-dark{ color:var(--ld-volt-dk); border-color:var(--ld-volt-dk-line); }
+#title-screen .ld-ghost.on-dark:hover{ background:var(--ld-volt-dk-line); color:#17251b; }
+
+/* ---- 关于这份档案：原文照搬的说明 + 结局图鉴 ---- */
+#title-screen .ld-doc{ background:var(--ld-paper);
+  border-top:1px solid var(--ld-line); padding:clamp(36px,6vh,72px) 0 clamp(34px,5vh,60px); }
+#title-screen .ld-doc .doc{ max-width:none; margin:0 0 14px; }
+#title-screen .ld-doc .gallery{ margin-top:18px; }
+
+/* ---- 跑马灯：地名一排，纯 CSS 循环（不写 JS 版本，少一处会打架的动画） ---- */
+#title-screen .ld-marquee{ overflow:hidden; text-align:center;
+  background:var(--ld-paper); border-top:1px solid var(--ld-line); border-bottom:1px solid var(--ld-line);
+  padding:clamp(22px,4.4vh,40px) 0 clamp(14px,2.4vh,20px); }
+#title-screen .ld-mq-track{ display:inline-flex; align-items:center; gap:clamp(20px,3vw,38px); width:max-content;
+  padding-left:clamp(20px,3vw,38px); animation:xg-mq 72s linear infinite; }
+#title-screen .ld-marquee:hover .ld-mq-track{ animation-play-state:paused; }
+/* 中文没有真斜体，浏览器合成的那种又钝又难认 —— 这一排改用宋体加粗 + 松字距做展示字 */
+#title-screen .ld-mq-item{ flex:none; white-space:nowrap; font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:clamp(28px,4.8vw,58px); line-height:1.1; font-weight:700; letter-spacing:.1em; color:var(--ld-ink); }
+#title-screen .ld-mq-item.alt{ color:var(--ld-volt); }
+#title-screen .ld-mq-dot{ flex:none; width:10px; height:10px; border-radius:50%; background:var(--ld-volt); opacity:.45; }
+#title-screen .ld-mq-cap{ margin:14px 0 0; font-size:12px; letter-spacing:.22em; color:var(--ld-soft); }
+@keyframes xg-mq{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+/* ---- 页脚：一整块松林绿，中间是巨型字标，下面三栏 ----
+   老样式里有一条裸的 footer{margin-top:54px}，会把这块顶出 54px 的空档，
+   空档里露的是封面照片——看着像渲染坏了。这里按 0 收掉。 */
+#title-screen .ld-foot{ margin-top:0; background:var(--ld-foot-bg); color:var(--ld-foot-ink);
+  padding:clamp(46px,8vh,96px) 0 clamp(34px,5vh,54px); }
+#title-screen .ld-wordmark{ display:flex; align-items:center; justify-content:center; gap:clamp(12px,2.6vw,30px);
+  margin:0 0 clamp(28px,5vh,56px); font-family:"Noto Serif SC","Songti SC",serif;
+  font-size:clamp(38px,8.4vw,124px); line-height:1; letter-spacing:.05em; font-weight:700; color:var(--ld-foot-ink); }
+#title-screen .ld-rule{ flex:1 1 auto; height:2px; background:var(--ld-volt-dk-line); transform:scaleX(0);
+  transform-origin:center; transition:transform 1.1s var(--ease,cubic-bezier(.25,0,.15,1)); }
+#title-screen .ld-foot.in .ld-rule{ transform:scaleX(1); }
+#title-screen .ld-cols{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,3vw,44px);
+  border-top:1px solid var(--ld-foot-line); padding-top:clamp(20px,3.6vh,36px); }
+#title-screen .ld-col-h{ margin:0 0 12px; font-size:12px; letter-spacing:.22em; color:var(--ld-foot-soft); }
+#title-screen .ld-foot .keyhint, #title-screen .ld-foot .proof,
+#title-screen .ld-foot .privacy, #title-screen .ld-col-t{
+  margin:0 0 10px; padding:0; max-width:none; border:0; border-radius:0; background:none;
+  font-size:13px; line-height:1.95; letter-spacing:.02em; color:var(--ld-foot-ink); }
+#title-screen .ld-foot .keyhint{ border-top:0; margin-top:0; line-height:2.05; }
+#title-screen .ld-foot .kh{ color:var(--ld-foot-ink); border:0; padding:0; background:none; font:inherit; }
+#title-screen .ld-foot-cta{ display:flex; flex-wrap:wrap; align-items:center; gap:18px; margin:clamp(24px,4.6vh,42px) 0 0; }
+#title-screen .ld-textlink{ font:inherit; font-size:13px; letter-spacing:.14em; padding:0; cursor:pointer;
+  color:var(--ld-foot-soft); background:none; border:0; border-bottom:1px solid var(--ld-foot-line); }
+#title-screen .ld-textlink:hover{ color:var(--ld-foot-ink); }
+/* ---- 收尾的版画与站脚：合成一条铺满的纸，别让 620px 的图孤零零挂在照片上 ----
+   印原本是按 620px 的图定位的；纸带铺满后改成贴着图的正右缘。 */
+#title-screen .cover-plate{ margin:0; max-width:none; background:var(--ld-paper);
+  border-top:1px solid var(--ld-line);
+  padding:clamp(30px,5.4vh,56px) clamp(16px,4vw,40px) clamp(34px,5.4vh,58px); }
+#title-screen .cover-plate img{ max-width:620px; margin-inline:auto; }
+#title-screen .cover-plate figcaption{ margin-top:16px; font-size:12px; letter-spacing:.26em; color:var(--ld-soft); }
+#title-screen .cover-seal{ width:52px; height:52px; font-size:12px; line-height:1.15; letter-spacing:.06em;
+  right:calc(50% - min(300px, 50% - 20px)); }
+body.xg-landing .site-foot{ margin:0; background:var(--ld-paper); border-top:1px solid var(--ld-line);
+  padding:clamp(20px,3.6vh,32px) clamp(16px,4vw,40px) calc(clamp(26px,4vh,40px) + env(safe-area-inset-bottom));
+  font-size:12px; line-height:1.95; color:var(--ld-body); }
+body.xg-landing .site-foot p{ max-width:56em; margin:0 auto; }
+
+/* ---- 进场：往下翻的东西淡进来；观察器没接上时一律直接露出来 ---- */
+#title-screen .ld-rev{ opacity:0; transform:translateY(24px);
+  transition:opacity .8s var(--ease,cubic-bezier(.25,0,.15,1)), transform .8s var(--ease,cubic-bezier(.25,0,.15,1)); }
+#title-screen .ld-rev.in{ opacity:1; transform:none; }
+
+@media (max-width:920px){
+  #title-screen .ld-bento{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  #title-screen .ld-tile:nth-child(1), #title-screen .ld-tile:nth-child(6), #title-screen .ld-tile:nth-child(7){ grid-column:span 2; }
+  #title-screen .ld-cols{ grid-template-columns:1fr; }
+  #title-screen .ld-nav{ padding-right:82px; }
+}
+@media (max-width:600px){
+  #title-screen .ld-bento{ grid-template-columns:1fr; }
+  #title-screen .ld-tile, #title-screen .ld-tile:nth-child(1),
+  #title-screen .ld-tile:nth-child(6), #title-screen .ld-tile:nth-child(7){ grid-column:auto; min-height:172px; }
+  #title-screen .ld-hero-card{ border-radius:16px; }
+  #title-screen .ld-nav-meta{ display:none; }
+  #title-screen .cover-seal{ width:44px; height:44px; font-size:12px; }
+  #title-screen .ld-lede{ max-width:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  #title-screen .ld-hero-card, #title-screen .ld-mq-track{ animation:none; }
+  #title-screen .ld-rev{ opacity:1; transform:none; transition:none; }
+  #title-screen .ld-rule, #title-screen .ld-mask .wm{ transition:none; }
+}
+</style>
+<style id="clear-art-pass">/* ============ 照片轮 · 第三版：照片先露出来，纸跟着照片换色 ============
+   第二版的问题不在比例，在顺序。先想"字得看得清"，于是把照片压在一条 92% 的雾柱底下，
+   纸页又给到 .985 —— 纸页底下那张照片，等于不存在。
+   这一版把顺序倒过来：照片是这一册的底，要改的是字，不是画。
+
+   1) 雾柱整根撤掉。照片按原尺寸、原饱和度（saturate 1.02）铺满视口，不再整层压暗。
+      页眉、页脚、卡片两侧、每一屏的边角，都是照片本来的样子。
+   2) 纸页改成一层磨砂纸：半透明 + backdrop-filter。
+      模糊是这里的关键——它把照片压成色块而不是杂物，同样的不透明度下，
+      字的边缘反而更干净；读者看到的是"纸后面有光"，不是"字压在照片上"。
+   3) 纸的厚度是量出来的，不是选出来的（表在 ART_TONE）：取"刚好够读"的最小值。
+      白天照片落在 .58—.76；真正暗下去的那十张（夜路、暗林、雨窗、红花）翻成墨色玻璃，
+      薄到 .28—.64，字改成浅色。翻不翻，看哪一边能薄 0.12 以上——薄得多，才值得翻。
+   4) 次级字（说明、提示、档案表的键）本来就在 4.5 线边上，纸一变薄就会被照片吃掉，
+      所以浅色的墨阶整体加深一档：正文 #243b30 → 说明 #35433a → 提示 #3e4a3e。
+      层次还在，只是不再薄到看不见。
+   5) 页眉与页脚是同一张纸上裁下来的两条，跟着一起变薄、一起翻色——否则照片只在
+      中间露出来，上下一挡，还是"贴了一张画"。
+
+   量测口径：纸页竖带（卡片左右边界 × 页眉下沿到视口底）内，按 cover 裁切、
+   同一套 filter 复现后的 1%/50%/99% 分位数（模糊 σ=10），三种墨都要 ≥4.6:1；
+   页眉另量一条 0—页眉下沿的横带（它是 sticky 的，永远压在视口最上面）。
+   真正的验收还在浏览器里逐盒另算。 */
+
+:root{ --art-blur:14px; --art-pa:.73; --art-pd:.48; --art-hl:.69; --art-hd:.43; }
+@media (max-width:1080px){ :root{ --art-blur:12px; } }
+@media (max-width:760px){ :root{ --art-blur:10px; } }
+:root{ --art-plate:var(--art-pa); --art-ph:var(--art-hl); }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --art-plate:var(--art-pd); --art-ph:var(--art-hd); }
+}
+:root[data-theme="dark"]{ --art-plate:var(--art-pd); --art-ph:var(--art-hd); }
+
+/* ---- 1. 照片：不再压暗、不再罩雾 ---- */
+body.art-on #sceneArt::after{ background:none; }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on #sceneArt::after{ background:none; }
+}
+:root[data-theme="dark"] body.art-on #sceneArt::after{ background:none; }
+
+body.art-on #sceneArt img{
+  filter:saturate(1.02) contrast(1.03) brightness(1);
+  object-position:center 46%;
+}
+/* 深色主题底子本来就暗，照片跟着压一档（下面那些数字也是按这一档算的） */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on #sceneArt img{ filter:saturate(.66) contrast(1.1) brightness(.58); }
+}
+:root[data-theme="dark"] body.art-on #sceneArt img{ filter:saturate(.66) contrast(1.1) brightness(.58); }
+
+/* ---- 2. 纸页：一层磨砂纸。这几块是读者视线停留的地方，也是照片唯一被"隔着看"的地方 ---- */
+body.art-on .card,
+body.art-on .outcome,
+body.art-on .cutscene,
+body.art-on .divider,
+body.art-on .ending,
+body.art-on .tag-row .tag,
+body.art-on .tag-row .year{
+  background-color:rgba(244,241,226,var(--art-plate));
+  -webkit-backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  transition:background-color .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+}
+/* 页眉、页脚：同样是纸，但页眉永远压在视口最上面一条，厚度单独量 */
+body.art-on #hdr{
+  background-color:rgba(244,241,226,var(--art-ph));
+  -webkit-backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  transition:background-color .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+}
+body.art-on:not(.xg-landing) .site-foot,
+body.art-on .rest-line{
+  background-color:rgba(244,241,226,var(--art-plate));
+  -webkit-backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+}
+body.art-on:not(.xg-landing) .site-foot{ padding:14px 16px 12px; margin-top:40px; }
+body.art-on .rest-line{
+  border:1px solid var(--line); border-radius:3px; padding:14px 18px 13px; margin-top:30px;
+}
+/* 顶栏那三颗工具芯片原本是实心纸；顶栏自己已经是半透明的纸了，再叠一层实心就等于
+   在照片上贴三张便利贴。让它们跟着顶栏透，只留描边和字 */
+body.art-on:not(.xg-landing) #hdr .tool{ background-color:transparent; background-image:none; }
+/* 数值那五格同理。它们原本各垫一层 var(--panel-soft)：在实心纸上只是 5% 的洗色，
+   到了照片的薄玻璃上却是一层白光——深色主题下把底色亮度从 .062 抬到 .104，
+   12px 的"落地/权网/声望"正好压在这层洗色上，实测只剩 4.16:1。
+   拿掉这层，格线还在，五个数字还站在页眉这张纸上，照片的底也不再被多盖一层。 */
+body.art-on #stats .cell{ background-color:transparent; background-image:none; }
+/* 结局页里的两块小纸不叠第二层底，只垫一层很薄的洗色——不然两层半透明叠起来就成了墙 */
+body.art-on .ending .explain,
+body.art-on .ending .dossier{ background-color:rgba(255,255,255,.18); }
+
+/* 深色主题：同一串选择器再写一遍。旧的深色规则带 :root:not() ，特异度比上面高，
+   不重写就会把墨色纸压回 92% 的老厚度 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on .card,
+  :root:not([data-theme="light"]) body.art-on .outcome,
+  :root:not([data-theme="light"]) body.art-on .cutscene,
+  :root:not([data-theme="light"]) body.art-on .divider,
+  :root:not([data-theme="light"]) body.art-on .ending,
+  :root:not([data-theme="light"]) body.art-on .tag-row .tag,
+  :root:not([data-theme="light"]) body.art-on .tag-row .year,
+  :root:not([data-theme="light"]) body.art-on #hdr,
+  :root:not([data-theme="light"]) body.art-on:not(.xg-landing) .site-foot,
+  :root:not([data-theme="light"]) body.art-on .rest-line{
+    background-color:rgba(32,45,37,var(--art-plate));
+  }
+  :root:not([data-theme="light"]) body.art-on #hdr{ background-color:rgba(32,45,37,var(--art-ph)); }
+  /* 这两块在原版里是一层白洗色：纸是米色的，白=提亮。到了墨色玻璃上，白洗色就是
+     往暗底上撒一层光——12px 的"落地/权网"正好压在这层光上，实测 4.3:1。
+     同一件事换个方向做：墨底上改成一层薄墨（压暗），字反而更清楚了。 */
+  :root:not([data-theme="light"]) body.art-on .ending .explain,
+  :root:not([data-theme="light"]) body.art-on .ending .dossier{ background-color:rgba(10,17,13,.16); }
+}
+:root[data-theme="dark"] body.art-on .card,
+:root[data-theme="dark"] body.art-on .outcome,
+:root[data-theme="dark"] body.art-on .cutscene,
+:root[data-theme="dark"] body.art-on .divider,
+:root[data-theme="dark"] body.art-on .ending,
+:root[data-theme="dark"] body.art-on .tag-row .tag,
+:root[data-theme="dark"] body.art-on .tag-row .year,
+:root[data-theme="dark"] body.art-on #hdr,
+:root[data-theme="dark"] body.art-on:not(.xg-landing) .site-foot,
+:root[data-theme="dark"] body.art-on .rest-line{
+  background-color:rgba(32,45,37,var(--art-plate));
+}
+:root[data-theme="dark"] body.art-on #hdr{ background-color:rgba(32,45,37,var(--art-ph)); }
+:root[data-theme="dark"] body.art-on .ending .explain,
+:root[data-theme="dark"] body.art-on .ending .dossier{ background-color:rgba(10,17,13,.16); }
+
+/* ---- 2b. 深色主题：墨色玻璃上的字，换成同一族浅绿的墨 ----
+   原来那套焦糖灰（--muted:#b0a088、--ink-soft:#c4c0ae）是给实心深底配的暖色；
+   压到照片的磨砂玻璃上，最亮的那几张照片底下一律掉到 2.4–4.1:1——照片越清楚，
+   这层灰越看不见。换成浅绿墨后，实测最坏的一格 4.7:1，玻璃就不用为了字再变厚。
+
+   第二遍只动墨、不动玻璃：12px 的说明、提示、档案键是压在"最亮那一小块照片"
+   上的——照片里一片亮点从薄玻璃里透出来，中位色看不见它，字却正好压在上面。
+   玻璃再加厚是拿整张照片换一行小字；把 --muted / --ink-soft 各提一档，
+   字在暗底上反而更亮，实测最坏的一格从 4.16 抬到 4.9，照片一格没挡。 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on #stage{
+    --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+    --seal:#b6d3a7; --seal-soft:#c9dfb9; --archive:#a9d3c8; --archive-soft:#c3e2d9;
+    --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+  }
+  :root:not([data-theme="light"]) body.art-on #hdr,
+  :root:not([data-theme="light"]) body.art-on:not(.xg-landing) .site-foot,
+  :root:not([data-theme="light"]) body.art-on .rest-line{
+    --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+    --seal:#b6d3a7; --archive:#a9d3c8;
+  }
+}
+:root[data-theme="dark"] body.art-on #stage{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+  --seal:#b6d3a7; --seal-soft:#c9dfb9; --archive:#a9d3c8; --archive-soft:#c3e2d9;
+  --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+}
+:root[data-theme="dark"] body.art-on #hdr,
+:root[data-theme="dark"] body.art-on:not(.xg-landing) .site-foot,
+:root[data-theme="dark"] body.art-on .rest-line{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+  --seal:#b6d3a7; --archive:#a9d3c8;
+}
+
+/* ---- 3. 浅色主题下，照片暗的那一幕把纸翻成墨、字翻成浅色 ----
+   （深色主题本来就是墨底浅字，那套变量已经在 :root 里备好，这里不必重复） */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.art-on.xg-art-ink:not(.xg-landing) #stage{
+    --ink:#edf1e4; --ink-soft:#cfdac7; --seal:#a9c99b; --seal-soft:#c3d9b4;
+    --archive:#a6cdc2; --archive-soft:#bfdcd2; --line:rgba(233,240,226,.26);
+    --muted:#ccd8c3; --good:#a9d6ab; --bad:#ecb195;
+    --paper:#1b2a21; --paper2:#22352a;
+    --card:rgba(22,32,26,.9); --shadow:0 18px 48px rgba(8,14,10,.34);
+    --panel-soft:rgba(255,255,255,.05);
+    --opt-bg:transparent; --opt-hover:rgba(255,255,255,.07);
+    --opt-picked:rgba(255,255,255,.10); --opt-picked-gs:rgba(150,215,205,.12);
+    --opt-arrow-bg:rgba(255,255,255,.08); --opt-arrow-gs-bg:rgba(150,215,205,.12);
+    --num-bg:transparent; --num-gs-bg:transparent;
+    --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+    --divider-bg:transparent; --cutscene-bg:transparent;
+    --stamp-bg:rgba(255,255,255,.06); --stamp-bg-gs:rgba(150,215,205,.08);
+    color:var(--ink);
+  }
+  /* 顶栏和页脚要跟正文同一整套墨色。只给 --ink/--muted 是不够的：工具芯片读 --ink-soft、
+     音效标读 --ink-soft、步数读 --muted、悬停读 --seal——少一档就在墨色纸上留下
+     "深字压深底"的盲点（实测 1.3:1，肉眼就是看不见字）。共用一套，才不会漏。 */
+  :root:not([data-theme="dark"]) body.art-on.xg-art-ink:not(.xg-landing) #hdr,
+  :root:not([data-theme="dark"]) body.art-on.xg-art-ink:not(.xg-landing) .site-foot,
+  :root:not([data-theme="dark"]) body.art-on.xg-art-ink .rest-line{
+    --ink:#edf1e4; --ink-soft:#cfdac7; --seal:#a9c99b; --seal-soft:#c3d9b4;
+    --archive:#a6cdc2; --archive-soft:#bfdcd2; --line:rgba(233,240,226,.26);
+    --muted:#ccd8c3; --good:#a9d6ab; --bad:#ecb195;
+    --paper:#1b2a21; --paper2:#22352a;
+    --card:rgba(22,32,26,.9); --shadow:0 18px 48px rgba(8,14,10,.34);
+    --panel-soft:rgba(255,255,255,.05);
+    --opt-bg:transparent; --opt-hover:rgba(255,255,255,.07);
+    --opt-picked:rgba(255,255,255,.10); --opt-picked-gs:rgba(150,215,205,.12);
+    --opt-arrow-bg:rgba(255,255,255,.08); --opt-arrow-gs-bg:rgba(150,215,205,.12);
+    --num-bg:transparent; --num-gs-bg:transparent;
+    --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+    --divider-bg:transparent; --cutscene-bg:transparent;
+    --stamp-bg:rgba(255,255,255,.06); --stamp-bg-gs:rgba(150,215,205,.08);
+  }
+  :root:not([data-theme="dark"]) body.art-on.xg-art-ink:not(.xg-landing) #hdr{ color:var(--ink); }
+}
+:root[data-theme="light"] body.art-on.xg-art-ink:not(.xg-landing) #stage{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --seal:#a9c99b; --seal-soft:#c3d9b4;
+  --archive:#a6cdc2; --archive-soft:#bfdcd2; --line:rgba(233,240,226,.26);
+  --muted:#ccd8c3; --good:#a9d6ab; --bad:#ecb195;
+  --paper:#1b2a21; --paper2:#22352a;
+  --card:rgba(22,32,26,.9); --shadow:0 18px 48px rgba(8,14,10,.34);
+  --panel-soft:rgba(255,255,255,.05);
+  --opt-bg:transparent; --opt-hover:rgba(255,255,255,.07);
+  --opt-picked:rgba(255,255,255,.10); --opt-picked-gs:rgba(150,215,205,.12);
+  --opt-arrow-bg:rgba(255,255,255,.08); --opt-arrow-gs-bg:rgba(150,215,205,.12);
+  --num-bg:transparent; --num-gs-bg:transparent;
+  --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+  --divider-bg:transparent; --cutscene-bg:transparent;
+  --stamp-bg:rgba(255,255,255,.06); --stamp-bg-gs:rgba(150,215,205,.08);
+  color:var(--ink);
+}
+:root[data-theme="light"] body.art-on.xg-art-ink:not(.xg-landing) #hdr,
+:root[data-theme="light"] body.art-on.xg-art-ink:not(.xg-landing) .site-foot,
+:root[data-theme="light"] body.art-on.xg-art-ink .rest-line{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --seal:#a9c99b; --seal-soft:#c3d9b4;
+  --archive:#a6cdc2; --archive-soft:#bfdcd2; --line:rgba(233,240,226,.26);
+  --muted:#ccd8c3; --good:#a9d6ab; --bad:#ecb195;
+  --paper:#1b2a21; --paper2:#22352a;
+  --card:rgba(22,32,26,.9); --shadow:0 18px 48px rgba(8,14,10,.34);
+  --panel-soft:rgba(255,255,255,.05);
+  --opt-bg:transparent; --opt-hover:rgba(255,255,255,.07);
+  --opt-picked:rgba(255,255,255,.10); --opt-picked-gs:rgba(150,215,205,.12);
+  --opt-arrow-bg:rgba(255,255,255,.08); --opt-arrow-gs-bg:rgba(150,215,205,.12);
+  --num-bg:transparent; --num-gs-bg:transparent;
+  --num-ink:#cfe4c4; --num-gs-ink:#bfe3d8;
+  --divider-bg:transparent; --cutscene-bg:transparent;
+  --stamp-bg:rgba(255,255,255,.06); --stamp-bg-gs:rgba(150,215,205,.08);
+}
+:root[data-theme="light"] body.art-on.xg-art-ink:not(.xg-landing) #hdr{ color:var(--ink); }
+
+body.art-on.xg-art-ink .card,
+body.art-on.xg-art-ink .outcome,
+body.art-on.xg-art-ink .cutscene,
+body.art-on.xg-art-ink .divider,
+body.art-on.xg-art-ink .ending,
+body.art-on.xg-art-ink .tag-row .tag,
+body.art-on.xg-art-ink .tag-row .year{ background-color:rgba(22,32,26,var(--art-plate)); background-image:none; }
+body.art-on.xg-art-ink #hdr{ background-color:rgba(22,32,26,var(--art-ph)); background-image:none; }
+body.art-on.xg-art-ink:not(.xg-landing) .site-foot,
+body.art-on.xg-art-ink .rest-line{ background-color:rgba(22,32,26,var(--art-plate)); }
+body.art-on.xg-art-ink .ending .explain,
+body.art-on.xg-art-ink .ending .dossier{ background-color:rgba(10,17,13,.16); }
+/* 墨底上那几处写死的浅色绿要跟着提亮，否则点中、"第几条"、焦点框全糊在一起 */
+body.xg-art-ink .opt.xg-picked{ border-color:#8fbf86; box-shadow:0 0 0 2px rgba(143,191,134,.22); }
+body.xg-art-ink .opt.xg-picked::after{ background:#8fbf86; color:#12210f; }
+body.xg-art-ink .opt.gs.xg-picked{ border-color:#7fb3a8; box-shadow:0 0 0 2px rgba(127,179,168,.22); }
+body.xg-art-ink .opt.gs.xg-picked::after{ background:#7fb3a8; color:#0f211e; }
+body.xg-art-ink .opt:hover, body.xg-art-ink .opt:focus-visible{ border-color:rgba(190,220,178,.55); }
+body.xg-art-ink .opt:focus-visible{ outline-color:rgba(190,225,180,.8); }
+body.xg-art-ink .opt:hover::after, body.xg-art-ink .opt:focus-visible::after{ background:rgba(255,255,255,.14); }
+/* 结局页那张便签还是纸：墨底上留一张亮着的纸，是这一册的最后一口气 */
+body.art-on.xg-art-ink .notecard{
+  background-color:rgba(246,242,230,.94); background-image:var(--grain);
+  --ink:#23322a; --ink-soft:#485a4c; --muted:#4e5a4c; --seal:#46703f; --line:rgba(60,80,62,.22);
+  color:var(--ink);
+}
+
+/* ---- 4. 浅色主题的米色纸：次级墨加深，纸才敢薄到 .6—.76 ----
+   上一轮只加深了正文那两档（--ink-soft / --muted），漏了绿印这一族：
+   序号①②③、章节签、隔页图章、悬停时的选项字——它们读 --seal / --archive / --num-ink。
+   纸一薄，最暗的那几张照片底下只剩 182 灰，老绿印压上去 3.1:1；现在这三档
+   各下沉一级（#2f4d2b / #2c4a44），实测 4.7:1 以上，纸不用再变厚。 */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) #stage{
+    --ink-soft:#35433a; --muted:#3e4a3e;
+    --seal:#2f4d2b; --seal-soft:#3a5a33; --archive:#2c4a44; --archive-soft:#32534c;
+    --num-ink:#2f4d2b; --num-gs-ink:#2c4a44;
+  }
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) #hdr,
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) .site-foot,
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) .rest-line{
+    --ink-soft:#35433a; --muted:#3e4a3e; --seal:#2f4d2b; --archive:#2c4a44;
+  }
+}
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) #stage{
+  --ink-soft:#35433a; --muted:#3e4a3e;
+  --seal:#2f4d2b; --seal-soft:#3a5a33; --archive:#2c4a44; --archive-soft:#32534c;
+  --num-ink:#2f4d2b; --num-gs-ink:#2c4a44;
+}
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) #hdr,
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) .site-foot,
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) .rest-line{
+  --ink-soft:#35433a; --muted:#3e4a3e; --seal:#2f4d2b; --archive:#2c4a44;
+}
+
+@media (prefers-reduced-motion: reduce){
+  body.art-on .card, body.art-on .outcome, body.art-on .cutscene, body.art-on .divider,
+  body.art-on .ending, body.art-on .tag-row .tag, body.art-on .tag-row .year,
+  body.art-on #hdr, body.art-on .site-foot, body.art-on .rest-line{ transition:none; }
+}
+</style>
+<style id="legible-pass">/* ============ 看得清轮 · 补最后一刀：点下选项之后的那一屏 ============
+   照片轮把 54 幕正文与 15 条结局量干净了（19436 个文字盒子 0 未过），
+   但有两屏只在"点下去"之后才存在，那一次没进镜头：
+   ① 落章之后，没被挑中的三条整行 opacity:.52 —— 灰色提示量到 2.14，序号 2.08，正文 2.93；
+   ② 顶栏那枚增减数字 .delta 自己又乘了一道 .9 —— 浅色的绿 3.96、赭 4.14、灰 4.40。
+   两处都不是颜色选错：同样的墨不透明时是 5.4 / 4.9 / 10.9，是透明度把墨吃掉了。
+   所以改法是"褪颜色不褪明度"：saturate() 抽掉饱和度（它保值，实测像素与算出来的对得上），
+   安静交给灰调、交给淡掉的箭头、交给正文降一档墨色——可读性一个字都不还。 */
+
+/* ① 锁定态：不透明，只抽饱和 */
+.opts.xg-locked .opt:not(.xg-picked){opacity:1;filter:saturate(.2)}
+.opts.xg-locked .opt:not(.xg-picked) .otext{color:var(--ink-soft)}
+.opts.xg-locked .opt:not(.xg-picked)::after{opacity:.3}
+/* 第 568 行那条 opacity:.32 一并抬掉：同一选择器，写在后面就赢。
+   减弱动效那一档（第 617 行）原本就写的不透明，这里不动它。 */
+
+/* ② 增减数字：撤掉那一道 .9；浅色那两个色各加深一档（深色本来就过，留着不动） */
+.delta{opacity:1}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--num-gs-ink:#3a5a54;}                  /* 异线序号的青 4.89 -> 5.5，给 saturate 留余量 */
+  :root:not([data-theme="dark"]) .delta{--good:#2f6040;--bad:#8a4430;}   /* 绿 4.77 -> 5.4，赭 4.97 -> 5.8 */
+}
+:root[data-theme="light"]{--num-gs-ink:#3a5a54;}
+:root[data-theme="light"] .delta{--good:#2f6040;--bad:#8a4430;}
+
+/* ③ 顺手挖出来的一笔老账：点中那一格在深色里是"往上提亮"的洗色 rgba(169,199,155,.13)。
+      底子一亮，压在它自己身上的灰字就从 5.6 掉到 4.26——这不是这一轮改出来的，
+      照片轮之前就带着，只是那一屏从没进过镜头。改成往下压成一口井：字更亮、底更沉，
+      "就是这一条"反而更清楚（实测 灰字 6.2、序号 12.7、正文 12.7）。 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--opt-picked:rgba(6,12,8,.26);--opt-picked-gs:rgba(6,12,8,.26);}
+}
+:root[data-theme="dark"]{--opt-picked:rgba(6,12,8,.26);--opt-picked-gs:rgba(6,12,8,.26);}
+</style>
+<style id="photo-read">/* ============ 照片轮 · 第三刀：露着照片的那几处小字 ============
+   照片全露之后，正文的卡都带着自己的纸，但还有三处小字没有底、全靠碰运气：
+   ① 顶栏那几枚增减数字（11px）：浅色相 #2f6040 / #8a4430 是给实心纸算的，
+      碰上墨底那一幕（深照片把整页翻成墨）实测只剩 1.30:1；
+   ② 结果卡里的增减标签 chip：透明底、只剩一圈描边，薄纸上量到 3.00:1；
+   ③ 页眉是 sticky 的——滚起来以后它压在任意一屏上（手机深色实测 2.31:1）。
+   所以不把照片再盖厚，只给这几枚小字各自一枚小签；页眉在顶端那一屏保持原来的薄，
+   离开顶端才换成一张实纸（照片的整个上身还是露着的）。
+   另有一块从没进过镜头：#logWrap（"这一路记下的"）在 #stage 之外，墨色变量从没
+   跟着场景翻过——照片一亮它就是一张没有底的字。给它垫一张和 ".rest-line" 同样的纸。 */
+
+/* ① 增减数字：从裸字变成一枚小签。底是纸，字还是那两档色 */
+body.art-on .delta{
+  display:inline-block; padding:1px 4px; border-radius:2px; vertical-align:1px;
+  background-color:rgba(244,241,226,.84);
+  transition:background-color .5s var(--ease),color .5s var(--ease);
+}
+@media (max-width:760px){
+  body.art-on .delta{ display:block; width:max-content; margin:2px auto 0; padding:1px 5px; }
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on .delta{
+    background-color:rgba(16,24,19,.84); --good:#a9d6ab; --bad:#ecb195;
+  }
+}
+:root[data-theme="dark"] body.art-on .delta{
+  background-color:rgba(16,24,19,.84); --good:#a9d6ab; --bad:#ecb195;
+}
+/* 浅色主题下照片暗的那一幕会翻成墨底：签也得跟着翻 */
+body.art-on.xg-art-ink .delta{
+  background-color:rgba(16,24,19,.84); --good:#a9d6ab; --bad:#ecb195;
+}
+
+/* ② 结果卡与档案里的增减标签：描边之外再垫一层薄纸，字沉一档 */
+body.art-on .chip{
+  background-color:rgba(244,241,226,.74);
+  color:#24512d; border-color:rgba(47,96,64,.46);
+  transition:background-color .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+}
+body.art-on .chip.neg{ color:#7d2c1c; border-color:rgba(138,68,48,.46); }
+body.art-on .chip.hid{ background-color:rgba(244,241,226,.74); color:#38453c; border-color:var(--line); }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on .chip{
+    background-color:rgba(12,20,15,.62); color:#bfe6b0; border-color:rgba(143,191,134,.40);
+  }
+  :root:not([data-theme="light"]) body.art-on .chip.neg{ color:#f2c0ad; border-color:rgba(236,177,149,.42); }
+  :root:not([data-theme="light"]) body.art-on .chip.hid{ color:#ccd8c3; border-color:var(--line); }
+}
+:root[data-theme="dark"] body.art-on .chip{
+  background-color:rgba(12,20,15,.62); color:#bfe6b0; border-color:rgba(143,191,134,.40);
+}
+:root[data-theme="dark"] body.art-on .chip.neg{ color:#f2c0ad; border-color:rgba(236,177,149,.42); }
+:root[data-theme="dark"] body.art-on .chip.hid{ color:#ccd8c3; border-color:var(--line); }
+body.art-on.xg-art-ink .chip{
+  background-color:rgba(12,20,15,.62); color:#bfe6b0; border-color:rgba(143,191,134,.40);
+}
+body.art-on.xg-art-ink .chip.neg{ color:#f2c0ad; border-color:rgba(236,177,149,.42); }
+body.art-on.xg-art-ink .chip.hid{ color:#ccd8c3; border-color:var(--line); }
+
+/* ③ 页眉：停在顶端时还是那张薄纸（照片整块露着），滚起来才换成实纸 */
+body.art-on.xg-scrolled #hdr{ background-color:rgba(244,241,226,.93); }
+body.art-on.xg-art-ink.xg-scrolled #hdr{ background-color:rgba(18,27,21,.93); }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on.xg-scrolled #hdr{ background-color:rgba(22,33,26,.93); }
+}
+:root[data-theme="dark"] body.art-on.xg-scrolled #hdr{ background-color:rgba(22,33,26,.93); }
+
+/* ④ "这一路记下的"：和 .rest-line 同一张纸。它在 #stage 外面，墨色变量要单独给 */
+body.art-on #logWrap{
+  background-color:rgba(244,241,226,var(--art-plate));
+  -webkit-backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  backdrop-filter:blur(var(--art-blur)) saturate(1.08);
+  border:1px solid var(--line); border-radius:3px;
+  padding:20px 22px 18px;
+  transition:background-color .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+}
+@media (max-width:760px){ body.art-on #logWrap{ padding:16px 14px 14px; } }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on #logWrap{ background-color:rgba(32,45,37,var(--art-plate)); }
+}
+:root[data-theme="dark"] body.art-on #logWrap{ background-color:rgba(32,45,37,var(--art-plate)); }
+body.art-on.xg-art-ink #logWrap{ background-color:rgba(22,32,26,var(--art-plate)); }
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) #logWrap{
+    --ink-soft:#35433a; --muted:#38453c; --seal:#2f4d2b; --archive:#2c4a44;
+  }
+}
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) #logWrap{
+  --ink-soft:#35433a; --muted:#38453c; --seal:#2f4d2b; --archive:#2c4a44;
+}
+body.art-on.xg-art-ink #logWrap{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#ccd8c3;
+  --seal:#a9c99b; --archive:#a6cdc2; --line:rgba(233,240,226,.26);
+  --good:#a9d6ab; --bad:#ecb195; color:var(--ink);
+}
+/* 深色主题下 #logWrap 还是那套焦糖灰（--muted #b0a088 是给实心深底配的）：
+   压到薄玻璃上，12px 的年份、箭头、说明一路掉到 2.87:1。和页眉共用同一族浅绿墨。 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.art-on #logWrap{
+    --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+    --seal:#c8e0bb; --archive:#bfe3d8;
+    --good:#bfe6b0; --bad:#f2c0ad;
+  }
+}
+:root[data-theme="dark"] body.art-on #logWrap{
+  --ink:#edf1e4; --ink-soft:#cfdac7; --muted:#d3dfca;
+  --seal:#c8e0bb; --archive:#bfe3d8;
+  --good:#bfe6b0; --bad:#f2c0ad;
+}
+
+/* ⑤ 锁住之后那几条的提示行：--muted 在薄纸上差一点点（4.33），单独沉一档 */
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.art-on:not(.xg-art-ink) .opts .hint{ color:#38453c; }
+}
+:root[data-theme="light"] body.art-on:not(.xg-art-ink) .opts .hint{ color:#38453c; }
+</style>
+<style id="room-bg-pass">/* ============ 听林 · 那片林子铺满整页 ============
+   在音乐库的「林间」按下播放，这片林子的照片就从纸后升上来，铺满整页——
+   不是卡片里的一小块，是这一页的底。停下来（或切去别的房）它再退回去，
+   底下的场景插画照旧。
+   两层图交叉淡入，换林时不闪白；纸色与纸厚由 JS 用 --art-pa/.. 一并接管：
+   浅色 .83/.85、深色 .64/.66（26 张原站封面按 1440×900 与 375×812 的 cover 裁切
+   逐张量过，正文、页眉、页脚三类字都 ≥4.6:1）。 */
+#roomArt{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:0; transition:opacity .9s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+body.xg-room-bg #roomArt{opacity:1;}
+#roomArt img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center 46%;
+  filter:saturate(.82) contrast(1.06) brightness(.99);
+  opacity:0; transition:opacity .8s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+#roomArt img.on{opacity:1;}
+/* ---- 听海：原来那片海铺满整页 ----
+   和听林同一套做法：音乐库在十五层里任何一层真的出声时广播 room:'sea'，
+   这里才把 #roomSea 升上来，一暂停就收回。画面是原站那份 three.js 水面，
+   不是照片、不是画出来的图；#roomArt（林子）与场景插画同时让开。 */
+#roomSea{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:0; background:#dfe9ee;
+  transition:opacity 1.1s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+body.xg-sea-bg #roomSea{opacity:1;}
+body.xg-sea-bg #roomArt{opacity:0;}
+#roomSea canvas{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+}
+body.xg-sea-bg #sceneArt{opacity:0;}
+body.xg-sea-bg #xg-ambience .field{opacity:0;}
+body.xg-sea-bg #xg-ambience .glow{opacity:calc(var(--glow-op) * var(--glow-dim) * .22);}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #roomSea canvas{filter:brightness(.6) saturate(.74) contrast(1.03);}
+}
+:root[data-theme="dark"] #roomSea canvas{filter:brightness(.6) saturate(.74) contrast(1.03);}
+@media (prefers-reduced-motion: reduce){
+  #roomSea{transition:none;}
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #roomArt img{filter:saturate(.66) contrast(1.1) brightness(.5);}
+}
+:root[data-theme="dark"] #roomArt img{filter:saturate(.66) contrast(1.1) brightness(.5);}
+/* 这一页只有那片林子或那片海：场景插画、田埂剪影、光晕都让开（只留一点点天光） */
+body.xg-room-bg #sceneArt{opacity:0;}
+body.xg-room-bg #xg-ambience .field{opacity:0;}
+body.xg-room-bg #xg-ambience .glow{opacity:calc(var(--glow-op) * var(--glow-dim) * .28);}
+@media (prefers-reduced-motion: reduce){
+  #roomArt, #roomArt img{transition:none;}
+}
+</style></head><body class="xg-startup-active"><div id="sceneArt" aria-hidden="true"></div>
+<div id="roomArt" aria-hidden="true"></div>
+<div id="roomSea" aria-hidden="true"></div>
 <div id="xg-ambience" aria-hidden="true"><span class="glow"></span><span class="glow low"></span><span class="field"></span></div>
-<div id="xg-splash" aria-label="启动画面"><img src="./assets/splash.jpg" alt="启动画面" fetchpriority="high" decoding="sync"><p class="splash-note">档案正在开启 · 约 6 秒</p></div><div id="shell">
+<div id="xg-splash" aria-label="启动画面"><img src="./assets/splash.jpg" alt="启动画面" fetchpriority="high" decoding="sync"><p class="splash-note">档案正在开启 · 约 6 秒，不急</p></div><div id="shell">
   <a class="skip-link" href="#stage">跳到正文</a>
   <header id="hdr" hidden="">
     <div class="brandrow">
@@ -1869,12 +2852,15 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
           <span class="tool-ic ic-arch" aria-hidden="true"></span><span class="tool-t">档案库</span><span class="tool-n" id="toolArchN"></span>
         </button>
         <span class="tool tool-save" id="toolSave" title="进度自动存在这台设备上，刷新后还能接着翻">
-          <span class="tool-ic ic-save" aria-hidden="true"></span><span class="tool-t">存档</span><span class="file-id mono tool-n" id="fileid">第 1/54 步</span>
+          <span class="tool-ic ic-save" aria-hidden="true"></span><span class="tool-t">存档</span><span class="file-id mono tool-n" id="fileid">第 01/54 步</span>
         </span>
       </nav>
       <div class="hdr-right">
-        <button class="sfxbtn" id="sfxBtn" type="button" aria-pressed="true" title="音效：开（点击关闭）"><span class="sfx-mark" aria-hidden="true">♪</span><span class="sfx-label">音效</span></button>
+        <!-- 顺序换了：上一步在前、音效在后。因为隐藏态的上一步要留位（见 #audit-pass），
+             若它排在最右，第 1 步时"音效"就会离右边框空出一大截，像坏掉了。
+             现在最右永远是那颗常驻的音效开关。 -->
         <button class="backbtn" id="backBtn" hidden="">← 上一步</button>
+        <button class="sfxbtn" id="sfxBtn" type="button" aria-pressed="true" title="音效：开（点击关闭）"><span class="sfx-mark" aria-hidden="true">♪</span><span class="sfx-label">音效</span></button>
       </div>
     </div>
     <div id="stats"></div>
@@ -1901,8 +2887,8 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
           <p style="margin-top:12px">还有一两项数值这局故意不会直接告诉你——它们藏在选择背后,只在恰当的时候才会露出痕迹。</p>
         </div>
       </details>
-      <div class="btnrow"><button class="btn" id="start">打开档案,开始</button></div>
-      <p class="keyhint"><span class="kh">数字键 1—4 对应屏上的选项</span> · <span class="kh">Enter 继续</span> · <span class="kh">← 回到上一步</span> · <span class="kh">H 随时翻开玩法说明</span> · <span class="kh">D 换一册</span></p>
+      <div class="btnrow"><button class="btn" id="start">打开档案，开始</button></div>
+      <p class="keyhint"><span class="kh">数字键 1—4 对应屏上的选项</span> · <span class="kh">Enter 继续</span> · <span class="kh">← 回到上一步</span> · <span class="kh">H 随时翻开玩法说明</span> · <span class="kh">D 换一册</span>。不用键盘、点着选，也一样。</p>
       <p class="proof">54 个抉择场景 · 161 个选项 · 15 个结局 · 本地自动存档</p>
       <p class="privacy">不用注册，不用联网存档；进度只留在这台设备上。<br>这里没有计时，也没有连错的惩罚。想停就合上，回头还能接着翻。</p>
     </div></main>
@@ -1932,9 +2918,9 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
     </header>
     <div class="help-body">
       <div class="help-sec"><h3>读一页，做一个决定</h3><p>先看年份与背景，再在三个左右的选项里挑一条。没有标准答案，每个选择都会让数值往不同方向走。</p></div>
-      <div class="help-sec"><h3>选完先看结果</h3><p>结果页会回放你选的那一句，并列明这一笔的实际增减。点「继续」翻到下一幕。</p></div>
-      <div class="help-sec"><h3>想反悔</h3><p>顶栏的「上一步」可以退回去重选刚才那一步，连着按 ← 也行。</p></div>
-      <div class="help-sec"><h3>顺序每局不同</h3><p>同一件事的选项每一局都会打乱。按句子选，不要按位置记。</p></div>
+      <div class="help-sec"><h3>选完先看结果</h3><p>结果页会先回放你刚选的那一句，再列出这一笔实际带来的变化。看完点「继续」，翻到下一幕。</p></div>
+      <div class="help-sec"><h3>想改主意</h3><p>顶栏的「上一步」可以退回去重选刚才那一步，连着按 ← 也行。</p></div>
+      <div class="help-sec"><h3>顺序每局不同</h3><p>同一件事的选项每一局都会换一种排法。按句子选就好，不必去记位置。</p></div>
       <dl class="help-stats">
         <div><dt>落地</dt><dd>方案真正被执行</dd></div>
         <div><dt>权网</dt><dd>体制内支持</dd></div>
@@ -1946,8 +2932,8 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
       <div class="help-sec"><h3>存档与图鉴</h3><p>每翻一幕，进度自动存在这台设备——顶栏那枚「存档」旁会绿一下，它后面的「第 N/54 步」就是走到哪儿了（拐进异线的那一册总共 15 步）。刷新或关掉页面后，从封面「继续上次档案」接上。走到结局会清掉进行中的存档，但结局会留在封面图鉴里。</p></div>
       <div class="help-sec"><h3>档案库 · 几册并行</h3><p>顶栏那枚「档案库」（按 D 也行）里，摊着这台设备上的每一册。册名由你自己起——页眉、封面那张版画底下、存档卡上写的都是它。想换一种活法试试，就「立新的一册」，正在读的这本一个字不会少；想换回去，点「取过来读」，页面先回到封面，由你决定从哪儿接着翻。每一册各记各走到过的收束，同时照旧计入这台设备的总图鉴。</p></div>
       <div class="help-sec"><h3>留一句话给自己</h3><p>每条结局下面都有一格空行，可以写一句只有这台设备看得到的心情。它不上传、不进分享图，只会在封面图鉴里安静地跟着那一条。</p></div>
-      <div class="help-sec"><h3>键盘</h3><p>数字键 1 到 4 选选项，Enter 继续，← 或 Backspace 上一步，H 翻开这一页，D 翻开档案库，Esc 合上。</p></div>
-      <div class="help-sec"><h3>音乐与音色</h3><p>右上角的红色音符标是音乐库；页眉那颗 ♪ 是操作音效，可以换四套音色，单独试听、调音量或关掉。夜里嫌它响，就把音量拉低或直接关掉，不会影响任何玩法。</p></div>
+      <div class="help-sec"><h3>键盘</h3><p>数字键 1 到 4 选选项，Enter 翻页，← 或 Backspace 退回上一步，H 翻开这一页，D 翻开档案库，Esc 合上。不习惯键盘也没关系，点着选完全一样。</p></div>
+      <div class="help-sec"><h3>音乐与音色</h3><p>右上角的红色音符标是音乐库：音笺里放着四首 BGM 和自己收藏的歌；「听海」「林间」是两间可以一直开着的房间，循环放着海岸与森林的声音，想安静一会儿就进去坐坐。页眉那颗 ♪ 是操作音效，可以换四套音色，单独试听、调音量或关掉。夜里嫌它响，就把音量拉低或直接关掉，不会影响任何玩法。</p></div>
     </div>
     <div class="help-light"><span class="hl-lead">正文字号</span><button class="lightbtn" id="readBtn" type="button" aria-pressed="false">中号</button><span class="hl-note">只调正文那几段字的字号与行距，不动选项和按钮，所以排版不会乱。觉得字小就在这儿点一下，换到小号也行，选过一次就记住了。</span></div>
     <div class="help-light"><span class="hl-lead">纸后面的光</span><button class="lightbtn" id="lightBtn" type="button" aria-label="纸后面的光">跟随时间</button><span class="hl-note">不喜欢它动，就点一下钉住一个时段。这只影响装饰用的光，字该多清楚还是多清楚。</span></div>
@@ -1987,6 +2973,65 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
 </div>
 <div id="xg-live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
 
+<script id="xg-landing">
+/* 起始页的三件小事：把页面上多出来的"开始"接回真正的那一个、随滚动逐字点亮标题、
+   往下翻的东西淡进来。跳转一律点原来那颗按钮，确认弹窗与清档流程跟着一起走。
+   观察器没接上或用户要求减少动效时，直接给最终状态——不许出现"看不见的内容"。 */
+window.xgInitLanding = function(){
+  if (window.__xgLandingOff) { try { window.__xgLandingOff(); } catch (_) { } }
+  var scr = document.getElementById('title-screen');
+  if (!scr) return;
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (_) { }
+
+  [].forEach.call(scr.querySelectorAll('[data-xg-jump]'), function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.getAttribute('data-xg-jump'));
+      if (t) t.click();
+    });
+  });
+  [].forEach.call(scr.querySelectorAll('[data-xg-top]'), function (b) {
+    b.addEventListener('click', function () {
+      try { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); }
+      catch (_) { window.scrollTo(0, 0); }
+    });
+  });
+
+  var words = [].slice.call(scr.querySelectorAll('.ld-mask .wm'));
+  var revs  = [].slice.call(scr.querySelectorAll('.ld-acts, .ld-doc, .ld-marquee, .ld-foot, .cover-plate'));
+  function allIn() {
+    revs.forEach(function (e) { e.classList.add('in'); });
+    words.forEach(function (w) { w.classList.add('on'); });
+  }
+  if (reduce || !('IntersectionObserver' in window)) { allIn(); return; }
+
+  revs.forEach(function (e) { if (!e.classList.contains('ld-foot')) e.classList.add('ld-rev'); });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: .06 });
+  revs.forEach(function (e) { io.observe(e); });
+
+  /* 标题四字：这一节滚过 16%/32%/48%/62% 时，各点亮一个字 */
+  var mask = scr.querySelector('.ld-maskwrap'), raf = 0;
+  function tick() {
+    raf = 0;
+    if (!scr.isConnected || !mask) return;
+    var r = mask.getBoundingClientRect(), vh = window.innerHeight || 800;
+    var p = (vh - r.top) / (vh + r.height);
+    p = Math.max(0, Math.min(1, p));
+    words.forEach(function (w, i) { w.classList.toggle('on', p >= ([0.16, 0.32, 0.48, 0.62][i] || .6)); });
+  }
+  function onScroll() { if (!raf) raf = window.requestAnimationFrame(tick); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  tick();
+  var timer = setTimeout(function () { if (!scr.querySelector('.ld-rev.in')) allIn(); }, 1800);
+  window.__xgLandingOff = function () {
+    window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll);
+    clearTimeout(timer); io.disconnect(); window.__xgLandingOff = null;
+  };
+};
+</script>
 <script>
 /* ============================= 数值引擎 ============================= */
 const clamp = (v,lo,hi)=>Math.max(lo,Math.min(hi,v));
@@ -2002,7 +3047,7 @@ function freshState(){
 let S = freshState();
 
 /* ============================= 一天的光 =============================
-   personality-database 说 INFP 最看重"harmony in the inner life of feeling"，
+   personality-database 说 这一型 最看重"harmony in the inner life of feeling"，
    而氛围是这份和谐里很容易被戳破的一环：同一个界面，正午的白和凌晨台灯下的黄
    给人的安全感完全不同。所以按本机时钟把"纸后面的光"分成晨/午/昏/夜四档。
    边界：只读系统小时数，不读位置、不写存档、不改任何文字颜色与对比度，
@@ -2059,7 +3104,7 @@ function applyDayPart(){
 })();
 
 /* ============================= 顶上那排数字：可以先收着 =============================
-   personality-database 上讲 INFP 的功能排序里 Te 是最低的一档：常驻的数值面板对他们是
+   personality-database 上讲 这一型 的功能排序里 Te 是最低的一档：常驻的数值面板对他们是
    压力源，不是信息——"我是不是在被打分"会盖过"我在乎这件事"。
    所以给一个纯显示层的可逆开关：数值照算、照存、照在结果页上写清楚增减，
    只是页眉那一排总数可以收起来，留一行安静的提示，点一下就回来。
@@ -2139,7 +3184,7 @@ window.xgSyncReadBtn = syncReadBtn;
 
 /* ============================= 纸面确认 =============================
    原来"从头开始"会弹浏览器那个灰盒子：确定 / 取消，像系统在问话。
-   personality-database 说 INFP "independent of the judgements of others"——
+   personality-database 说 这一型 "independent of the judgements of others"——
    所以换成同一张纸上的两行字：默认停在"先不"，按 Esc 也是先不，
    不让一次误点就把走了很久的一段路抹掉。 */
 const xgAskEl = document.getElementById('xgAsk');
@@ -2224,7 +3269,7 @@ window.xgAsk = xgAskOpen;
    所有读写都包在 try 里：无痕模式或存储被禁用时静默降级成"没有存档"，玩法不受影响。
 
    2026-10-26 起，存档位不再只有一个：一册 = 一个位，册名由玩家自己起。
-   这是照着 INFP 的三条线做的——
+   这是照着 这一型 的三条线做的——
      Fi：界面上那串字是"你叫它什么"，不再是系统给你派的编号；
      Ne：同一段路可以有几册并行摆着，各自一种活法，不分高下；
      Si：每一册留住自己走到过的收束，是一册纪念物。
@@ -2457,8 +3502,8 @@ function recordEnding(title){
   list.push(k);
   try{ localStorage.setItem(EGG_KEY, JSON.stringify(list)); }catch(_){ }
 }
-/* ============================= 留给自己的那句话（INFP 轮新增） =============================
-   personality-database 对 INFP 的原话是"feelings that are deep but seldom expressed"：
+/* ============================= 留给自己的那句话（这一型 轮新增） =============================
+   personality-database 对 这一型 的原话是"feelings that are deep but seldom expressed"：
    感受很深，但很少说出口。所以结局页需要的不是一个"战绩分享"，而是一格不必公开的落笔处。
    只写进 localStorage，不进分享图、不上传、任何接口都读不到；清空浏览器数据即消失。 */
 const NOTE_KEY = 'xungui-notes-v1';
@@ -3005,6 +4050,312 @@ const fileid = document.getElementById('fileid');
 const backBtn = document.getElementById('backBtn');
 backBtn.onclick = goBack;
 
+/* ============================= 场景背景 · 真实照片 =============================
+   每一幕垫一张照片，全部来自用户提供的一组实拍（2026-10-29），压到长边 1440 的 WebP。
+   挑图只看一件事：这一幕发生在哪儿、是什么天色。田野、校园、机关大院、厂区与居民楼、
+   黄河的 storm cloud、中南海的厅堂、疫情时的空街、卸任后的水边——照片只作气氛，
+   不参与任何判定；文字始终压在纸上，纸后是照片。两张人物新闻照按用户的意思没有收进来。 */
+const SCENE_ART = {
+  /* 壹 · 扎根 1974—1978 */
+  'za1':'valley-terraces', 'za2':'night-moon-trees', 'za3':'campus-maple-collage',
+  /* 贰 · 入局 1985—1993 */
+  'ju1':'campus-ginkgo-bench', 'ju2':'dusk-purple-silhouette', 'ju3':'doves-field',
+  'ju4':'tree-tunnel-road', 'ju5':'campus-red-tree',
+  /* 叁 · 中原 1998—2003 */
+  'zh1':'cumulus-over-trees', 'zh2':'sunset-blocks-lamp', 'zh3':'roadside-flowers-blur',
+  'zh4':'rainy-window', 'cut1':'wall-handwriting', 'zh5':'storm-cloud',
+  'trans16':'stained-glass-hall',
+  /* 肆 · 振兴 2004—2006 */
+  'zh6':'brick-towers-blue', 'zh7':'city-street-night', 'cut2':'window-mist-trees',
+  'zh8':'shore-grass-sky', 'zh9':'branches-over-building', 'zh10':'canopy-sky-corner',
+  'trans16b':'cloud-treeline-blur',
+  /* 伍 · 副座 2007—2012 */
+  'fu1':'golden-sky-silhouette', 'fu2':'fireworks-grey', 'cut3':'dusk-through-trees',
+  'fu3':'backlit-leaves', 'fu4':'single-orange-leaf', 'fu5':'pavilion-lake-window',
+  'trans18':'fireworks-flowers',
+  /* 陆 · 国是 2013—2023 */
+  'guo1':'campus-hall-blue', 'guo2':'window-book-mountain', 'cut4':'rose-trellis',
+  'guo3':'turbine-lily', 'guo4':'canopy-green-up', 'guo5':'green-silk-water',
+  'guo6':'leaves-blue-sky', 'guo7':'hill-village', 'guo8':'night-sea-stars',
+  'guo9':'fog-water-trees', 'cut5':'old-tree-trunk', 'guo10':'red-flowers-path',
+  'guo11':'cloud-over-woods', 'guo12':'night-tree-road', 'cut6':'lotus-buds',
+  'guo13':'dusk-lake-birds', 'guo14':'green-pond-bank', 'guo15':'red-moon-water',
+  'guo16':'park-lake-mist', 'guo17':'canopy-aerial', 'cut9':'doves-monument',
+  'cut7':'thatch-pavilion-lotus', 'guo18':'cumulus-blue-leaves', 'cut8':'window-books-sun',
+  'guo19':'moth-in-fog',
+  /* 异线 · 总书记线 */
+  'shu1':'stained-glass-hall', 'shu2':'storm-cloud', 'shu2a':'rose-trellis',
+  'shu3':'green-silk-water', 'shu4':'shore-grass-sky', 'shu5':'dark-foliage-wide',
+  'shu6':'pavilion-lake-window', 'shu7':'golden-sky-silhouette', 'shu8':'campus-hall-blue',
+  'shu9':'night-sea-stars', 'shu10':'red-flowers-golden', 'shu11':'night-tree-road',
+  'shu12':'snow-mountain-sun', 'shu13':'cumulus-blue-leaves', 'baizhi':'doves-monument',
+  'shu14':'moth-in-fog',
+};
+
+/* 15 条结局各有各的画面：走到哪里，就在哪片景色里合上这一册。 */
+const ENDING_ART = {
+  '人民的总理':'doves-field', '改革的遗产':'wall-handwriting',
+  '未竟的改革':'moth-in-fog', '夹缝中的花':'red-flowers-path',
+  '低调的遗产':'sunset-water-pink', '务实者的孤独':'night-tree-road',
+  '退休之后·未竟':'window-books-sun', '退休之后·守成':'window-book-mountain',
+  '被时代超越的总理':'fog-water-trees', '改革派总书记':'cumulus-over-trees',
+  '永远的舵手':'night-sea-stars', '过渡性的顶点':'cloud-over-woods',
+  '新的强人':'storm-cloud', '旧局易主':'stained-glass-hall',
+  '众叛亲离':'red-moon-water',
+};
+
+/* 每一张背景照片量出来的纸色与厚度：
+   ['p' 米色纸 / 'i' 墨色纸, 浅色纸页, 深色纸页, 浅色顶栏, 深色顶栏]（后四个都是不透明度）。
+   厚度是刚好够 4.5:1 的最小值（纸页竖带内 1% / 99% 分位数，σ=10 模糊，三种墨都要 ≥4.6:1；
+   顶栏另量 0—页眉下沿那一条横带）。量的是照片本身，不是感觉：本目录照片 59 张逐张算过。 */
+const ART_TONE = {
+  'backlit-leaves':['p',0.69,0.44,0.54,0.56], 'branches-over-building':['p',0.73,0.59,0.73,0.51],
+  'brick-towers-blue':['p',0.75,0.58,0.64,0.28], 'campus-ginkgo-bench':['p',0.74,0.56,0.74,0.49],
+  'campus-hall-blue':['p',0.69,0.55,0.69,0.51], 'campus-maple-collage':['p',0.74,0.61,0.74,0.57],
+  'campus-red-tree':['p',0.74,0.58,0.68,0.52], 'canopy-aerial':['p',0.75,0.40,0.75,0.34],
+  'canopy-green-up':['p',0.76,0.61,0.68,0.62], 'canopy-sky-corner':['p',0.71,0.58,0.74,0.45],
+  'city-street-night':['i',0.63,0.28,0.68,0.36], 'cloud-over-woods':['p',0.75,0.64,0.47,0.28],
+  'cloud-treeline-blur':['p',0.71,0.55,0.42,0.52], 'cumulus-blue-leaves':['p',0.76,0.59,0.75,0.28],
+  'cumulus-over-trees':['p',0.73,0.74,0.59,0.61], 'dark-foliage-wide':['i',0.44,0.28,0.28,0.28],
+  'doves-field':['p',0.76,0.41,0.57,0.42], 'doves-monument':['p',0.75,0.57,0.65,0.57],
+  'dusk-lake-birds':['p',0.76,0.61,0.58,0.35], 'dusk-purple-silhouette':['p',0.76,0.39,0.66,0.28],
+  'dusk-through-trees':['i',0.60,0.28,0.28,0.28], 'fireworks-flowers':['p',0.65,0.54,0.64,0.59],
+  'fireworks-grey':['p',0.75,0.41,0.74,0.35], 'fog-water-trees':['p',0.76,0.45,0.65,0.54],
+  'forest-water-mirror':['p',0.72,0.28,0.67,0.35], 'golden-sky-silhouette':['p',0.76,0.48,0.76,0.28],
+  'green-pond-bank':['p',0.66,0.56,0.71,0.50], 'green-silk-water':['p',0.74,0.55,0.75,0.56],
+  'hill-village':['i',0.60,0.28,0.57,0.28], 'leaves-blue-sky':['p',0.73,0.60,0.74,0.42],
+  'lotus-buds':['p',0.75,0.46,0.75,0.28], 'moth-in-fog':['p',0.77,0.38,0.71,0.28],
+  'night-moon-trees':['i',0.61,0.28,0.61,0.28], 'night-sea-stars':['p',0.76,0.73,0.76,0.28],
+  'night-tree-road':['p',0.72,0.70,0.72,0.38], 'old-tree-trunk':['p',0.76,0.46,0.73,0.59],
+  'park-lake-mist':['p',0.75,0.28,0.75,0.28], 'pavilion-lake-window':['i',0.64,0.28,0.71,0.43],
+  'rainy-window':['i',0.70,0.35,0.77,0.56], 'red-flowers-golden':['i',0.44,0.28,0.64,0.28],
+  'red-flowers-path':['i',0.53,0.28,0.64,0.28], 'red-moon-water':['p',0.76,0.47,0.76,0.47],
+  'roadside-flowers-blur':['p',0.75,0.46,0.74,0.34], 'rose-trellis':['p',0.74,0.54,0.74,0.35],
+  'shore-grass-sky':['p',0.68,0.56,0.67,0.62], 'single-orange-leaf':['p',0.72,0.38,0.74,0.28],
+  'snow-mountain-sun':['p',0.73,0.59,0.60,0.54], 'stained-glass-hall':['p',0.75,0.55,0.75,0.46],
+  'storm-cloud':['p',0.76,0.65,0.49,0.62], 'sunset-blocks-lamp':['p',0.75,0.62,0.74,0.60],
+  'sunset-water-pink':['p',0.76,0.54,0.61,0.50], 'thatch-pavilion-lotus':['i',0.64,0.28,0.74,0.50],
+  'tree-tunnel-road':['p',0.74,0.32,0.64,0.42], 'turbine-lily':['p',0.72,0.55,0.49,0.55],
+  'valley-terraces':['p',0.75,0.44,0.59,0.56], 'wall-handwriting':['p',0.76,0.46,0.73,0.55],
+  'window-book-mountain':['p',0.75,0.46,0.73,0.62], 'window-books-sun':['p',0.76,0.49,0.69,0.39],
+  'window-mist-trees':['p',0.73,0.59,0.73,0.65],
+};
+
+/* 封面与起始页：荒野的水与林——标题本身就是这个意思。 */
+const COVER_ART = 'forest-water-mirror';
+const sceneArtEl = document.getElementById('sceneArt');
+let sceneArtKey = null;
+
+/* 把这一张的纸色与厚度交给 CSS：米色纸用浅墨，墨色纸用浅字。查不到就回到默认厚度。 */
+function applyArtTone(key){
+  const root = document.documentElement;
+  /* 听林或听海的时候，底是那片林子 / 那片海（见 room-bg-pass）：纸厚按 26 张原站
+     封面的实测值，一律当米色纸——深色的那几张会把整页翻成墨，字反而看不清。 */
+  if(document.body.classList.contains('xg-room-bg') || document.body.classList.contains('xg-sea-bg')){
+    root.style.setProperty('--art-pa', '.83');
+    root.style.setProperty('--art-pd', '.64');
+    root.style.setProperty('--art-hl', '.85');
+    root.style.setProperty('--art-hd', '.66');
+    document.body.classList.remove('xg-art-ink');
+    return;
+  }
+  const t = (key && ART_TONE[key]) || null;
+  if(t){
+    root.style.setProperty('--art-pa', String(t[1]));
+    root.style.setProperty('--art-pd', String(t[2]));
+    root.style.setProperty('--art-hl', String(t[3]));
+    root.style.setProperty('--art-hd', String(t[4]));
+    document.body.classList.toggle('xg-art-ink', t[0] === 'i');
+  } else {
+    root.style.setProperty('--art-pa', '.73');
+    root.style.setProperty('--art-pd', '.48');
+    root.style.setProperty('--art-hl', '.69');
+    root.style.setProperty('--art-hd', '.43');
+    document.body.classList.remove('xg-art-ink');
+  }
+}
+function setSceneArt(key){
+  if(!sceneArtEl) return;
+  if(key === sceneArtKey) return;
+  sceneArtKey = key;
+  applyArtTone(key);
+  if(!key){ document.body.classList.remove('art-on'); return; }
+  const img = new Image();
+  img.alt = ''; img.decoding = 'async';
+  img.onload = () => {
+    if(sceneArtKey !== key) return;               /* 期间又换了一幕：这张就不要了 */
+    img.classList.add('on');
+    sceneArtEl.appendChild(img);
+    const old = [...sceneArtEl.querySelectorAll('img')].filter(el => el !== img);
+    old.forEach(el => { el.classList.remove('on'); setTimeout(() => el.remove(), 1100); });
+    document.body.classList.add('art-on');
+  };
+  img.src = `./assets/scene-art/photo/${key}.webp`;
+}
+
+/* ---------- 听林 / 听海时铺满整页的那片底 ----------
+   音乐库在真正出声、暂停、换房、换林时广播一次 xg-roomart（事件与图都在那边，
+   这里只管换底与纸色）。林间是一张照片，先加载、加载完才打开，不先露一层白纸；
+   听海是原来那片实时海面（assets/sea3d.js），第一次要出声时才建 WebGL 上下文。
+   两间房互斥：底只有一张，停下就收回，场景插画照旧。 */
+const roomArtEl = document.getElementById('roomArt');
+const roomSeaEl = document.getElementById('roomSea');
+let roomArtSrc = '', roomArtMode = '';
+
+/* ---- 听海：原来那片海，铺满整页 ---- */
+let roomSeaCv = null, roomSeaInst = null, roomSeaRaf = 0, roomSeaFrame = 0;
+let roomSeaT = 0, roomSeaLast = 0, roomSeaOn = false, roomSeaSlow = 0;
+const reduceMotionMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+function ensureRoomSea(){
+  if(roomSeaInst) return roomSeaInst;
+  if(!roomSeaEl) return null;
+  const s3 = window.XGSea3D;
+  if(!s3 || !s3.ok) return null;                 /* 没有 WebGL：留在场景插画 */
+  roomSeaCv = document.createElement('canvas');
+  roomSeaCv.setAttribute('aria-hidden', 'true');
+  roomSeaEl.appendChild(roomSeaCv);
+  let inst = null;
+  try { inst = s3.create(roomSeaCv, { dpr: 1.15 }); } catch(_) { inst = null; }
+  if(!inst){ try { roomSeaCv.remove(); } catch(_) {} roomSeaCv = null; return null; }
+  roomSeaInst = inst;
+  inst.onReady = () => { if(roomSeaOn) drawRoomSea(roomSeaT); };
+  roomSeaCv.addEventListener('webglcontextlost', (e) => {
+    e.preventDefault();
+    stopRoomSea();
+    roomSeaInst = null;
+    document.body.classList.remove('xg-sea-bg');
+    applyArtTone(sceneArtKey);
+  }, false);
+  return inst;
+}
+function drawRoomSea(t){
+  if(!roomSeaInst) return;
+  roomSeaInst.setSize(window.innerWidth, window.innerHeight, 1.15);
+  roomSeaInst.render(t);
+}
+function roomSeaLoop(ts){
+  roomSeaRaf = 0;
+  if(!roomSeaOn || document.hidden) return;
+  if(!roomSeaLast) roomSeaLast = ts;
+  const dt = Math.min(0.1, (ts - roomSeaLast) / 1000);
+  roomSeaLast = ts;
+  if(ts - roomSeaFrame < 33){ roomSeaRaf = requestAnimationFrame(roomSeaLoop); return; }
+  roomSeaFrame = ts;
+  const t0 = performance.now();
+  roomSeaT += dt;
+  drawRoomSea(roomSeaT);
+  /* 一帧吃力就先降一次分辨率，和卡片里那片海同一套办法 */
+  if(performance.now() - t0 > 30) roomSeaSlow++; else if(roomSeaSlow > 0) roomSeaSlow--;
+  if(roomSeaSlow > 20 && roomSeaInst){ roomSeaSlow = 0; roomSeaInst.lowerQuality(); }
+  roomSeaRaf = requestAnimationFrame(roomSeaLoop);
+}
+function kickRoomSea(){
+  if(roomSeaRaf || document.hidden || reduceMotionMQ.matches) return;
+  roomSeaLast = 0;
+  roomSeaRaf = requestAnimationFrame(roomSeaLoop);
+}
+function startRoomSea(){
+  const inst = ensureRoomSea();
+  if(!inst) return false;
+  roomSeaOn = true;
+  if(!roomSeaT) roomSeaT = 7.2;                  /* 从海面有光的时候开始 */
+  drawRoomSea(roomSeaT);
+  if(reduceMotionMQ.matches) drawRoomSea(roomSeaT); else kickRoomSea();
+  return true;
+}
+function stopRoomSea(){
+  roomSeaOn = false;
+  if(roomSeaRaf){ cancelAnimationFrame(roomSeaRaf); roomSeaRaf = 0; }
+}
+document.addEventListener('visibilitychange', () => {
+  if(document.hidden) stopRoomSea();
+  else if(document.body.classList.contains('xg-sea-bg')){ roomSeaOn = true; kickRoomSea(); }
+});
+window.addEventListener('resize', () => { if(roomSeaOn) drawRoomSea(roomSeaT); }, { passive: true });
+if(reduceMotionMQ.addEventListener){
+  reduceMotionMQ.addEventListener('change', () => {
+    if(reduceMotionMQ.matches && roomSeaRaf){ cancelAnimationFrame(roomSeaRaf); roomSeaRaf = 0; drawRoomSea(roomSeaT); }
+    else if(roomSeaOn) kickRoomSea();
+  });
+}
+
+function setRoomArt(src, room){
+  if(!roomArtEl) return;
+  const mode = room === 'sea' ? 'sea' : (src ? 'forest' : '');
+
+  if(mode === 'sea'){
+    if(roomArtMode === 'sea') return;
+    roomArtMode = 'sea';
+    roomArtSrc = '';
+    const ok = startRoomSea();
+    if(ok){
+      document.body.classList.add('xg-sea-bg');
+      document.body.classList.remove('xg-room-bg');
+      applyArtTone(sceneArtKey);
+    } else {
+      document.body.classList.remove('xg-sea-bg', 'xg-room-bg');
+      applyArtTone(sceneArtKey);
+    }
+    [...roomArtEl.querySelectorAll('img')].forEach(el => {
+      el.classList.remove('on');
+      setTimeout(() => el.remove(), 950);
+    });
+    return;
+  }
+
+  /* 离开听海：画面停在最后一帧淡下去，声音不受影响 */
+  stopRoomSea();
+
+  if(!mode){
+    roomArtMode = '';
+    roomArtSrc = '';
+    [...roomArtEl.querySelectorAll('img')].forEach(el => el.classList.remove('on'));
+    const hadSea = document.body.classList.contains('xg-sea-bg');
+    const hadRoom = document.body.classList.contains('xg-room-bg');
+    document.body.classList.remove('xg-sea-bg');
+    document.body.classList.remove('xg-room-bg');
+    if(hadSea || hadRoom) applyArtTone(sceneArtKey);
+    return;
+  }
+
+  /* 林间：图先加载、加载完才把 xg-room-bg 打开；加载期间听海那层留着，
+     加载完成再一起换，不闪一层空纸。 */
+  if(roomArtMode === 'forest' && src === roomArtSrc) return;
+  roomArtMode = 'forest';
+  roomArtSrc = src;
+  const img = document.createElement('img');
+  img.alt = ''; img.decoding = 'async';
+  let done = false;
+  const show = () => {
+    if(done || roomArtSrc !== src) return;     /* 期间又换了林：这张就不要了 */
+    done = true;
+    img.classList.add('on');
+    roomArtEl.appendChild(img);
+    [...roomArtEl.querySelectorAll('img')].forEach(el => {
+      if(el === img) return;
+      el.classList.remove('on');
+      setTimeout(() => el.remove(), 900);
+    });
+    document.body.classList.remove('xg-sea-bg');
+    document.body.classList.add('xg-room-bg');
+    applyArtTone(sceneArtKey);
+  };
+  img.addEventListener('load', show, { once: true });
+  img.addEventListener('error', () => {
+    if(roomArtSrc !== src) return;
+    roomArtSrc = '';
+    roomArtMode = '';
+    document.body.classList.remove('xg-sea-bg');
+    applyArtTone(sceneArtKey);
+  }, { once: true });
+  img.src = src;
+  if(img.complete && img.naturalWidth > 0) show();   /* 缓存里已有：不等 load */
+}
+document.addEventListener('xg-roomart', (e) => {
+  const d = (e && e.detail) || {};
+  setRoomArt(d.photo || '', d.room || '');
+});
+
 /* 每一幕都是整块替换 #stage 的内容：上一幕读到底、点完选项后，新一幕会停在页面中间，
    看起来像"内容没出来"。这里监听子节点变化，换幕后把视口带回顶部。
    移动端键盘/弹层打开时不动，避免抢走焦点。 */
@@ -3136,12 +4487,12 @@ function logEntry(ev, o, isGS){
   S.log.push({year: ev.year||'', title: ev.title||'', choice: o.t||'', res: o.res||'', gs: !!isGS});
   renderLog(true, true);
 }
-/* 这一路记下的：默认跟着最近的一笔走。
-   原来只在"面板刚展开"或"人已经贴着底部"时才跳到最新，于是每点一次选项，
-   看到的多半还是几笔之前的记录，最新那一笔藏在下面，得自己往下翻。
-   回看旧记录是偶尔的，确认"刚选的那一步记上了"是每一幕都要做的事，
-   所以改成：新记一笔就钉到底部并轻淡一下；往上翻旧记录随时可以，
-   只要没有新的一笔，这里一个字都不会动。 */
+/* 这一路记下的：最新一笔排最上面，跟着刚点的那个选项走。
+   上一版是"旧的在前 + 新的一笔把面板钉到底部"，实测滚动容器在部分设备上
+   钉不到底，玩家点完选项看到的仍是几笔之前的记录，得自己往下翻。
+   这一版干脆倒过来排：刚记下的永远在第一条，点完选项抬眼就是它；
+   前面记下的一笔一笔按顺序往下收，想回看就往下拉，一个字不会少。
+   存档里 S.log 仍是旧→新的顺序（后退/存档/回响都按它算），只是展示层倒排。 */
 let logSeenCount = 0;
 function renderLog(showLatest, markNew){
   const wrap = document.getElementById('logWrap');
@@ -3152,28 +4503,18 @@ function renderLog(showLatest, markNew){
   const wasHidden = wrap.hidden;
   const grew = S.log.length > logSeenCount;
   logSeenCount = S.log.length;
-  const nearBottom = panel.scrollHeight - panel.scrollTop - panel.clientHeight <= 48;
-  const keepTop = panel.scrollTop;
-  const fresh = (markNew && grew) ? S.log.length - 1 : -1;
+  const fresh = (markNew && grew) ? 0 : -1;   /* 倒排后最新一笔就是第一条 */
   wrap.hidden = false;
-  panel.innerHTML = S.log.map((e,i)=>`
+  panel.innerHTML = S.log.slice().reverse().map((e,i)=>`
     <article class="logEntry ${e.gs?'gs':''}${i===fresh?' is-new':''}">
       <div class="le-year">${e.year}</div>
       <div class="le-body">
         <div class="le-line1"><span class="le-title">${e.title}</span><span class="le-arrow">→</span>${e.choice}</div>
         <div class="le-line2">${e.res}</div>
       </div>
-    </article>`).join('') + `<p class="logTail">最新的一笔在这儿 · 往上翻还能看见前面的</p>`;
-  const pin = showLatest || wasHidden || nearBottom;
-  panel.scrollTop = pin ? panel.scrollHeight : keepTop;
-  if(pin){
-    /* 字号/行高有时在下一拍才落定，第一下会钉在"差半行"的位置；
-       补两次（0ms 与 90ms），确保真的停在最新那一笔上。
-       不用 rAF：旧版在不绘制的页面里 rAF 不跑，钉位会悄悄失效。 */
-    const pinNow = ()=>{ try{ panel.scrollTop = panel.scrollHeight; }catch(_){ } };
-    setTimeout(pinNow, 0);
-    setTimeout(pinNow, 90);
-  }
+    </article>`).join('') + `<p class="logTail">前面记下的一笔一笔都在下面 · 往下拉就翻得到</p>`;
+  /* 有新的一笔、或面板刚展开：回到最上面看最新的；没有新的一笔就保持人正在读的位置。 */
+  if(showLatest || wasHidden) panel.scrollTop = 0;
 }
 
 function fmtSaved(ts){
@@ -3186,6 +4527,8 @@ function fmtSaved(ts){
 
 function renderTitle(){
   flushNote();
+  try{ document.body.classList.add('xg-landing'); }catch(_){ }
+  setSceneArt(COVER_ART);
   hdr.hidden = true;
   document.getElementById('logWrap').hidden = true;
   const sv = readSave();
@@ -3207,6 +4550,53 @@ function renderTitle(){
           <span>改革 <b>${(sv.R>0?'+':'')+num(sv.R)}</b></span>
           ${gs?`<span>集权 <b>${num(sv.Cen)}</b></span>`:''}
         </div>`);
+  /* 六个时段的坐标：图直接从 SCENE_ART 里取，跟真正走进那一幕时垫的是同一张 */
+  const ACTS = [
+    ['壹', '扎根', '1974—1978', 'za1', '凤阳的泥地，与一个村子按下的红手印'],
+    ['贰', '入局', '1985—1993', 'ju1', '燕园到团中央，会议室内的一次次表态'],
+    ['叁', '中原', '1998—2003', 'zh1', '黄河大堤、麦田，与一场没下完的雨'],
+    ['肆', '振兴', '2004—2006', 'zh6', '铁西的厂房，与棚改之后新起的楼'],
+    ['伍', '副座', '2007—2012', 'fu1', '庆典的烟火，与雪后的那条中轴线'],
+    ['陆', '国是', '2013—2023', 'guo1', '空下来的街，与水边最后的暮色']
+  ];
+  const actTiles = ACTS.map(([n, name, span, first, note], i) => `
+    <article class="ld-tile">
+      <span class="ld-tile-bg" style="background-image:url('./assets/scene-art/photo/thumb/${SCENE_ART[first]}.webp')" aria-hidden="true"></span>
+      <span class="ld-tile-k mono">${('0' + (i + 1)).slice(-2)} / ${n} · ${name}</span>
+      <span class="ld-tile-y mono">${span}</span>
+      <span class="ld-tile-t">${note}</span>
+    </article>`).join('') + `
+    <article class="ld-tile alt">
+      <span class="ld-tile-bg" style="background-image:url('./assets/scene-art/photo/thumb/${SCENE_ART.shu1}.webp')" aria-hidden="true"></span>
+      <span class="ld-tile-k mono">07 / 异线 · 如果</span>
+      <span class="ld-tile-y mono">推演 · 不曾发生</span>
+      <span class="ld-tile-t">另一条路不是真实履历的延伸，是这份档案对「如果」的虚构推演。</span>
+    </article>`;
+  const PLACES = ['东陵大队', '未名湖', '团中央', '黄河大堤', '铁西厂区', '中南海', '长安街'];
+  const mqTrack = PLACES.map((p, i) =>
+    `<span class="ld-mq-item${i % 2 ? ' alt' : ''}">${p}</span><span class="ld-mq-dot" aria-hidden="true"></span>`
+  ).join('') + PLACES.map((p, i) =>
+    `<span class="ld-mq-item${i % 2 ? ' alt' : ''}">${p}</span><span class="ld-mq-dot" aria-hidden="true"></span>`
+  ).join('');                     /* 两份拼接，跑马灯绕回起点时看不出接缝 */
+  const docHTML = `<details class="doc">
+        <summary>这是什么 / 数值说明</summary>
+        <div class="doc-body">
+          <p>这是一款以李克强公开履历为骨架的历史启发式政治叙事游戏。主线取材真实经历与职务,但具体的心理活动、决策权衡与部分次要人物均为基于公开事实的合理推演和虚构演绎,不是对真实决策过程的还原。</p>
+          <p>游戏名"寻归荒野",取自程虹教授的著作。很遗憾能力有限,没能加入程虹出场的情节,仅以此标题向她致敬。</p>
+          <p>每个事件都给出历史背景和三个左右的选项。选项没有绝对的"正确答案"——每一个都会推动你的数值向不同方向变化,并在几十年后以某种方式被重新提起。选完之后会先看到一段"结果",再继续下一个事件;顶部随时可以点"上一步"重新考虑刚才的选择。选项的先后顺序每一局都会重新打乱,同一件事下次不一定排在同一个位置——按句子选,别按位置选。</p>
+          <dl>
+            <dt>落地(Inf)</dt><dd>政策落地力——你的方案真正被执行、见到实效的程度。</dd>
+            <dt>权网(Pat)</dt><dd>权力网络——你在体制各条线上的支持度。</dd>
+            <dt>声望(Rep)</dt><dd>公共声望——民间与舆论对你的评价。</dd>
+            <dt>风险(Tarn)</dt><dd>政治风险——越高,越容易被对手抓住把柄。</dd>
+            <dt>改革(R)</dt><dd>改革力度——从保守到激进,决定你最终的历史定位,也是结局判定的核心轴。</dd>
+          </dl>
+          <p style="margin-top:12px">还有一两项数值这局故意不会直接告诉你——它们藏在选择背后,只在恰当的时候才会露出痕迹。</p>
+        </div>
+      </details>`;
+  const keyhintHTML = `<p class="keyhint"><span class="kh">数字键 1—4 对应屏上的选项</span> · <span class="kh">Enter 继续</span> · <span class="kh">← 回到上一步</span> · <span class="kh">H 随时翻开玩法说明</span> · <span class="kh">D 换一册</span>。不用键盘、点着选，也一样。</p>`;
+  const proofHTML = `<p class="proof">54 个抉择场景 · 161 个选项 · 15 个结局</p>`;
+  const privacyHTML = `<p class="privacy">不用注册，不用联网存档；进度只留在这台设备上。<br>这里没有计时，也没有连错的惩罚。想停就合上，回头还能接着翻。</p>`;
   if(typeof window.xgSyncArchTab === 'function') window.xgSyncArchTab();
   const saveCard = !resumable ? '' : `
       <div class="savecard">
@@ -3227,48 +4617,96 @@ function renderTitle(){
         <p class="sc-note">已记下 ${sv.log.length} 笔 · 进度只留在这台设备上，刷新后还能接着翻。</p>
       </div>`;
   stage.innerHTML = `
-    <div id="title-screen">
-      <div class="kicker">历史启发式政治叙事 · 原型</div>
-      <h1>寻归荒野</h1>
-      <div class="sub">总理三十年 · 1974—2023</div>
-      <details class="doc">
-        <summary>这是什么 / 数值说明</summary>
-        <div class="doc-body">
-          <p>这是一款以李克强公开履历为骨架的历史启发式政治叙事游戏。主线取材真实经历与职务,但具体的心理活动、决策权衡与部分次要人物均为基于公开事实的合理推演和虚构演绎,不是对真实决策过程的还原。</p>
-          <p>游戏名"寻归荒野",取自程虹教授的著作。很遗憾能力有限,没能加入程虹出场的情节,仅以此标题向她致敬。</p>
-          <p>每个事件都给出历史背景和三个左右的选项。选项没有绝对的"正确答案"——每一个都会推动你的数值向不同方向变化,并在几十年后以某种方式被重新提起。选完之后会先看到一段"结果",再继续下一个事件;顶部随时可以点"上一步"重新考虑刚才的选择。选项的先后顺序每一局都会重新打乱,同一件事下次不一定排在同一个位置——按句子选,别按位置选。</p>
-          <dl>
-            <dt>落地(Inf)</dt><dd>政策落地力——你的方案真正被执行、见到实效的程度。</dd>
-            <dt>权网(Pat)</dt><dd>权力网络——你在体制各条线上的支持度。</dd>
-            <dt>声望(Rep)</dt><dd>公共声望——民间与舆论对你的评价。</dd>
-            <dt>风险(Tarn)</dt><dd>政治风险——越高,越容易被对手抓住把柄。</dd>
-            <dt>改革(R)</dt><dd>改革力度——从保守到激进,决定你最终的历史定位,也是结局判定的核心轴。</dd>
-          </dl>
-          <p style="margin-top:12px">还有一两项数值这局故意不会直接告诉你——它们藏在选择背后,只在恰当的时候才会露出痕迹。</p>
-        </div>
-      </details>
-      ${galleryHTML()}
-      ${resumable ? saveCard : `<div class="btnrow"><button class="btn" id="start" type="button">打开档案，开始</button></div>`}
-      <div class="arch-row-wrap cover-tools">
-        <button class="tool" id="toolHelpCover" type="button" aria-haspopup="dialog" aria-controls="helpOverlay" title="玩法说明 · 随时可查">
-          <span class="tool-ic ic-help" aria-hidden="true"></span><span class="tool-t">玩法</span>
-        </button>
-        <button class="arch-link tool" id="archFromCover" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="archOverlay" title="档案库：你自己命名的册子，可以并排放好几本">
-          <span class="tool-ic ic-arch" aria-hidden="true"></span><span class="tool-t">档案库</span><span class="tool-n">${xgEsc(archChipN())}</span>
-        </button>
-        <span class="tool tool-save" id="toolSaveCover" title="进度自动存在这台设备上，刷新后还能接着翻">
-          <span class="tool-ic ic-save" aria-hidden="true"></span><span class="tool-t">存档</span><span class="file-id mono tool-n">${resumable ? '已存到第 ' + step + ' 步' : '这一册还没翻开过'}</span>
-        </span>
-      </div>
-      <p class="keyhint"><span class="kh">数字键 1—4 对应屏上的选项</span> · <span class="kh">Enter 继续</span> · <span class="kh">← 回到上一步</span> · <span class="kh">H 随时翻开玩法说明</span> · <span class="kh">D 换一册</span></p>
-      <p class="proof">54 个抉择场景 · 161 个选项 · 15 个结局</p>
-      <p class="privacy">不用注册，不用联网存档；进度只留在这台设备上。<br>这里没有计时，也没有连错的惩罚。想停就合上，回头还能接着翻。</p>
-      <figure class="cover-plate">
-        <img src="./assets/cover-art.svg" alt="木刻风格的远山与河流，松林沿坡而下" width="1200" height="380">
-        <span class="cover-seal" aria-hidden="true">寻归</span>
-        <figcaption>${xgEsc(aName)} · 一九七四—二〇二三</figcaption>
-      </figure>
-    </div>`;
+      <div id="title-screen" class="xg-landing">
+        <nav class="ld-nav" aria-label="起始页导航">
+          <span class="ld-nav-brand">寻归荒野</span>
+          <span class="ld-nav-meta mono">档案 · 一九七四—二〇二三</span>
+          <button class="ld-nav-cta" type="button" data-xg-jump="${resumable?'resume':'start'}">${resumable?'接着翻':'开始翻'}</button>
+        </nav>
+
+        <header class="ld-hero">
+          <div class="ld-hero-card">
+            <p class="ld-eyebrow mono">历史启发式政治叙事 · 原型</p>
+            <h1 class="ld-title">寻归荒野</h1>
+            <p class="ld-sub">总理三十年 · 1974—2023</p>
+            <p class="ld-lede">五十四幕抉择，三十年。每选一次，当场就能看到一段结果；几十年后，同一笔选择还会被重新提起。</p>
+            ${resumable ? saveCard : `<div class="ld-cta-row"><button class="btn" id="start" type="button">打开档案，开始</button></div>`}
+            <div class="arch-row-wrap cover-tools">
+              <button class="tool" id="toolHelpCover" type="button" aria-haspopup="dialog" aria-controls="helpOverlay" title="玩法说明 · 随时可查">
+                <span class="tool-ic ic-help" aria-hidden="true"></span><span class="tool-t">玩法</span>
+              </button>
+              <button class="arch-link tool" id="archFromCover" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="archOverlay" title="档案库：你自己命名的册子，可以并排放好几本">
+                <span class="tool-ic ic-arch" aria-hidden="true"></span><span class="tool-t">档案库</span><span class="tool-n">${xgEsc(archChipN())}</span>
+              </button>
+              <span class="tool tool-save" id="toolSaveCover" title="进度自动存在这台设备上，刷新后还能接着翻">
+                <span class="tool-ic ic-save" aria-hidden="true"></span><span class="tool-t">存档</span><span class="file-id mono tool-n">${resumable ? '已存到第 ' + step + ' 步' : '这一册还没翻开过'}</span>
+              </span>
+            </div>
+            <p class="ld-cue mono" aria-hidden="true">往下翻 · 这一册是怎么排的</p>
+          </div>
+        </header>
+
+        <section class="ld-acts" aria-labelledby="ld-acts-h">
+          <div class="ld-inner">
+            <p class="ld-kicker mono">01 / 六个时段</p>
+            <h2 class="ld-h2" id="ld-acts-h">档案是这么排的</h2>
+            <p class="ld-sec-note">下面只有时段的坐标。每一幕真正发生了什么、要你在两条路里挑一条，得翻开才知道。</p>
+            <div class="ld-bento">${actTiles}</div>
+          </div>
+        </section>
+
+        <section class="ld-maskwrap" aria-label="寻归荒野">
+          <div class="ld-inner">
+            <h2 class="ld-mask"><span class="wm">寻</span><span class="wm">归</span><span class="wm">荒</span><span class="wm">野</span></h2>
+            <p class="ld-mask-sub">六个时段是主线。主线之外，还有一册不曾发生的推演。</p>
+            <p class="ld-mask-cta"><button class="ld-ghost" type="button" data-xg-jump="${resumable?'resume':'start'}">${resumable?'接着上次那一步':'打开档案，开始'}</button></p>
+          </div>
+        </section>
+
+        <section class="ld-doc">
+          <div class="ld-inner">
+            <p class="ld-kicker mono">02 / 这份档案</p>
+            ${docHTML}
+            ${galleryHTML()}
+          </div>
+        </section>
+
+        <section class="ld-marquee" aria-label="这一路经过的地方">
+          <div class="ld-mq-track" aria-hidden="true">${mqTrack}</div>
+          <p class="ld-mq-cap mono">这一路经过的地方</p>
+        </section>
+
+        <footer class="ld-foot">
+          <div class="ld-inner">
+            <p class="ld-wordmark" aria-hidden="true"><span class="ld-rule"></span><span>寻归荒野</span><span class="ld-rule"></span></p>
+            <div class="ld-cols">
+              <div class="ld-col">
+                <p class="ld-col-h mono">怎么玩</p>
+                ${keyhintHTML}
+              </div>
+              <div class="ld-col">
+                <p class="ld-col-h mono">这一册</p>
+                ${proofHTML}
+                <p class="ld-col-t">${xgEsc(aName)} · 主线六幕，异线另起一册。</p>
+              </div>
+              <div class="ld-col">
+                <p class="ld-col-h mono">留在这台设备上</p>
+                ${privacyHTML}
+              </div>
+            </div>
+            <p class="ld-foot-cta">
+              <button class="ld-ghost on-dark" type="button" data-xg-jump="${resumable?'resume':'start'}">${resumable?'接着翻':'打开档案，开始'}</button>
+              <button class="ld-textlink" type="button" data-xg-top="1">回到开头</button>
+            </p>
+          </div>
+        </footer>
+
+        <figure class="cover-plate">
+          <img src="./assets/cover-art.svg" alt="木刻风格的远山与河流，松林沿坡而下" width="1200" height="380">
+          <span class="cover-seal" aria-hidden="true">寻归</span>
+          <figcaption>${xgEsc(aName)} · 一九七四—二〇二三</figcaption>
+        </figure>
+      </div>`;
   document.getElementById('start').onclick=async ()=>{
     if(resumable){
       const ok = await xgAskOpen({
@@ -3295,6 +4733,7 @@ function renderTitle(){
     if(typeof window.xgSetNums === 'function') window.xgSetNums(true);
     try{ renderTitle(); }catch(_){ }
   };
+  try{ if(typeof window.xgInitLanding === 'function') window.xgInitLanding(); }catch(_){ }
   /* 页眉此刻藏着，但那一行册名不能留着上一册的字：回到封面时顺手刷新，
      下次掀开页眉就不会看见一帧旧名字。整页状态条跟着一起重写，无副作用。 */
   try{ renderStatBar(); }catch(_){ }
@@ -3344,13 +4783,17 @@ function renderStatBar(){
   }
   /* 顶栏那两格各说一件事：档案库格管"我在读哪一册"，存档格只管"走到第几步、存好了"。
      以前两件事挤在同一句里，结果两件都看不清——现在各归各。 */
-  fileid.textContent = '第 ' + Math.min(S.idx+1, saveTotal()) + '/' + saveTotal() + ' 步';
+  /* 步数补零成两位（第 07/54 步）：这一行的字宽在整个流程里保持不变，
+     顶栏因此不会在第 10 步突然多出一行。存档里存的仍是原始数字，只是显示写法。 */
+  const _stepNo = Math.min(S.idx+1, saveTotal());
+  fileid.textContent = '第 ' + ('0'+_stepNo).slice(-2) + '/' + saveTotal() + ' 步';
   fileid.title = '自动存档 · 只存在这台设备上，刷新后还能接着翻 · 现在读的是「' + archName() + '」';
   backBtn.hidden = S.history.length===0;
 }
 
 function showEvent(){
   lastDelta = null;
+  try{ document.body.classList.remove('xg-landing'); }catch(_){ }
   try{ document.body.classList.remove('xg-ending'); }catch(_){ }
   renderStatBar();
   saveGame();
@@ -3384,6 +4827,7 @@ function showEvent(){
 /* 通用事件渲染:premier / gs 都走这里;onChoose 可覆盖默认的 choose() */
 function renderEvent(ev, route, onChoose){
   const isGS = route!=='premier';
+  setSceneArt(SCENE_ART[ev.id] || (isGS ? 'cumulus-blue-leaves' : 'campus-maple-collage'));
   const bgText = typeof ev.bg === 'function' ? ev.bg(S) : ev.bg;
   stage.innerHTML = `
     <div class="tag-row"><span class="tag ${isGS?'gs':''}">${ev.act || (isGS?'总书记线 · 异线':'')}</span><span class="year mono">${ev.year}</span></div>
@@ -3478,6 +4922,7 @@ function chooseShu2A(o){
 }
 
 function renderHub5(ev){
+  setSceneArt(SCENE_ART[ev.id] || 'stained-glass-hall');
   const unlock = S.flags.F_lianluo==='jianli' && S.polEntrySnap>=6;
   stage.innerHTML = `
     <div class="tag-row"><span class="tag">${ev.act}</span><span class="year mono">${ev.year}</span></div>
@@ -3504,6 +4949,7 @@ function renderHub5(ev){
 }
 
 function renderShu13(){
+  setSceneArt(SCENE_ART['shu13']);
   const modified = S.flags.F_renqi==='yixiugai';
   const bg = modified
     ? '你已经走过修改任期限制这条路。这些年始终没有真正淡出的习近平,在二十大前又一次成为党内讨论接班话题时绕不开的名字——现在,是打破惯例继续掌权,还是主动树立交棒的新先例?'
@@ -3535,6 +4981,7 @@ function renderShu13(){
 
 /* 白纸:总书记线的分支节点——若书13选择了交棒,你已不再掌权,走无选项的旁观者镜头;若选择继续掌权,你依然是那个必须拍板的人,给出一次真正的决策。 */
 function renderBaizhi(){
+  setSceneArt(SCENE_ART['baizhi']);
   const stepped = S.flags.F_jiaoban==='zhudong' || S.flags.F_jiaoban==='anhuili';
   if(stepped){
     return renderCutscene({id:'baizhi', year:'2022年11月', title:'白纸',
@@ -3565,6 +5012,7 @@ function renderBaizhi(){
 }
 
 function renderTransition(ev, cont){
+  setSceneArt(SCENE_ART[ev.id] || 'stained-glass-hall');
   stage.innerHTML = `
     <div class="divider">
       <div class="stamp">${ev.title}</div>
@@ -3576,6 +5024,7 @@ function renderTransition(ev, cont){
 }
 
 function renderEpilogue(ev, cont){
+  setSceneArt(SCENE_ART[ev.id] || 'dusk-lake-birds');
   const isGS = S.route!=='premier';
   stage.innerHTML = `
     <div class="divider ${isGS?'gs':''}">
@@ -3589,6 +5038,7 @@ function renderEpilogue(ev, cont){
 
 /* 后果镜头:无选项的插入场景,不改变任何数值,只展示旧选择的余波。ev.text 可以是字符串,也可以是 (S)=>字符串 的函数(用于按flag呈现不同版本)。 */
 function renderCutscene(ev, cont){
+  setSceneArt(SCENE_ART[ev.id] || sceneArtKey);
   const body = typeof ev.text === 'function' ? ev.text(S) : ev.text;
   stage.innerHTML = `
     <div class="cutscene">
@@ -3694,6 +5144,8 @@ function resolveGSEnding(){
 
 function renderEnding(title,flavor,explain,isGS){
   flushNote();
+  try{ document.body.classList.remove('xg-landing'); }catch(_){ }
+  setSceneArt(ENDING_ART[endingKey(title)] || null);
   clearSave();   /* 走到结局就没有"接着翻"这回事了，清掉存档，首页不再提示继续 */
   /* 顶栏那格跟着说实话：存档清掉了，就别再写"存档 · 第 N 步"。 */
   try{
@@ -3922,7 +5374,7 @@ async function shareEnding(title,flavor,explain,rows,isGS){
     overlay.innerHTML = `
       <div class="shareModal" role="dialog" aria-modal="true" aria-label="结局分享图">
         <div class="imgWrap"><img src="${url}" alt="结局分享图"></div>
-        <p class="hint">长按图片可直接保存,或用下方按钮</p>
+        <p class="hint">长按图片就能存下来，也可以用下面的按钮</p>
         <div class="btnrow">
           <button class="btn" id="saveImg">保存图片</button>
           ${canShareFile ? '<button class="btn line" id="sysShare">系统分享</button>' : ''}
@@ -4160,7 +5612,7 @@ renderTitle();
 })();
 
 /* ============================= 档案库 =============================
-   一册 = 一个存档位 + 一个玩家自己起的名字。照 INFP 的三条线做交互：
+   一册 = 一个存档位 + 一个玩家自己起的名字。照 这一型 的三条线做交互：
    · Fi（"being bound by inner moral law"）：这一层唯一的必填动作是"你叫它什么"，
      界面不替你宣布结论，也没有分数排行；
    · Ne（explore possibilities）：几册并行，同一段路可以同时摊着好几种活法；
@@ -4415,11 +5867,12 @@ renderTitle();
   window.xgArchivesOpen = isOpen;
 })();
 
-/* Netlify Drop 每次可能给出不同域名：把 canonical 与分享图补成当前真实地址。
+/* 站点既可能部署在域名根目录（Netlify Drop 每次还换一个域名），也可能部署在
+   GitHub Pages 的子路径（/仓库名/）。以当前页面所在目录为基准补全，两种情况都对。
    写进文档的仍是相对路径，这段只负责让浏览器里的元信息保持自洽。 */
 (function(){
   try{
-    const base = location.origin + '/';
+    const base = new URL('./', location.href).href;
     const canonical = document.getElementById('canonical-link');
     if(canonical && /^https?:$/.test(location.protocol)) canonical.href = base;
     const og = document.getElementById('og-image');
@@ -4438,7 +5891,16 @@ renderTitle();
   </section>
 </div>
 <script src="./assets/announcement.js"></script>
-<script src="./assets/music-player.js" defer></script>
+<!-- 听海的实时海面：three.js r82（MIT）与原站的 Water / Sky / Mirror 着色器，
+     加上把它们装进画布的 sea3d.js。五个文件都必须排在 music-player.js 前面
+     （defer 保持先后顺序）。 -->
+<script src="./assets/three/vt/three.min.js" defer></script>
+<script src="./assets/three/vt/Mirror.js" defer></script>
+<script src="./assets/three/vt/WaterShader.js" defer></script>
+<script src="./assets/three/vt/SkyShader-day.js" defer></script>
+<script src="./assets/sea-visual.js?v=20261030a" defer></script>
+<script src="./assets/sea3d.js?v=20261030a" defer></script>
+<script src="./assets/music-player.js?v=20261030a" defer></script>
 <script src="./assets/ending-video.js" defer></script>
 <script src="./assets/feedback.js" defer></script>
 <script>
@@ -4478,4 +5940,83 @@ renderTitle();
     此时启动图已经显示满 11 秒，"至少 6 秒"的要求依然成立。 */
  window.setTimeout(function(){ startSixSecondTimer(); end(); },11000);
 })();
-</script></body></html>
+</script>
+<script id="xg-punct">
+/* ============================================================
+   2026-10-27 · 审计修复：在渲染层统一中文标点
+   《审视报告》第 3 条——正文里是 "抉择,下一步" 这种半角逗号，
+   界面外壳里是 "打开档案，开始" 这种全角逗号，同一屏两套排版习惯。
+   这里只在"字显示到屏幕上"的那一刻做替换：
+     · PREMIER / RESPONSES / ENDING_LIST / GS 四块数据字符串一个字节都没改，
+     · 存档与 localStorage 存的是原始文本（写入走数据，不走 DOM），
+     · 结局判定、数值、分享卡画布上的文字都不经过这里，
+   所以内容冻结哈希与线上版本仍然一致。
+   规则很保守：半角 , ; : ! ? 紧跟在汉字或中文标点后，才换成全角；
+   前面是数字或字母时一律不动，所以 "1974, 2023"、"https://x"、"12:30"、"第1,000步" 安全。
+   作用范围只有 #shell（页眉、正文、记录、页脚）；公告弹层在 shell 之外，文本原样保留。
+   ============================================================ */
+(function(){
+  var MAP = {',':'\uFF0C', ';':'\uFF1B', ':':'\uFF1A', '!':'\uFF01', '?':'\uFF1F'};
+  var RE  = /([\u3001\u3002\u3008-\u3011\u3014\u3015\u3040-\u30ff\u31f0-\u31ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])([,;:!?])/g;
+  var SKIP = {SCRIPT:1, STYLE:1, TEXTAREA:1, INPUT:1, SELECT:1, OPTION:1, NOSCRIPT:1, CODE:1, KBD:1, VAR:1, SAMP:1};
+  function fixed(t){ return t.replace(RE, function(m, a, p){ return a + MAP[p]; }); }
+  function skippable(node){
+    var p = node.parentElement;
+    if(!p) return true;
+    if(SKIP[p.tagName]) return true;
+    if(p.closest && p.closest('[data-xg-raw]')) return true;
+    return false;
+  }
+  function fixText(node){
+    var t = node.nodeValue;
+    if(typeof t !== 'string' || t.length === 0) return;
+    if(t.indexOf(',') < 0 && t.indexOf(';') < 0 && t.indexOf(':') < 0 && t.indexOf('!') < 0 && t.indexOf('?') < 0) return;
+    var n = fixed(t);
+    if(n !== t) node.nodeValue = n;   /* 替换后再观察一次，此时已无可换字符，不会再触发 */
+  }
+  function walk(root){
+    if(!root || (root.nodeType !== 1 && root.nodeType !== 9 && root.nodeType !== 11)) return;
+    if(SKIP[root.tagName] || (root.getAttribute && root.getAttribute('data-xg-raw') !== null)) return;
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n;
+    while((n = w.nextNode())){ if(!skippable(n)) fixText(n); }
+  }
+  function start(){
+    var shell = document.getElementById('shell');
+    if(!shell) return;
+    walk(shell);                                   /* 首屏那批静态文案 */
+    if(typeof MutationObserver !== 'function') return;
+    var mo = new MutationObserver(function(list){
+      for(var i = 0; i < list.length; i++){
+        var r = list[i];
+        if(r.type === 'characterData'){ if(!skippable(r.target)) fixText(r.target); continue; }
+        if(r.type === 'childList'){
+          for(var j = 0; j < r.addedNodes.length; j++){
+            var nd = r.addedNodes[j];
+            if(nd.nodeType === 3){ if(!skippable(nd)) fixText(nd); }
+            else walk(nd);
+          }
+        }
+      }
+    });
+    mo.observe(shell, {subtree:true, childList:true, characterData:true});
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+</script>
+<script>
+/* 页眉只在"离开顶端"以后才换成实纸：停在顶端时它还是一张薄玻璃，
+   照片的整个上身都露着（见 #photo-read 第 ③ 段）。滚动只读 scrollY，不碰布局。 */
+(function(){
+  var on = null;
+  function upd(){
+    var s = window.pageYOffset > 10;
+    if (s !== on){ on = s; document.body.classList.toggle('xg-scrolled', s); }
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  window.addEventListener('resize', upd, { passive: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', upd);
+  else upd();
+})();
+</script>
+</body></html>
