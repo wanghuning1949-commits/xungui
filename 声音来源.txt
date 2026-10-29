@@ -4,7 +4,7 @@
 产品里只听得出"这一段海""这片林子"；出处、作者、许可、原始地址，全部只留在这里。
 
 一共有六类条目：
-  壹 · 包里的 12 段开放许可录音——林间够不着原处时放的就是它。
+  壹 · 林间 27 段同源本地备份——原处那条不通时放的就是它，同一片林子的同一条录音。
   贰 · "听海"那 15 个声层，原样收进包里——就是原站页面上并列的那 15 条。
   叁 · 联网时优先去够的"原处那一条"——林间 27 片林子自己的录音与照片。
   肆 · 画面上的配图：听海 15 枚原站线描小图，林间 26 张是林子自己的封面照。
@@ -12,123 +12,50 @@
   陆 · 够不着的部分，以及为什么够不着（有实测数字，不是猜的）。
 
 ────────────────────────────────────────
-壹 · 包里的 12 段开放许可录音（Wikimedia Commons）
+壹 · 林间 27 段同源本地备份（assets/ambience/forest/）
 ────────────────────────────────────────
 
-每一段都写明白：原始文件 / 作者 / 许可 / 原始页面，以及它在这个产品里被用在哪儿。
-原始文件多是 .wav/.ogg，包内统一转成了 .mp3；转格式不改声音内容。
+林间那 27 片林子，每一片都有自己的那一条录音。这一版把 27 条整段取回，
+按同一条录音转成 80 kbps、44.1 kHz 立体声 MP3，存进包内 assets/ambience/forest/，
+一条一个文件，文件名就是原处那条的文件名。转码只动了码率（原处是 256/320 kbps），
+录音本身、长度、头尾都没剪——它是"同一片林子的声音"，不是拿别的林子顶替。
 
-—— 林（包内 assets/ambience/ 下的 12 段，是 27 片林子的替身）——
+播放时的次序：先连叁里那条原处；连不上、7 秒不出声、或起播后卡住，就换成本地这一份。
+所以不管网络通不通，点哪一片林子，响的都是那一片自己的声音，和封面照片对得上。
+27 个文件合计约 128.1 MB。下面逐条列出：页面上叫什么、本地是哪个文件、多长、多大；原处是哪条见叁。
 
-这 12 段自己不在页面上占曲目：它们是"林间"那 27 片林子联网够不着时放的那一份。
-每一段下面都写清了它叫哪个文件名、替哪几片林子出声——许可对着文件，不靠猜。
+  序  页面上的名字              本地文件（assets/ambience/forest/）           时长    大小
+  1  美国 · 塞拉内华达         sierranevade.mp3                               4:44     2.7 MB
+  2  立陶宛 · 维茹奥纳         Baltys-Soundscape.mp3                          6:41     3.8 MB
+  3  爱尔兰 · 卡帕达夫         LightRainBirdsAmbics.mp3                       7:07     4.1 MB
+  4  奥地利 · 施文贝格         HochschwendbergOvernightAT.mp3                 3:02     1.7 MB
+  5  德国 · 美因蔡尔           LangenbachEisWasser.mp3                       12:04     6.9 MB
+  6  德国 · 朗根巴赫谷         AuenwaldWasser.mp3                            11:14     6.4 MB
+  7  德国 · 黑尔湖             BundorfWaldsee.mp3                            20:04    11.5 MB
+  8  德国 · 哈斯贝格           DrflisWieseJune.mp3                           20:04    11.5 MB
+  9  斯洛文尼亚 · 维帕瓦       RadioAporeePrikoi.mp3                          5:58     3.4 MB
+ 10  斯洛文尼亚 · 特尔诺沃     TrnovoForestWind.mp3                          22:09    12.7 MB
+ 11  意大利 · 拉斯科山         MonteRaschioOriolo.mp3                        44:21    25.4 MB
+ 12  厄瓜多尔 · 阿南古湖       FrancescoFabrisYasuniNight.mp3                 5:43     3.3 MB
+ 13  厄瓜多尔 · 亚苏尼         FrancescoFabrisYasuni07.mp3                    1:21     0.8 MB
+ 14  智利 · 瓦尔迪维亚         MorningBirds.mp3                               6:45     3.9 MB
+ 15  法国 · 贝勒加德圣玛丽     AbbeySainte-MarieDesertBird01.mp3              3:27     2.0 MB
+ 16  波兰 · 鲁马内克           DolonaSamy.mp3                                 3:09     1.8 MB
+ 17  斐济 · 卡达武岛           VuniseaNamaraRoadSound.mp3                     5:50     3.3 MB
+ 18  斐济 · 阿巴卡瀑布径       SoundscapeAbaca09Uhr10.mp3                     7:28     4.3 MB
+ 19  巴西 · 大西洋林           LargoCarpasexp.mp3                             2:54     1.7 MB
+ 20  巴西 · 佩德拉格兰德       RadioAporeeT023.mp3                            2:00     1.1 MB
+ 21  巴西 · 坎塔雷拉三         RadioAporeeT06502300443RX.mp3                  2:14     1.3 MB
+ 22  巴西 · 坎塔雷拉二         RXimgradioaporee.mp3                           2:00     1.1 MB
+ 23  香港 · 大屿山             ShekPikCountryTrailSound.mp3                   1:02     0.6 MB
+ 24  法国 · 科隆贝尔           OiseauxGrandeHalle190418.mp3                   1:49     1.0 MB
+ 25  瑞典 · 什恩斯卡特贝里     BirdsSweden.mp3                               11:28     6.6 MB
+ 26  德国 · 不伦瑞克           Soundsof.mp3                                   8:07     4.6 MB
+ 27  澳大利亚 · 芬尼斯谷       RemousmerSecondValleySA.mp3                    1:05     0.6 MB
 
-1. 林间的呼吸
-   包内文件：assets/ambience/forest-amb1.mp3
-   原始文件：Forest ambience (Gravity Sound).wav
-   作者：Gravity Sound
-   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_(Gravity_Sound).wav
-
-   用在这儿：林间 3 片原处那条不通时放它 —— 美国 · 塞拉内华达、波兰 · 鲁马内克、巴西 · 坎塔雷拉三
-
-2. 午后的树影
-   包内文件：assets/ambience/forest-amb2.mp3
-   原始文件：Forest ambience 2 (Gravity Sound).wav
-   作者：Gravity Sound
-   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_2_(Gravity_Sound).wav
-
-   用在这儿：林间 5 片原处那条不通时放它 —— 爱尔兰 · 卡帕达夫、斯洛文尼亚 · 维帕瓦、意大利 · 拉斯科山、巴西 · 佩德拉格兰德、德国 · 不伦瑞克
-
-3. 深处的光
-   包内文件：assets/ambience/forest-amb3.mp3
-   原始文件：Forest ambience 3 (Gravity Sound).wav
-   作者：Gravity Sound
-   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Forest_ambience_3_(Gravity_Sound).wav
-
-   用在这儿：林间 3 片原处那条不通时放它 —— 立陶宛 · 维茹奥纳、德国 · 黑尔湖、巴西 · 大西洋林
-
-4. 旧林的静谧
-   包内文件：assets/ambience/forest-nille.mp3
-   原始文件：20090610 0 ambience.ogg
-   作者：nille
-   许可：公有领域（Public domain）
-   来源：https://commons.wikimedia.org/wiki/File:20090610_0_ambience.ogg
-
-   用在这儿：林间 1 片原处那条不通时放它 —— 奥地利 · 施文贝格
-
-5. 尼尔吉里山的黎明
-   包内文件：assets/ambience/forest-dawn-india.mp3
-   原始文件：Dawn chorus at Glencairnie big bungalow Craigmore DM.ogg
-   作者：DivyaCM
-   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Dawn_chorus_at_Glencairnie_big_bungalow_Craigmore_DM.ogg
-
-   用在这儿：林间 1 片原处那条不通时放它 —— 智利 · 瓦尔迪维亚
-
-6. 德拉肯斯堡的清晨
-   包内文件：assets/ambience/forest-dawn-safrica.mp3
-   原始文件：Royal Natal National Park dawn chorus (W1CDR0001146 BD3).ogg
-   作者：British Library（大英图书馆数字馆藏）
-   许可：CC BY 4.0（https://creativecommons.org/licenses/by/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Royal_Natal_National_Park_dawn_chorus_(W1CDR0001146_BD3).ogg
-
-   用在这儿：林间 1 片原处那条不通时放它 —— 瑞典 · 什恩斯卡特贝里
-
-7. 雨林的午后
-   包内文件：assets/ambience/forest-thailand.mp3
-   原始文件：Jungle Sound Thailand Phuket.flac
-   作者：Amada44
-   许可：CC BY-SA 3.0（https://creativecommons.org/licenses/by-sa/3.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Jungle_Sound_Thailand_Phuket.flac
-
-   用在这儿：林间 3 片原处那条不通时放它 —— 厄瓜多尔 · 阿南古湖、厄瓜多尔 · 亚苏尼、斐济 · 卡达武岛
-
-8. 拉明顿的鸟径
-   包内文件：assets/ambience/forest-australia.mp3
-   原始文件：Short nature soundscape, Lamington National Park, Australia.ogg
-   作者：ssimple
-   许可：CC BY 3.0（https://creativecommons.org/licenses/by/3.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Short_nature_soundscape,_Lamington_National_Park,_Australia.ogg
-
-   用在这儿：林间 4 片原处那条不通时放它 —— 德国 · 哈斯贝格、法国 · 贝勒加德圣玛丽、巴西 · 坎塔雷拉二、法国 · 科隆贝尔
-
-9. 松林里的风
-   包内文件：assets/ambience/forest-sweden.mp3
-   原始文件：Wind in Swedish pine forest at 25 mps.ogg
-   作者：W.carter
-   许可：CC BY-SA 4.0（https://creativecommons.org/licenses/by-sa/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Wind_in_Swedish_pine_forest_at_25_mps.ogg
-
-   用在这儿：林间 1 片原处那条不通时放它 —— 斯洛文尼亚 · 特尔诺沃
-
-10. 伯恩林地的风
-   包内文件：assets/ambience/forest-uk.mp3
-   原始文件：Bourne woods windy 2020-05-05 0753.mp3
-   作者：Robert EA Harvey
-   许可：CC BY-SA 4.0（https://creativecommons.org/licenses/by-sa/4.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Bourne_woods_windy_2020-05-05_0753.mp3
-
-   用在这儿：林间 2 片原处那条不通时放它 —— 香港 · 大屿山、澳大利亚 · 芬尼斯谷
-
-11. 木屋边的溪
-   包内文件：assets/ambience/forest-stream-canada.mp3
-   原始文件：Hemlock stream.ogg
-   作者：Dirtslayer
-   许可：公有领域（Public domain）
-   来源：https://commons.wikimedia.org/wiki/File:Hemlock_stream.ogg
-
-   用在这儿：林间 2 片原处那条不通时放它 —— 德国 · 美因蔡尔、斐济 · 阿巴卡瀑布径
-
-12. 峡谷里的小溪
-   包内文件：assets/ambience/forest-brook-turkey.mp3
-   原始文件：Brook sound.ogg
-   作者：TwoWings
-   许可：CC BY 3.0（https://creativecommons.org/licenses/by/3.0/）
-   来源：https://commons.wikimedia.org/wiki/File:Brook_sound.ogg
-   用在这儿：林间 1 片原处那条不通时放它 —— 德国 · 朗根巴赫谷
+每条的原处地址、录音者、封面，都在叁里，序号一一对应。
+这 27 条与叁里的 27 条一一对应：顺序相同、地点相同、原处地址相同。
+页面上不出现这些文件名，也不出现站名——只有"林间"那 27 片林子。
 
 ────────────────────────────────────────
 贰 · "听海"那 15 个声层（原站那一套，整段收进包里）
@@ -190,7 +117,7 @@
    录音者：Golden Laure
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/5f8497ce11d5bc7087d21f49_raquel-smith-bFFJj1UM8N0-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t11.jpg
-   不通时放：forest-amb1.mp3
+   不通时放：forest/sierranevade.mp3（同一条录音，80 kbps 本地备份）
 
  2. 立陶宛 · 维茹奥纳
    地点原文：Lithuania, Vyžuonos
@@ -199,7 +126,7 @@
    录音者：alas23/sala
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66182f221d4f59dfecc1a197_ugne-vasyliute-Dag9cv89jb4-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t40.jpg
-   不通时放：forest-amb3.mp3
+   不通时放：forest/Baltys-Soundscape.mp3（同一条录音，80 kbps 本地备份）
 
  3. 爱尔兰 · 卡帕达夫
    地点原文：Ireland, Cappaduff, County Clare
@@ -208,7 +135,7 @@
    录音者：alfa00
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183062d63743ce7b07cd4f_jay-gomez-Y1ni57HUblc-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t41.jpg
-   不通时放：forest-amb2.mp3
+   不通时放：forest/LightRainBirdsAmbics.mp3（同一条录音，80 kbps 本地备份）
 
  4. 奥地利 · 施文贝格
    地点原文：Austria, Schwendberg
@@ -217,7 +144,7 @@
    录音者：Anton Acher
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661830e0c540863dbbb621cd_stijn-te-strake-deHOBa4iYpY-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t42.jpg
-   不通时放：forest-nille.mp3
+   不通时放：forest/HochschwendbergOvernightAT.mp3（同一条录音，80 kbps 本地备份）
 
  5. 德国 · 美因蔡尔
    地点原文：Germany, Zeil am Main
@@ -226,7 +153,7 @@
    录音者：beckhanspeter
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618313e2de2c83b81a7e916_karsten-wurth-algc0FKHeMA-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t43.jpg
-   不通时放：forest-stream-canada.mp3
+   不通时放：forest/LangenbachEisWasser.mp3（同一条录音，80 kbps 本地备份）
 
  6. 德国 · 朗根巴赫谷
    地点原文：Germany, Langenbachtal
@@ -235,7 +162,7 @@
    录音者：beckhanspeter
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618319779bc5b8360fa23e8_rach-sam-oQ5O2ExIlbw-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t44.jpg
-   不通时放：forest-brook-turkey.mp3
+   不通时放：forest/AuenwaldWasser.mp3（同一条录音，80 kbps 本地备份）
 
  7. 德国 · 黑尔湖
    地点原文：Germany, Höllsee
@@ -243,7 +170,7 @@
    原处那条：https://newnow.cool/forest/BundorfWaldsee.mp3（320 kbps，45.9 MB）
    录音者：beckhanspeter
    封面：那一片页面上本身就没有配图（CSS 写的是 background-image:none），所以这里也没有。
-   不通时放：forest-amb3.mp3
+   不通时放：forest/BundorfWaldsee.mp3（同一条录音，80 kbps 本地备份）
 
  8. 德国 · 哈斯贝格
    地点原文：Germany, Haßberge
@@ -252,7 +179,7 @@
    录音者：beckhanspeter
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618319779bc5b8360fa23e8_rach-sam-oQ5O2ExIlbw-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t46.jpg
-   不通时放：forest-australia.mp3
+   不通时放：forest/DrflisWieseJune.mp3（同一条录音，80 kbps 本地备份）
 
  9. 斯洛文尼亚 · 维帕瓦
    地点原文：Slovenia, Vipava
@@ -261,7 +188,7 @@
    录音者：Bojan Marusic
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661832a1fd4eab473d127cd4_eran-menashri-NiVvk2yVils-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t47.jpg
-   不通时放：forest-amb2.mp3
+   不通时放：forest/RadioAporeePrikoi.mp3（同一条录音，80 kbps 本地备份）
 
 10. 斯洛文尼亚 · 特尔诺沃
    地点原文：Slovenia, Trnovo
@@ -270,7 +197,7 @@
    录音者：Bojan Marusic
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618332c25b446a79b405de4_eran-menashri-IvqOPaFzA-I-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t48.jpg
-   不通时放：forest-sweden.mp3
+   不通时放：forest/TrnovoForestWind.mp3（同一条录音，80 kbps 本地备份）
 
 11. 意大利 · 拉斯科山
    地点原文：Italy, Monte Raschio
@@ -279,7 +206,7 @@
    录音者：fabfur
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618339d00e6cd1124324e50_mushegh-hakobyan-m4d2SGnkLaQ-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t49.jpg
-   不通时放：forest-amb2.mp3
+   不通时放：forest/MonteRaschioOriolo.mp3（同一条录音，80 kbps 本地备份）
 
 12. 厄瓜多尔 · 阿南古湖
    地点原文：Ecuador, Añangu Lake, Yasuní
@@ -288,7 +215,7 @@
    录音者：Francesco Fabris
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661833f0dde00e8d29ac589b_nick-van-den-berg-5KlR81Vtgsc-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t50.jpg
-   不通时放：forest-thailand.mp3
+   不通时放：forest/FrancescoFabrisYasuniNight.mp3（同一条录音，80 kbps 本地备份）
 
 13. 厄瓜多尔 · 亚苏尼
    地点原文：Ecuador, Yasuní
@@ -297,7 +224,7 @@
    录音者：Francesco Fabris
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183487d4021d9281b627dd_lingchor-lDy1K7RkLeA-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t51.jpg
-   不通时放：forest-thailand.mp3
+   不通时放：forest/FrancescoFabrisYasuni07.mp3（同一条录音，80 kbps 本地备份）
 
 14. 智利 · 瓦尔迪维亚
    地点原文：Chile, Valdivia
@@ -306,7 +233,7 @@
    录音者：henry.yohann
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661834e76670a18703024443_marcelo-rivas-jx0EplqJg3w-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t52.jpg
-   不通时放：forest-dawn-india.mp3
+   不通时放：forest/MorningBirds.mp3（同一条录音，80 kbps 本地备份）
 
 15. 法国 · 贝勒加德圣玛丽
    地点原文：France, Bellegarde-Sainte-Marie
@@ -315,7 +242,7 @@
    录音者：kaoss012
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618356f2fa28c05414befbb_rachel-omnes-90mSnV4I8FU-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t53.jpg
-   不通时放：forest-australia.mp3
+   不通时放：forest/AbbeySainte-MarieDesertBird01.mp3（同一条录音，80 kbps 本地备份）
 
 16. 波兰 · 鲁马内克
    地点原文：Polska, Rumianek
@@ -324,7 +251,7 @@
    录音者：Maciej Janasik
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661835d34381d15b9e59bc11_mareks-steins-Fyy-V6i9m38-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t54.jpg
-   不通时放：forest-amb1.mp3
+   不通时放：forest/DolonaSamy.mp3（同一条录音，80 kbps 本地备份）
 
 17. 斐济 · 卡达武岛
    地点原文：Fiji, Vunisea-Namara Road
@@ -333,7 +260,7 @@
    录音者：matthias.feuersenger
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618361230270a937ef0475b_cristina-seaborn-07vx3Ig3YZE-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t55.jpg
-   不通时放：forest-thailand.mp3
+   不通时放：forest/VuniseaNamaraRoadSound.mp3（同一条录音，80 kbps 本地备份）
 
 18. 斐济 · 阿巴卡瀑布径
    地点原文：Fiji, Abaca Waterfall Track
@@ -342,7 +269,7 @@
    录音者：matthias.feuersenger
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618365204e93a8b466272cb_michael-olsen--QhgUs8ZnJc-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t56.jpg
-   不通时放：forest-stream-canada.mp3
+   不通时放：forest/SoundscapeAbaca09Uhr10.mp3（同一条录音，80 kbps 本地备份）
 
 19. 巴西 · 大西洋林
    地点原文：Brazil, Atlantic Forest
@@ -351,7 +278,7 @@
    录音者：Melissa Pons
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661836f345e1d67c52021921_jonatan-lewczuk-vjjvhJoqz1Q-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t57.jpg
-   不通时放：forest-amb3.mp3
+   不通时放：forest/LargoCarpasexp.mp3（同一条录音，80 kbps 本地备份）
 
 20. 巴西 · 佩德拉格兰德
    地点原文：Brazil, Pedra Grande
@@ -360,7 +287,7 @@
    录音者：Melissa Pons
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618386330270a937ef2757f_marco-marques-dJ_Zl5LpPto-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t58.jpg
-   不通时放：forest-amb2.mp3
+   不通时放：forest/RadioAporeeT023.mp3（同一条录音，80 kbps 本地备份）
 
 21. 巴西 · 坎塔雷拉三
    地点原文：Brazil, Cantareira Ⅲ
@@ -369,7 +296,7 @@
    录音者：Melissa Pons
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661838c1a8946018b905673e_jonatan-lewczuk-vjjvhJoqz1Q-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t59.jpg
-   不通时放：forest-amb1.mp3
+   不通时放：forest/RadioAporeeT06502300443RX.mp3（同一条录音，80 kbps 本地备份）
 
 22. 巴西 · 坎塔雷拉二
    地点原文：Brazil, Cantareira Ⅱ
@@ -378,7 +305,7 @@
    录音者：Melissa Pons
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618392d232a396d6031da9d_mche-lee-ZtDzjkicXk0-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t60.jpg
-   不通时放：forest-australia.mp3
+   不通时放：forest/RXimgradioaporee.mp3（同一条录音，80 kbps 本地备份）
 
 23. 香港 · 大屿山
    地点原文：Hong Kong, Lantau Island
@@ -387,7 +314,7 @@
    录音者：Nature Field Recording HK
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/6618398937fb02d68319e287_ben-tatlow-RF4oVd4aQQM-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t61.jpg
-   不通时放：forest-uk.mp3
+   不通时放：forest/ShekPikCountryTrailSound.mp3（同一条录音，80 kbps 本地备份）
 
 24. 法国 · 科隆贝尔
    地点原文：France, Colombelles
@@ -396,7 +323,7 @@
    录音者：Nicolas Germain
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/661839ecfb51a1aa00aafcbc_dale-nibbe-6mU7uCAO64I-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t62.jpg
-   不通时放：forest-australia.mp3
+   不通时放：forest/OiseauxGrandeHalle190418.mp3（同一条录音，80 kbps 本地备份）
 
 25. 瑞典 · 什恩斯卡特贝里
    地点原文：Sweden, Skinnskatteberg
@@ -405,7 +332,7 @@
    录音者：Øivind Weingaarde
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183a2c7d666097563537ec_oskars-sylwan-uJEX3Ju1NAc-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t63.jpg
-   不通时放：forest-dawn-safrica.mp3
+   不通时放：forest/BirdsSweden.mp3（同一条录音，80 kbps 本地备份）
 
 26. 德国 · 不伦瑞克
    地点原文：Germany, Brunswick
@@ -414,7 +341,7 @@
    录音者：Peter Cusack
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183a94b03ba2c3e615d6d4_marko-lengyel-tMUskfDC6Gc-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t64.jpg
-   不通时放：forest-amb2.mp3
+   不通时放：forest/Soundsof.mp3（同一条录音，80 kbps 本地备份）
 
 27. 澳大利亚 · 芬尼斯谷
    地点原文：Australia, Finniss Vale
@@ -423,7 +350,7 @@
    录音者：Pode
    封面原址：https://cdn.prod.website-files.com/5f59ecb55f65666a52368d97/66183ad280c87204866b56a7_our-life-in-pixels-MMTul0TsFfk-unsplash.jpg
    封面在包内：./assets/ambience/forest-photos/t65.jpg
-   不通时放：forest-uk.mp3
+   不通时放：forest/RemousmerSecondValleySA.mp3（同一条录音，80 kbps 本地备份）
 
 ────────────────────────────────────────
 肆 · 画面上的配图
@@ -531,13 +458,14 @@ assets/ambience/hero-sea.jpg、hero-forest.jpg 是最早那版的全屏背景图
      · 林间第 1 片：音频只走了 30.8 秒 / 墙上 60.0 秒 = 0.51，卡 8 次共 29.3 秒
    也就是说：从这台机器连过去，原处那条多数会中途卡住，应用会在十几秒内自动换成壹里那份。
    换到别的网络上（更快、或离那台服务器更近）就可能一直是原处那条——这是设计想要的样子，
-   两条路都不会出现"点开了却没声音"。包内那 12 段林间替身是开放许可录音（见壹），
-   但它们不是那一片林子自己的声音——这一处还没补上，明写在这里。
+   两条路都不会出现"点开了却没声音"。
+   壹里那 27 份是同一条录音的 80 kbps 版本（原处 256/320 kbps），不是别的林子顶替：
+   换过去之后，声音还是这一片林子的声音，照片、名字、声音三者对得上。
 
 3. 这些"原处那一条"和它们的封面，那个站点没有在页面上标注许可证。
    上面能查到的事实（页面地址、站点自己的署名、文件地址）都写全了，没有凭印象补。
    如果不想让产品去够外面的文件，把 assets/music-player.js 里每一条的 remote 删掉即可：
-   删掉之后就只剩壹那 12 段与贰那 15 层，断网也能听，页面其余部分一行都不用改。
+   删掉之后就只剩壹那 27 段与贰那 15 层，断网也能听，页面其余部分一行都不用改。
 
 ────────────────────────────────────────
 附 · 这一份和页面对不上的时候，以页面对得上为准
