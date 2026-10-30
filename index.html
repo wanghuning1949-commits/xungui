@@ -489,7 +489,7 @@ footer { margin-top:54px; text-align:center; font-size:11px; color:var(--muted);
 
 
 <link rel="stylesheet" href="./assets/announcement.css">
-<link rel="stylesheet" href="./assets/music-player.css?v=20261029b">
+<link rel="stylesheet" href="./assets/music-player.css?v=20261030d">
 <link rel="stylesheet" href="./assets/ending-video.css">
 <style>
 /* 冷启动阶段只显示启动图片；其余页面元素暂时完全隐藏，防止公告抢先出现。 */
@@ -1929,13 +1929,9 @@ footer, .site-foot, .logTitle, .logTail, .logEntry .le-tag, .le-year,
    注入时机比这一层晚，这里不去和它抢，免得把面板高度搞乱。 */
 
 /* —— 5. 缩放键"到底了"时的样子 ——
-   .mlp-zoom:disabled 是 #b7c3b0，对面板底色 #f8f5ea 只有 1.64:1。禁用态按 WCAG 1.4.3 是豁免的，
-   但它同时也是"这个按钮现在没用"的信号，灰到看不见会让人以为点坏了。提到 3.3:1：仍然明显比
-   可用态淡，但一眼看得出那是个不能按的键。 */
-.mlp-zoom:disabled { color:#7c8a77; }
-@media (prefers-color-scheme: dark) {
-  .mlp-zoom:disabled { color:#6f8070; }
-}
+   夜听面板是深底：禁用态仍然要比可用态淡，但得压得住深底（对 #0B0F1A 约 5.5:1、
+   对面板里的 #202026 约 4.7:1），不然会让人以为按钮坏了。 */
+.mlp-zoom:disabled { color:#7e8ca8; }
 </style>
 <style id="scene-art-pass">/* ============ 场景插画 · 安静地垫在纸后 ============
    每一个场景都发生在具体的地方：东陵的田、未名湖的秋、河南的麦、辽宁的厂房、
@@ -5900,7 +5896,7 @@ renderTitle();
 <script src="./assets/three/vt/SkyShader-day.js" defer></script>
 <script src="./assets/sea-visual.js?v=20261030a" defer></script>
 <script src="./assets/sea3d.js?v=20261030a" defer></script>
-<script src="./assets/music-player.js?v=20261030b" defer></script>
+<script src="./assets/music-player.js?v=20261030d" defer></script>
 <script src="./assets/ending-video.js" defer></script>
 <script src="./assets/feedback.js" defer></script>
 <script>

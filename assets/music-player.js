@@ -52,37 +52,45 @@
   const FOREST = [
     { src: './assets/ambience/forest/sierranevade.mp3', remote: 'https://newnow.cool/forest/sierranevade.mp3', name: '美国 · 塞拉内华达', sub: 'USA, California, Sierra Nevada', photo: './assets/ambience/forest-photos/t11.jpg?v=20261028h', scene: { kind: 'forest', seed: 411, mood: 'morning' } },
     { src: './assets/ambience/forest/Baltys-Soundscape.mp3', remote: 'https://newnow.cool/forest/Baltys-Soundscape.mp3', name: '立陶宛 · 维茹奥纳', sub: 'Lithuania, Vyžuonos', photo: './assets/ambience/forest-photos/t40.jpg?v=20261028h', scene: { kind: 'forest', seed: 440, mood: 'deep' } },
-    { src: './assets/ambience/forest/LightRainBirdsAmbics.mp3', remote: 'https://newnow.cool/forest/LightRainBirdsAmbics.mp3', name: '爱尔兰 · 卡帕达夫', sub: 'Ireland, Cappaduff, County Clare', photo: './assets/ambience/forest-photos/t41.jpg?v=20261028h', scene: { kind: 'forest', seed: 441, mood: 'cool' } },
-    { src: './assets/ambience/forest/HochschwendbergOvernightAT.mp3', remote: 'https://newnow.cool/forest/HochschwendbergOvernightAT.mp3', name: '奥地利 · 施文贝格', sub: 'Austria, Schwendberg', photo: './assets/ambience/forest-photos/t42.jpg?v=20261028h', scene: { kind: 'forest', seed: 442, mood: 'deep' } },
+    { src: './assets/ambience/forest/LightRainBirdsAmbics.mp3', remote: 'https://newnow.cool/forest/LightRainBirdsAmbics.mp3', name: '爱尔兰 · 卡帕达夫', sub: 'Ireland, Soundctuary Cappaduff, County Clare', photo: './assets/ambience/forest-photos/t41.jpg?v=20261028h', scene: { kind: 'forest', seed: 441, mood: 'cool' } },
+    { src: './assets/ambience/forest/HochschwendbergOvernightAT.mp3', remote: 'https://newnow.cool/forest/HochschwendbergOvernightAT.mp3', name: '奥地利 · 施文贝格', sub: 'Austria, Schwendberg Hippach-Schwendberg', photo: './assets/ambience/forest-photos/t42.jpg?v=20261028h', scene: { kind: 'forest', seed: 442, mood: 'deep' } },
     { src: './assets/ambience/forest/LangenbachEisWasser.mp3', remote: 'https://newnow.cool/forest/LangenbachEisWasser.mp3', name: '德国 · 美因蔡尔', sub: 'Germany, Zeil am Main', photo: './assets/ambience/forest-photos/t43.jpg?v=20261028h', scene: { kind: 'forest', seed: 443, mood: 'creek' } },
-    { src: './assets/ambience/forest/AuenwaldWasser.mp3', remote: 'https://newnow.cool/forest/AuenwaldWasser.mp3', name: '德国 · 朗根巴赫谷', sub: 'Germany, Langenbachtal', photo: './assets/ambience/forest-photos/t44.jpg?v=20261028h', scene: { kind: 'forest', seed: 444, mood: 'creek' } },
-    { src: './assets/ambience/forest/BundorfWaldsee.mp3', remote: 'https://newnow.cool/forest/BundorfWaldsee.mp3', name: '德国 · 黑尔湖', sub: 'Germany, Höllsee', photo: '', scene: { kind: 'forest', seed: 445, mood: 'misty' } },
-    { src: './assets/ambience/forest/DrflisWieseJune.mp3', remote: 'https://newnow.cool/forest/DrflisWieseJune.mp3', name: '德国 · 哈斯贝格', sub: 'Germany, Haßberge', photo: './assets/ambience/forest-photos/t46.jpg?v=20261028h', scene: { kind: 'forest', seed: 446, mood: 'spring' } },
+    { src: './assets/ambience/forest/AuenwaldWasser.mp3', remote: 'https://newnow.cool/forest/AuenwaldWasser.mp3', name: '德国 · 朗根巴赫谷', sub: 'Germany, Langenbachtal Nature Park Haßberge', photo: './assets/ambience/forest-photos/t44.jpg?v=20261028h', scene: { kind: 'forest', seed: 444, mood: 'creek' } },
+    { src: './assets/ambience/forest/BundorfWaldsee.mp3', remote: 'https://newnow.cool/forest/BundorfWaldsee.mp3', name: '德国 · 黑尔湖', sub: "Germany, Forest Lake''Höllsee'' Nature Park Haßberge", photo: '', scene: { kind: 'forest', seed: 445, mood: 'misty' } },
+    { src: './assets/ambience/forest/DrflisWieseJune.mp3', remote: 'https://newnow.cool/forest/DrflisWieseJune.mp3', name: '德国 · 哈斯贝格', sub: 'Germany, Nature Park Haßberge', photo: './assets/ambience/forest-photos/t46.jpg?v=20261028h', scene: { kind: 'forest', seed: 446, mood: 'spring' } },
     { src: './assets/ambience/forest/RadioAporeePrikoi.mp3', remote: 'https://newnow.cool/forest/RadioAporeePrikoi.mp3', name: '斯洛文尼亚 · 维帕瓦', sub: 'Slovenia, Vipava', photo: './assets/ambience/forest-photos/t47.jpg?v=20261028h', scene: { kind: 'forest', seed: 447, mood: 'dappled' } },
     { src: './assets/ambience/forest/TrnovoForestWind.mp3', remote: 'https://newnow.cool/forest/TrnovoForestWind.mp3', name: '斯洛文尼亚 · 特尔诺沃', sub: 'Slovenia, Trnovo', photo: './assets/ambience/forest-photos/t48.jpg?v=20261028h', scene: { kind: 'forest', seed: 448, mood: 'nordic' } },
     { src: './assets/ambience/forest/MonteRaschioOriolo.mp3', remote: 'https://newnow.cool/forest/MonteRaschioOriolo.mp3', name: '意大利 · 拉斯科山', sub: 'Italy, Monte Raschio', photo: './assets/ambience/forest-photos/t49.jpg?v=20261028h', scene: { kind: 'forest', seed: 449, mood: 'dappled' } },
-    { src: './assets/ambience/forest/FrancescoFabrisYasuniNight.mp3', remote: 'https://newnow.cool/forest/FrancescoFabrisYasuniNight.mp3', name: '厄瓜多尔 · 阿南古湖', sub: 'Ecuador, Añangu Lake, Yasuní', photo: './assets/ambience/forest-photos/t50.jpg?v=20261028h', scene: { kind: 'forest', seed: 450, mood: 'jungle' } },
-    { src: './assets/ambience/forest/FrancescoFabrisYasuni07.mp3', remote: 'https://newnow.cool/forest/FrancescoFabrisYasuni07.mp3', name: '厄瓜多尔 · 亚苏尼', sub: 'Ecuador, Yasuní', photo: './assets/ambience/forest-photos/t51.jpg?v=20261028h', scene: { kind: 'forest', seed: 451, mood: 'jungle' } },
+    { src: './assets/ambience/forest/FrancescoFabrisYasuniNight.mp3', remote: 'https://newnow.cool/forest/FrancescoFabrisYasuniNight.mp3', name: '厄瓜多尔 · 阿南古湖', sub: 'Ecuador, Yasuni National Park, Añangu Lake', photo: './assets/ambience/forest-photos/t50.jpg?v=20261028h', scene: { kind: 'forest', seed: 450, mood: 'jungle' } },
+    { src: './assets/ambience/forest/FrancescoFabrisYasuni07.mp3', remote: 'https://newnow.cool/forest/FrancescoFabrisYasuni07.mp3', name: '厄瓜多尔 · 亚苏尼', sub: 'Ecuador, Yasuni National Park', photo: './assets/ambience/forest-photos/t51.jpg?v=20261028h', scene: { kind: 'forest', seed: 451, mood: 'jungle' } },
     { src: './assets/ambience/forest/MorningBirds.mp3', remote: 'https://newnow.cool/forest/MorningBirds.mp3', name: '智利 · 瓦尔迪维亚', sub: 'Chile, Valdivia', photo: './assets/ambience/forest-photos/t52.jpg?v=20261028h', scene: { kind: 'forest', seed: 452, mood: 'dawn' } },
     { src: './assets/ambience/forest/AbbeySainte-MarieDesertBird01.mp3', remote: 'https://newnow.cool/forest/AbbeySainte-MarieDesertBird01.mp3', name: '法国 · 贝勒加德圣玛丽', sub: 'France, Bellegarde-Sainte-Marie', photo: './assets/ambience/forest-photos/t53.jpg?v=20261028h', scene: { kind: 'forest', seed: 453, mood: 'spring' } },
     { src: './assets/ambience/forest/DolonaSamy.mp3', remote: 'https://newnow.cool/forest/DolonaSamy.mp3', name: '波兰 · 鲁马内克', sub: 'Polska, Rumianek', photo: './assets/ambience/forest-photos/t54.jpg?v=20261028h', scene: { kind: 'forest', seed: 454, mood: 'morning' } },
-    { src: './assets/ambience/forest/VuniseaNamaraRoadSound.mp3', remote: 'https://newnow.cool/forest/VuniseaNamaraRoadSound.mp3', name: '斐济 · 卡达武岛', sub: 'Fiji, Vunisea-Namara Road', photo: './assets/ambience/forest-photos/t55.jpg?v=20261028h', scene: { kind: 'forest', seed: 455, mood: 'jungle' } },
-    { src: './assets/ambience/forest/SoundscapeAbaca09Uhr10.mp3', remote: 'https://newnow.cool/forest/SoundscapeAbaca09Uhr10.mp3', name: '斐济 · 阿巴卡瀑布径', sub: 'Fiji, Abaca Waterfall Track', photo: './assets/ambience/forest-photos/t56.jpg?v=20261028h', scene: { kind: 'forest', seed: 456, mood: 'creek' } },
-    { src: './assets/ambience/forest/LargoCarpasexp.mp3', remote: 'https://newnow.cool/forest/LargoCarpasexp.mp3', name: '巴西 · 大西洋林', sub: 'Brazil, Atlantic Forest', photo: './assets/ambience/forest-photos/t57.jpg?v=20261028h', scene: { kind: 'forest', seed: 457, mood: 'deep' } },
-    { src: './assets/ambience/forest/RadioAporeeT023.mp3', remote: 'https://newnow.cool/forest/RadioAporeeT023.mp3', name: '巴西 · 佩德拉格兰德', sub: 'Brazil, Pedra Grande', photo: './assets/ambience/forest-photos/t58.jpg?v=20261028h', scene: { kind: 'forest', seed: 458, mood: 'dappled' } },
-    { src: './assets/ambience/forest/RadioAporeeT06502300443RX.mp3', remote: 'https://newnow.cool/forest/RadioAporeeT06502300443RX.mp3', name: '巴西 · 坎塔雷拉三', sub: 'Brazil, Cantareira Ⅲ', photo: './assets/ambience/forest-photos/t59.jpg?v=20261028h', scene: { kind: 'forest', seed: 459, mood: 'morning' } },
-    { src: './assets/ambience/forest/RXimgradioaporee.mp3', remote: 'https://newnow.cool/forest/RXimgradioaporee.mp3', name: '巴西 · 坎塔雷拉二', sub: 'Brazil, Cantareira Ⅱ', photo: './assets/ambience/forest-photos/t60.jpg?v=20261028h', scene: { kind: 'forest', seed: 460, mood: 'spring' } },
+    { src: './assets/ambience/forest/VuniseaNamaraRoadSound.mp3', remote: 'https://newnow.cool/forest/VuniseaNamaraRoadSound.mp3', name: '斐济 · 卡达武岛', sub: 'Fiji, Vunisea-Namara Road, Kadavu Island', photo: './assets/ambience/forest-photos/t55.jpg?v=20261028h', scene: { kind: 'forest', seed: 455, mood: 'jungle' } },
+    { src: './assets/ambience/forest/SoundscapeAbaca09Uhr10.mp3', remote: 'https://newnow.cool/forest/SoundscapeAbaca09Uhr10.mp3', name: '斐济 · 阿巴卡瀑布径', sub: 'Fiji, Waterfall track, Abaca', photo: './assets/ambience/forest-photos/t56.jpg?v=20261028h', scene: { kind: 'forest', seed: 456, mood: 'creek' } },
+    { src: './assets/ambience/forest/LargoCarpasexp.mp3', remote: 'https://newnow.cool/forest/LargoCarpasexp.mp3', name: '巴西 · 大西洋林', sub: 'Brazil, Atlantic Forest, Cantareira State Park', photo: './assets/ambience/forest-photos/t57.jpg?v=20261028h', scene: { kind: 'forest', seed: 457, mood: 'deep' } },
+    { src: './assets/ambience/forest/RadioAporeeT023.mp3', remote: 'https://newnow.cool/forest/RadioAporeeT023.mp3', name: '巴西 · 佩德拉格兰德', sub: 'Brazil, Pedra Grande Cantareira 1', photo: './assets/ambience/forest-photos/t58.jpg?v=20261028h', scene: { kind: 'forest', seed: 458, mood: 'dappled' } },
+    { src: './assets/ambience/forest/RadioAporeeT06502300443RX.mp3', remote: 'https://newnow.cool/forest/RadioAporeeT06502300443RX.mp3', name: '巴西 · 坎塔雷拉三', sub: 'Brazil, Parque da Cantareira 3', photo: './assets/ambience/forest-photos/t59.jpg?v=20261028h', scene: { kind: 'forest', seed: 459, mood: 'morning' } },
+    { src: './assets/ambience/forest/RXimgradioaporee.mp3', remote: 'https://newnow.cool/forest/RXimgradioaporee.mp3', name: '巴西 · 坎塔雷拉二', sub: 'Brazil, Parque da Cantareira 2', photo: './assets/ambience/forest-photos/t60.jpg?v=20261028h', scene: { kind: 'forest', seed: 460, mood: 'spring' } },
     { src: './assets/ambience/forest/ShekPikCountryTrailSound.mp3', remote: 'https://newnow.cool/forest/ShekPikCountryTrailSound.mp3', name: '香港 · 大屿山', sub: 'Hong Kong, Lantau Island', photo: './assets/ambience/forest-photos/t61.jpg?v=20261028h', scene: { kind: 'forest', seed: 461, mood: 'amber' } },
-    { src: './assets/ambience/forest/OiseauxGrandeHalle190418.mp3', remote: 'https://newnow.cool/forest/OiseauxGrandeHalle190418.mp3', name: '法国 · 科隆贝尔', sub: 'France, Colombelles', photo: './assets/ambience/forest-photos/t62.jpg?v=20261028h', scene: { kind: 'forest', seed: 462, mood: 'spring' } },
-    { src: './assets/ambience/forest/BirdsSweden.mp3', remote: 'https://newnow.cool/forest/BirdsSweden.mp3', name: '瑞典 · 什恩斯卡特贝里', sub: 'Sweden, Skinnskatteberg', photo: './assets/ambience/forest-photos/t63.jpg?v=20261028h', scene: { kind: 'forest', seed: 463, mood: 'cool' } },
+    { src: './assets/ambience/forest/OiseauxGrandeHalle190418.mp3', remote: 'https://newnow.cool/forest/OiseauxGrandeHalle190418.mp3', name: '法国 · 科隆贝尔', sub: 'France, 2 Rue de lOrne, Colombelles', photo: './assets/ambience/forest-photos/t62.jpg?v=20261028h', scene: { kind: 'forest', seed: 462, mood: 'spring' } },
+    { src: './assets/ambience/forest/BirdsSweden.mp3', remote: 'https://newnow.cool/forest/BirdsSweden.mp3', name: '瑞典 · 什恩斯卡特贝里', sub: 'Sweden, Skinnskattebergs kommun', photo: './assets/ambience/forest-photos/t63.jpg?v=20261028h', scene: { kind: 'forest', seed: 463, mood: 'cool' } },
     { src: './assets/ambience/forest/Soundsof.mp3', remote: 'https://newnow.cool/forest/Soundsof.mp3', name: '德国 · 不伦瑞克', sub: 'Germany, Brunswick', photo: './assets/ambience/forest-photos/t64.jpg?v=20261028h', scene: { kind: 'forest', seed: 464, mood: 'dappled' } },
-    { src: './assets/ambience/forest/RemousmerSecondValleySA.mp3', remote: 'https://newnow.cool/forest/RemousmerSecondValleySA.mp3', name: '澳大利亚 · 芬尼斯谷', sub: 'Australia, Finniss Vale', photo: './assets/ambience/forest-photos/t65.jpg?v=20261028h', scene: { kind: 'forest', seed: 465, mood: 'amber' } },
+    { src: './assets/ambience/forest/RemousmerSecondValleySA.mp3', remote: 'https://newnow.cool/forest/RemousmerSecondValleySA.mp3', name: '澳大利亚 · 芬尼斯谷', sub: 'Australia, 4 Finniss Vale Dr', photo: './assets/ambience/forest-photos/t65.jpg?v=20261028h', scene: { kind: 'forest', seed: 465, mood: 'amber' } },
   ];
   const ROOMS = {
     sea: { list: SEA, kicker: '听 海',
            line: '让大海陪着你', note: '十五层海声。三片海选一片，其余的一层层叠上去；海面会铺满整页，边玩边听也一直在。' },
     forest: { list: FOREST, kicker: '林 间',
-              line: '逃离、放松与自由', note: '来自世界各地的二十七片林子，循环着，不会停。想走神就走神。' },
+              line: '林子不问你要去哪里。', note: '来自世界各地的二十七片林子，循环着，不会停。想走神就走神。' },
+  };
+
+  /* 四间房各自的一句话，只在换房时换。不提任何标签，也不解释自己。 */
+  const LEDES = {
+    fav: '有些歌不必听懂，它只是替你把那一天留下来。',
+    sea: '把没说出口的话，交给潮水慢慢退回去。',
+    forest: '不必解释自己，树影会替你把沉默接住。',
+    search: '想找一首，刚好说中今天说不清的心情。',
   };
 
   const API_SEARCH = '/.netlify/functions/music-search';
@@ -171,12 +179,24 @@
         <button type="button" class="mlp-close" data-act="close" aria-label="收起声音档案" title="收起">×</button>
       </span>
     </div>
-    <p class="mlp-lede">给自己留一间安静的房间，想待多久都可以。</p>
-    <div class="mlp-tabs" role="tablist">
-      <button type="button" class="mlp-tab on" data-tab="fav" role="tab" aria-selected="true">音笺</button>
-      <button type="button" class="mlp-tab" data-tab="sea" role="tab" aria-selected="false">听海</button>
-      <button type="button" class="mlp-tab" data-tab="forest" role="tab" aria-selected="false">林间</button>
-      <button type="button" class="mlp-tab" data-tab="search" role="tab" aria-selected="false">找歌</button>
+    <p class="mlp-lede">有些歌不必听懂，它只是替你把那一天留下来。</p>
+    <div class="mlp-tabs" role="tablist" aria-label="四间房">
+      <button type="button" class="mlp-tab on" data-tab="fav" role="tab" aria-selected="true">
+        <span class="mlp-win"><img src="./assets/music-library/window-note.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">01</span></span>
+        <span class="mlp-tab-t">音笺</span>
+      </button>
+      <button type="button" class="mlp-tab" data-tab="sea" role="tab" aria-selected="false">
+        <span class="mlp-win"><img src="./assets/music-library/window-sea.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">02</span></span>
+        <span class="mlp-tab-t">听海</span>
+      </button>
+      <button type="button" class="mlp-tab" data-tab="forest" role="tab" aria-selected="false">
+        <span class="mlp-win"><img src="./assets/music-library/window-forest.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">03</span></span>
+        <span class="mlp-tab-t">林间</span>
+      </button>
+      <button type="button" class="mlp-tab" data-tab="search" role="tab" aria-selected="false">
+        <span class="mlp-win"><img src="./assets/music-library/window-search.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">04</span></span>
+        <span class="mlp-tab-t">找歌</span>
+      </button>
     </div>
     <div class="mlp-room" data-room hidden>
       <canvas class="mlp-room-canvas" aria-hidden="true"></canvas>
@@ -234,8 +254,7 @@
       ${icn.vol}
       <input type="range" min="0" max="1" step="0.01" value="${state.volume}" aria-label="音量">
       <span class="mlp-vol-label">${Math.round(state.volume * 100)}%</span>
-    </div>
-    <p class="mlp-footnote">环境录音为开放许可作品 · 来源列在包内「声音来源.txt」</p>`;
+    </div>`;
 
   /* ---------- 全屏听：同一间房的画面铺满屏幕（不改动页面本身） ---------- */
   const immerse = document.createElement('div');
@@ -397,7 +416,7 @@
   const roomPlayBtn = $('.mlp-room-play');
   const roomNote = $('.mlp-room-note');
   const progressEl = $('.mlp-progress');
-  const footnoteEl = $('.mlp-footnote');
+  const ledeEl = $('.mlp-lede');
   const imArt = immerse.querySelector('.mlp-im-canvas');
   const imKicker = immerse.querySelector('.mlp-im-kicker');
   const imLine = immerse.querySelector('.mlp-im-line');
@@ -1151,6 +1170,13 @@
       });
     }
     refreshSeaUI();
+    syncScrollHint(mixEl);
+  }
+  /* 清单与混音板底边还有内容时，给一道渐隐（.scroll-more），
+     免得一排小图被硬切一半，看着像坏了。 */
+  function syncScrollHint(el) {
+    if (!el) return;
+    el.classList.toggle('scroll-more', el.scrollHeight - el.clientHeight - el.scrollTop > 4);
   }
   function refreshSeaUI() {
     if (!mixEl) return;
@@ -1167,7 +1193,7 @@
   function seaSummary() {
     const idxs = [];
     SEA.forEach((t, i) => { if (state.seaWant[i]) idxs.push(i); });
-    if (!idxs.length) return { name: '还没有声音', sub: '十五层海声', icon: '' };
+    if (!idxs.length) return { name: '还没有海声', sub: '挑一片，或者叠上几层', icon: '' };
     if (idxs.length === 1) {
       const t = SEA[idxs[0]];
       return { name: t.name, sub: t.sub || '', icon: t.icon || '' };
@@ -1199,6 +1225,7 @@
     });
     items = [...listEl.querySelectorAll('li')];
     refreshActive();
+    syncScrollHint(listEl);
   }
   function listData() {
     if (tab === 'search') return results.map(t => ({ name: t.name, artist: t.artist, id: t.id }));
@@ -1220,11 +1247,18 @@
       b.classList.toggle('on', on);
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+    updateLede();
     searchWrap.hidden = tab !== 'search';
     setStatus('');
     updateRoomUI();
     renderList();
     if (isOpen()) { clampScaleToFit(); positionPanel(); }
+  }
+  /* 四个页签各有一句自己的话：换房就换，不重复。 */
+  function updateLede() {
+    if (!ledeEl) return;
+    const text = LEDES[tab] || '';
+    if (ledeEl.textContent !== text) ledeEl.textContent = text;
   }
   /* 听海 / 林间的房间画面与文案。只讲风景，不提任何站点或作者。 */
   function trackScene(ctx) {
@@ -1261,7 +1295,6 @@
     roomEl.hidden = !inRoom;
     roomNote.hidden = !inRoom;
     progressEl.hidden = inRoom;
-    if (footnoteEl) footnoteEl.hidden = !inRoom;
     if (!inRoom) return;
     const room = ROOMS[tab];
     if (!room) return;
@@ -1454,7 +1487,10 @@
       top = (below + ph <= h - FAB_MARGIN) ? below : Math.max(FAB_MARGIN, Math.min(top, h - ph - FAB_MARGIN));
     }
     panel.style.right = 'auto'; panel.style.bottom = 'auto';
-    panel.style.left = `${left}px`; panel.style.top = `${top}px`;
+    // 面板用 zoom 放大：zoom 会把 left/top 一并乘上倍数，这里先除回去，
+    // 否则 1.25 档时右边缘会被推出屏幕（按钮点不到）。
+    const z = state.scale && state.scale !== 1 ? state.scale : 1;
+    panel.style.left = `${left / z}px`; panel.style.top = `${top / z}px`;
   }
   function applyScale() {
     panel.style.zoom = state.scale === 1 ? '' : String(state.scale);
@@ -1992,6 +2028,10 @@
     document.body.appendChild(fab);
     document.body.appendChild(panel);
     document.body.appendChild(immerse);
+    [mixEl, listEl].forEach(el => {
+      if (el) el.addEventListener('scroll', () => syncScrollHint(el), { passive: true });
+    });
+    window.addEventListener('resize', () => { syncScrollHint(listEl); syncScrollHint(mixEl); });
     try { immerse.inert = true; } catch (_) {}
     setPanelHidden(true);           /* 初始是收起态：先把 13 个按钮移出 Tab 序列 */
     applyPos();
@@ -2010,6 +2050,7 @@
       b.classList.toggle('on', on);
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
+    updateLede();
     searchWrap.hidden = tab !== 'search';
     updateRoomUI();
     if (state.idx >= collectionList().length) state.idx = 0;

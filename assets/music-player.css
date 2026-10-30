@@ -1,29 +1,27 @@
 /* ============================================================
-   寻归荒野 · 音乐库悬浮组件
-   独立作用域样式（.music-lib / .mlp- 前缀），不与页面其他模块冲突。
-   层级策略：
-   - 启动画面 #xg-splash: z-index 2147483647（最高，独占屏幕）
-   - 公告弹窗 .announce-overlay: z-index 2147483000
-   - 音乐悬浮按钮/面板: z-index 9500  → 不会盖住启动画面与公告
-   - 冷启动期间 body.xg-startup-active 会隐藏启动图以外的元素，
-     量产的悬浮按钮与面板同为 body 直接子元素，因此自动被隐藏。
+   寻归荒野 · 音乐库（夜听）
+   深蓝的夜、暖琥珀的一盏灯、四扇小窗。
+   - 四张照片只出现在「四间房」的窗里，做页签用，不当任何一段声音的封面；
+     声音的封面仍是原站给的那一张（听海是原站那套线描图）。
+   - 所有字号 12px 起；正文对比度按 4.5:1 量。
+   - 独立作用域（.music-lib / .mlp- 前缀），不与页面其他模块冲突。
+   层级：启动画面 > 公告 > 结局视频 > 音乐库 9550/9500。
    ============================================================ */
 
 .music-lib-fab {
-  /* 刘海/圆角屏幕上不要贴死边缘：默认位置加上安全区。拖动过后由 JS 用 px 定位，不受这里影响。 */
   position: fixed; right: calc(20px + env(safe-area-inset-right)); top: calc(20px + env(safe-area-inset-top)); z-index: var(--z-music, 9500);
   width: 48px; height: 48px; padding: 0; border-radius: 50%;
   border: 1px solid rgba(221, 0, 27, .35);
   background: #ffffff;
   color: #fff; cursor: pointer;
   display: grid; place-items: center;
-  box-shadow: 0 10px 26px rgba(194, 12, 12, .26);
+  box-shadow: 0 10px 26px rgba(18, 10, 10, .32);
   transition: transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), box-shadow var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
   touch-action: none; user-select: none; -webkit-user-select: none;
 }
 .music-lib-fab.dragging { transition: none; cursor: grabbing; }
 body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: none; }
-.music-lib-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 14px 32px rgba(194,12,12,.36); }
+.music-lib-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 16px 34px rgba(18, 10, 10, .42); }
 .music-lib-fab:active { transform: translateY(0) scale(.95); }
 .music-lib-fab img.icn-ncm { width: 27px; height: 27px; display: block; pointer-events: none; }
 .music-lib-fab svg { width: 23px; height: 23px; display: block; }
@@ -38,201 +36,405 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
   70%  { transform: scale(1.22); opacity: 0; }
   100% { transform: scale(1.22); opacity: 0; }
 }
-/* 网易云风格的音符图标在面板标题里保留品牌红 */
-.mlp-title svg.icn-netease-note { color: #ec4141; fill: currentColor; }
 
+/* ------------------------------------------------------------
+   面板：一块深蓝的夜。顶部一点极淡的星尘，不喧哗。
+   ------------------------------------------------------------ */
 .music-lib-panel {
+  --mp-bg: #0B0F1A;
+  --mp-bg2: #131929;
+  --mp-surface: #1C2438;
+  --mp-line: rgba(242, 237, 216, .10);
+  --mp-line-strong: rgba(242, 237, 216, .22);
+  --mp-cream: #F2EDD8;
+  --mp-body: #DCD5C2;
+  --mp-muted: #93A3BF;
+  --mp-amber: #F5A623;
+  --mp-amber-2: #E87D5A;
+  --mp-ink: #171006;
+  --mp-mono: "JetBrains Mono", "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", ui-monospace, monospace;
+
   position: fixed; right: calc(20px + env(safe-area-inset-right)); bottom: calc(82px + env(safe-area-inset-bottom)); z-index: var(--z-music, 9500);
-  width: min(306px, calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
-  border: 1px solid #dbe4d4; border-radius: 22px;
-  background: rgba(255, 255, 250, .96);
-  color: #243b30;
-  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
-  box-shadow: 0 24px 62px rgba(25, 42, 30, .24);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  padding: 16px 16px 14px;
+  width: min(392px, calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  /* 一屏放得下：内容比视口高时，只让清单 / 混音板这两块收缩并滚动，
+     顶栏、四扇窗、房卡、进度与音量不动。 */
+  display: flex; flex-direction: column;
+  max-height: calc(100vh - 16px);
+  max-height: calc(100dvh - 16px);
+  border: 1px solid var(--mp-line-strong); border-radius: 18px;
+  background-color: var(--mp-bg);
+  background-image:
+    radial-gradient(52% 34% at 82% 0%, rgba(245, 166, 35, .10) 0%, rgba(245, 166, 35, 0) 100%),
+    radial-gradient(46% 30% at 8% 2%, rgba(118, 152, 224, .11) 0%, rgba(118, 152, 224, 0) 100%),
+    linear-gradient(180deg, #101728 0%, var(--mp-bg) 46%, #090D16 100%);
+  color: var(--mp-body);
+  font-family: var(--font-ui, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 2px 0 rgba(255, 255, 255, .04) inset;
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding: 18px 18px 15px;
   opacity: 0; transform: translateY(10px) scale(.97);
   transform-origin: bottom right;
   pointer-events: none;
-  /* 收起时把面板从 Tab 序列里也拿掉：原来只有 opacity:0 + pointer-events:none，
-     鼠标点不到，但键盘 Tab 会一路走进这个看不见的面板（13 个按钮）。
-     visibility:hidden 是各浏览器通用的兜底，inert 在 JS 里再补一层。 */
   visibility: hidden;
   transition: opacity var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), visibility 0s linear var(--dur-fast, 200ms);
 }
 .music-lib-panel.open { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), visibility 0s; }
-@media (prefers-color-scheme: dark) {
-  .music-lib-panel {
-    background: rgba(27, 42, 33, .96);
-    color: #edf2e7; border-color: #3e5845;
-  }
-}
 
-.mlp-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+/* 面板是一列；只有清单与混音板可以让位，其余各归各位 */
+.music-lib-panel > * { flex: 0 0 auto; }
+.music-lib-panel > .mlp-list,
+.music-lib-panel > .mlp-mix { flex: 0 1 auto; min-height: 0; }
+
+/* 标题：一枚小小的音符，一行安静的字 */
+.mlp-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .mlp-head-right { display: flex; align-items: center; gap: 2px; }
 .mlp-title {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13.5px; font-weight: 750; letter-spacing: .04em;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 14px; font-weight: 600; letter-spacing: .22em; color: var(--mp-cream);
 }
-.mlp-title svg { width: 15px; height: 15px; color: #5f8a52; }
-.mlp-tabs { display: flex; gap: 6px; margin-bottom: 9px; }
-.mlp-tab {
-  flex: 1 1 auto; border: 1px solid #dbe4d4; border-radius: 999px;
-  background: transparent; color: #657864; cursor: pointer;
-  font-family: inherit; font-size:12px; font-weight: 600; line-height: 1;
-  padding: 7px 10px; text-align: center;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-tab:hover { background: #eaf1e4; color: #38543c; }
-.mlp-tab.on { background: #5c8457; border-color: transparent; color: #fffdf6; }
-/* 手指点的时候，四个页签各多 10px 上下热区（看得见的高度不变），
-   实测 375 宽只有 25px 高，容易点偏。 */
-@media (pointer: coarse) {
-  .mlp-tab { position: relative; }
-  .mlp-tab::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; bottom: -10px; }
-}
-@media (prefers-color-scheme: dark) {
-  .mlp-tab { border-color: #3e5845; color: #aabbab; }
-  .mlp-tab:hover { background: #2b4533; color: #dbead0; }
-}
-.mlp-search { display: flex; gap: 6px; margin-bottom: 9px; }
-.mlp-search-input {
-  flex: 1 1 auto; min-width: 0;
-  border: 1px solid #dbe4d4; border-radius: 999px;
-  background: rgba(255,255,255,.7); color: #243b30;
-  font-family: inherit; font-size: 12.5px; line-height: 1.2;
-  padding: 8px 13px; outline: none;
-  transition: border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), box-shadow var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-search-input:focus { border-color: #5c8457; box-shadow: 0 0 0 3px rgba(111,154,99,.22); }
-.mlp-search-input::placeholder { color: #5d6f5a; }
-.mlp-go {
-  flex: 0 0 auto; border: 0; border-radius: 999px; cursor: pointer;
-  background: #5c8457; color: #fffdf6; font-family: inherit;
-  display: grid; place-items: center; padding: 8px 11px;
-  transition: filter var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-go:hover { filter: brightness(1.06); }
-.mlp-go:active { transform: scale(.94); }
-.mlp-go svg { width: 14px; height: 14px; display: block; }
-@media (prefers-color-scheme: dark) {
-  .mlp-search-input { background: rgba(20,32,25,.5); color: #edf2e7; border-color: #3e5845; }
-  .mlp-search-input::placeholder { color: #7e9480; }
-}
-.mlp-status {
-  margin: 0 0 8px; padding: 7px 11px;
-  border-radius: 11px; background: #eef3e8;
-  color: #557b4d; font-size:12px; line-height: 1.5;
-}
-@media (prefers-color-scheme: dark) {
-  .mlp-status { background: #2b4533; color: #aecfa4; }
-}
-/* 缩放/关闭按钮：字号只有 13–19px，手指点不中。给它们 30×30 的稳定点击区，
-   图标本身尺寸不变，只把可点区域撑开（grid 居中，视觉位置不动）。 */
+.mlp-title svg { width: 15px; height: 15px; color: var(--mp-amber); fill: currentColor; }
 .mlp-close, .mlp-zoom {
-  border: 0; background: none; cursor: pointer; color: #5d6f5a;
+  border: 0; background: none; cursor: pointer; color: var(--mp-muted);
   display: grid; place-items: center; font-family: inherit;
   min-width: 34px; min-height: 34px; padding: 2px 6px; border-radius: 9px;
+  transition: color var(--dur-fast, 200ms) ease, background var(--dur-fast, 200ms) ease;
 }
 .mlp-close { font-size: 19px; }
 .mlp-zoom { padding: 3px; font-size: 15px; font-weight: 700; line-height: 1; }
-.mlp-zoom:disabled { color: #b7c3b0; background: transparent; cursor: default; }
+.mlp-zoom:disabled { color: #5B6680; background: transparent; cursor: default; }
 .mlp-zoom svg { width: 13px; height: 13px; }
-.mlp-close:hover, .mlp-zoom:not(:disabled):hover { color: #5f8a52; background: #e9f0e3; }
-@media (prefers-color-scheme: dark) {
-  .mlp-close, .mlp-zoom { color: #8a9a84; }
-  .mlp-close:hover, .mlp-zoom:not(:disabled):hover { background: #2b4533; color: #c9dcbe; }
-  .mlp-zoom:disabled { color: #58685a; }
+.mlp-close:hover, .mlp-zoom:not(:disabled):hover { color: var(--mp-cream); background: rgba(242, 237, 216, .07); }
+
+/* 每间房的一句题词：换房就换一句 */
+.mlp-lede {
+  position: relative; margin: 0 0 13px; padding-left: 13px;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 13px; line-height: 1.9; letter-spacing: .05em; color: var(--mp-body);
+}
+.mlp-lede::before {
+  content: ""; position: absolute; left: 0; top: .72em;
+  width: 2px; height: 1.15em; border-radius: 2px;
+  background: linear-gradient(180deg, var(--mp-amber), rgba(245, 166, 35, .25));
 }
 
-.mlp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; max-height: 218px; overflow-y: auto; overscroll-behavior: contain; }
-.mlp-list li { display: flex; align-items: stretch; gap: 4px; }
+/* ------------------------------------------------------------
+   四间房：四扇小窗。给的是照片，做的是页签。
+   亮着的那扇有一道琥珀色的边，其余压暗，退到夜里。
+   ------------------------------------------------------------ */
+.mlp-tabs {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px; margin: 0 0 13px;
+}
+.mlp-tab {
+  position: relative; display: block; width: 100%; min-width: 0;
+  padding: 0; border: 1px solid var(--mp-line); border-radius: 11px;
+  background: #0E1422; color: var(--mp-muted);
+  font-family: inherit; font-size: 12px; line-height: 1;
+  aspect-ratio: 3 / 4; overflow: hidden; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 280ms ease, box-shadow 280ms ease, transform 280ms ease;
+}
+.mlp-win { position: absolute; inset: 0; display: block; overflow: hidden; }
+.mlp-win::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    /* 名字压在最下面：这一条要从 60% 起真正压暗，照片再亮也读得清 */
+    linear-gradient(180deg, rgba(11, 15, 26, .05) 30%, rgba(11, 15, 26, .55) 58%, rgba(9, 13, 22, .90) 82%, rgba(9, 13, 22, .96) 100%),
+    linear-gradient(0deg, rgba(11, 15, 26, .32), rgba(11, 15, 26, 0) 45%);
+  transition: opacity 280ms ease;
+}
+.mlp-win img {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+  filter: saturate(.8) brightness(.72) contrast(1.03);
+  transform: scale(1.02);
+  transition: filter 420ms ease, transform 520ms ease, opacity 300ms ease;
+}
+.mlp-tab[data-tab="sea"] .mlp-win img { object-position: 50% 34%; }
+.mlp-tab[data-tab="forest"] .mlp-win img { object-position: 50% 50%; }
+.mlp-tab[data-tab="search"] .mlp-win img { object-position: 50% 42%; }
+.mlp-win-n {
+  position: absolute; z-index: 2; top: 6px; left: 6px;
+  padding: 2px 5px; border-radius: 4px;
+  background: rgba(6, 9, 16, .86);
+  border: 1px solid rgba(242, 237, 216, .14);
+  font-family: var(--mp-mono); font-size: 12px; line-height: 1;
+  letter-spacing: .02em; color: rgba(242, 237, 216, .9);
+  text-shadow: 0 1px 6px rgba(6, 9, 16, .8);
+}
+.mlp-tab-t {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 10px;
+  display: block; text-align: center;
+  font-size: 12px; letter-spacing: .16em; text-indent: .16em;
+  color: #C8C2AE; text-shadow: 0 1px 8px rgba(6, 9, 16, .9);
+  transition: color 280ms ease;
+}
+.mlp-tab.on {
+  border-color: rgba(245, 166, 35, .9);
+  box-shadow: 0 0 0 1px rgba(245, 166, 35, .22), 0 12px 30px rgba(245, 166, 35, .16);
+}
+.mlp-tab.on .mlp-win img { filter: saturate(.96) brightness(.92) contrast(1.02); transform: scale(1); }
+.mlp-tab.on .mlp-win::after {
+  background:
+    linear-gradient(180deg, rgba(11, 15, 26, 0) 36%, rgba(11, 15, 26, .46) 62%, rgba(9, 13, 22, .92) 86%, rgba(9, 13, 22, .96) 100%),
+    linear-gradient(0deg, rgba(11, 15, 26, .22), rgba(11, 15, 26, 0) 45%);
+}
+.mlp-tab.on .mlp-tab-t { color: var(--mp-cream); font-weight: 600; }
+.mlp-tab.on .mlp-tab-t::after {
+  content: ""; display: block; width: 12px; height: 1px; margin: 6px auto 0;
+  background: var(--mp-amber);
+}
+.mlp-tab.on .mlp-win-n { color: var(--mp-amber); }
+.mlp-tab:not(.on):hover { border-color: var(--mp-line-strong); transform: translateY(-1px); }
+.mlp-tab:not(.on):hover .mlp-win img { filter: saturate(.8) brightness(.74) contrast(1.03); }
+.mlp-tab:not(.on):hover .mlp-tab-t { color: #E4DECB; }
+
+/* ------------------------------------------------------------
+   听海 / 林间：一间看得见风景的房
+   ------------------------------------------------------------ */
+.mlp-room {
+  position: relative; margin: 0 0 10px; overflow: hidden;
+  border: 1px solid var(--mp-line-strong); border-radius: 14px;
+  background: #0A0E18;
+  --mlp-veil: 6, 10, 18;
+  transition: box-shadow 360ms ease, border-color 360ms ease;
+}
+.music-lib-panel.room-live .mlp-room {
+  border-color: rgba(245, 166, 35, .38);
+  box-shadow: 0 0 0 1px rgba(245, 166, 35, .14), 0 18px 44px rgba(0, 0, 0, .45);
+}
+.mlp-room.sea-live { --mlp-veil: 5, 11, 20; }
+.mlp-room-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block;
+}
+canvas.mlp-sea3d { display: block; }
+canvas.mlp-sea3d-drag { cursor: grab; touch-action: none; }
+canvas.mlp-sea3d-drag:active { cursor: grabbing; }
+.mlp-room-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(var(--mlp-veil), .06) 0%, rgba(var(--mlp-veil), .02) 30%, rgba(var(--mlp-veil), .08) 54%, rgba(var(--mlp-veil), .72) 100%),
+    radial-gradient(90% 70% at 10% 100%, rgba(var(--mlp-veil), .5), rgba(var(--mlp-veil), 0) 70%);
+}
+.mlp-room-tools {
+  position: absolute; top: 9px; right: 9px; z-index: 4;
+  display: flex; gap: 6px;
+}
+.mlp-room-fs {
+  position: absolute; top: 9px; right: 9px; z-index: 3;
+  width: 34px; height: 34px; min-height: 34px; padding: 0;
+  display: grid; place-items: center;
+  border: 1px solid rgba(242, 237, 216, .34); border-radius: 9px;
+  background: rgba(9, 13, 22, .52); color: var(--mp-cream);
+  cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.mlp-room-fs svg { width: 14px; height: 14px; }
+.mlp-room-fs:hover { background: rgba(9, 13, 22, .78); border-color: rgba(242, 237, 216, .66); }
+
+.mlp-room-copy {
+  position: relative; z-index: 2;
+  min-height: 190px; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 14px 15px 13px; color: var(--mp-cream);
+}
+.mlp-room-line {
+  align-self: flex-start; max-width: 100%;
+  margin: 6px 0 12px -9px;
+  padding: 3px 16px 4px 9px; border-radius: 3px 7px 7px 3px;
+  /* 题词自己带一小块夜色：海面天亮的时候也照样读得清 */
+  background: linear-gradient(90deg, rgba(5, 9, 16, .74) 0%, rgba(5, 9, 16, .68) 88%, rgba(5, 9, 16, .12) 100%);
+  box-shadow: inset 2px 0 0 rgba(245, 166, 35, .85);
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 20px; font-weight: 600; letter-spacing: .1em; line-height: 1.42;
+  text-shadow: 0 2px 18px rgba(4, 8, 14, .85);
+}
+.mlp-room-cap {
+  position: absolute; z-index: 3; top: 10px; left: 10px; margin: 0;
+  display: flex; align-items: center; gap: 8px;
+  max-width: calc(100% - 100px);
+  padding: 5px 10px 5px 8px; border-radius: 8px;
+  background: rgba(7, 11, 20, .78);
+  border-left: 2px solid var(--mp-amber);
+  color: var(--mp-cream); pointer-events: none;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.mlp-cap-photo {
+  flex: none; width: 30px; height: 30px; object-fit: cover; display: block;
+  border: 1px solid rgba(242, 237, 216, .42); border-radius: 6px;
+  background: rgba(10, 16, 26, .5);
+  filter: saturate(.9) contrast(1.02);
+}
+.mlp-cap-photo[hidden] { display: none; }
+.mlp-room-cap-txt { display: flex; flex-direction: column; gap: 1px; min-width: 0; overflow: hidden; }
+.mlp-room-cap-name {
+  font-size: 12px; line-height: 1.5; font-weight: 600; letter-spacing: .06em;
+  color: var(--mp-cream);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mlp-room-cap-sub {
+  font-size: 12px; line-height: 1.4; letter-spacing: .03em;
+  color: #B9B2A0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mlp-room-actions { display: flex; align-items: center; gap: 8px; }
+.mlp-room-play {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(242, 237, 216, .42); border-radius: 999px;
+  background: rgba(9, 13, 22, .55); color: var(--mp-cream);
+  font-family: inherit; font-size: 12px; letter-spacing: .18em;
+  padding: 9px 16px 9px 13px; min-height: 40px; cursor: pointer;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+.mlp-room-play:hover { background: rgba(9, 13, 22, .82); border-color: rgba(242, 237, 216, .7); }
+.mlp-room-play.playing { background: var(--mp-amber); border-color: var(--mp-amber); color: var(--mp-ink); }
+.mlp-room-play.playing:hover { background: #FFB53C; border-color: #FFB53C; }
+.mlp-room-play-ic { display: grid; place-items: center; width: 14px; height: 14px; }
+.mlp-room-play .mlp-room-play-ic svg { width: 13px; height: 13px; fill: currentColor; }
+.mlp-room-play .icn-pause { display: none; }
+.mlp-room-play.playing .icn-play { display: none; }
+.mlp-room-play.playing .icn-pause { display: block; }
+.mlp-room-shuffle {
+  display: grid; place-items: center;
+  width: 40px; min-height: 40px; padding: 0;
+  border: 1px solid rgba(242, 237, 216, .3); border-radius: 999px;
+  background: rgba(9, 13, 22, .42); color: rgba(242, 237, 216, .92);
+  cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: background 220ms ease, border-color 220ms ease, transform 300ms ease;
+}
+.mlp-room-shuffle svg { width: 15px; height: 15px; }
+.mlp-room-shuffle:hover { background: rgba(9, 13, 22, .72); border-color: rgba(242, 237, 216, .62); transform: rotate(18deg); }
+.mlp-room-shuffle:active { transform: rotate(18deg) scale(.94); }
+
+.mlp-room-note {
+  margin: 0 0 9px; padding: 0 2px;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 12px; line-height: 1.85; letter-spacing: .03em;
+  color: var(--mp-muted);
+}
+
+/* ------------------------------------------------------------
+   找歌
+   ------------------------------------------------------------ */
+.mlp-search { display: flex; gap: 7px; margin-bottom: 10px; }
+.mlp-search-input {
+  flex: 1 1 auto; min-width: 0;
+  border: 1px solid var(--mp-line); border-radius: 10px;
+  background: #0F1524; color: var(--mp-cream);
+  font-family: inherit; font-size: 12.5px; line-height: 1.2;
+  padding: 10px 13px; outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+.mlp-search-input:focus { border-color: rgba(245, 166, 35, .75); background: #121A2B; box-shadow: 0 0 0 3px rgba(245, 166, 35, .14); }
+.mlp-search-input::placeholder { color: #8D9AB3; }
+.mlp-go {
+  flex: 0 0 auto; border: 0; border-radius: 10px; cursor: pointer;
+  background: var(--mp-amber); color: var(--mp-ink); font-family: inherit;
+  display: grid; place-items: center; padding: 9px 13px;
+  transition: filter 200ms ease, transform 200ms ease;
+}
+.mlp-go:hover { filter: brightness(1.08); }
+.mlp-go:active { transform: scale(.94); }
+.mlp-go svg { width: 15px; height: 15px; display: block; }
+
+.mlp-status {
+  margin: 0 0 9px; padding: 8px 12px;
+  border-radius: 8px; border-left: 2px solid var(--mp-amber);
+  background: rgba(245, 166, 35, .10);
+  color: #F1D6A9; font-size: 12px; line-height: 1.6;
+  animation: mlpStatusIn .45s var(--ease, cubic-bezier(.32,.72,0,1));
+}
+@keyframes mlpStatusIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------
+   音笺 / 林间 / 找歌：清单
+   ------------------------------------------------------------ */
+.mlp-list {
+  list-style: none; margin: 0; padding: 0; display: grid; gap: 2px;
+  grid-template-columns: minmax(0, 1fr);
+  max-height: 226px; overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: rgba(242, 237, 216, .18) transparent;
+}
+.mlp-list::-webkit-scrollbar { width: 6px; }
+.mlp-list::-webkit-scrollbar-thumb { background: rgba(242, 237, 216, .18); border-radius: 99px; }
+.mlp-list::-webkit-scrollbar-track { background: transparent; }
+/* 清单 / 混音板下面还有内容时，底边收一道淡影，像纸页压进暗处的那一截 */
+.mlp-list.scroll-more,
+.mlp-mix.scroll-more {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 22px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 22px), transparent 100%);
+}
+
+.mlp-list li { display: flex; align-items: stretch; gap: 2px; }
+.mlp-list button.mlp-row {
+  width: 100%; min-width: 0; display: flex; align-items: center; gap: 10px;
+  border: 1px solid transparent; border-radius: 10px;
+  background: transparent; color: var(--mp-cream);
+  font-family: inherit; font-size: 13px; line-height: 1.5; text-align: left;
+  padding: 8px 10px; cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.mlp-list button.mlp-row:hover { background: rgba(242, 237, 216, .05); }
+.mlp-list li.active button.mlp-row {
+  background: rgba(245, 166, 35, .085);
+  border-color: rgba(245, 166, 35, .16);
+  box-shadow: inset 2px 0 0 var(--mp-amber);
+}
 .mlp-list button.mlp-heart {
   width: auto; flex: 0 0 auto; align-self: center;
   border: 1px solid transparent; border-radius: 9px;
-  background: none; color: #5d6f5a; cursor: pointer; font-family: inherit;
+  background: none; color: var(--mp-muted); cursor: pointer; font-family: inherit;
   display: grid; place-items: center; padding: 8px; min-width: 34px; min-height: 34px;
-  transition: color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+  transition: color 200ms ease, background 200ms ease;
 }
 .mlp-list button.mlp-heart svg { width: 13px; height: 13px; display: block; }
-.mlp-list button.mlp-heart:hover { color: #5f8a52; background: #e9f0e3; }
-.mlp-list button.mlp-heart.on { color: #5f8a52; }
-@media (prefers-color-scheme: dark) {
-  .mlp-list button.mlp-heart { color: #8ba187; }
-  .mlp-list button.mlp-heart:hover { color: #aecfa4; background: #2b4533; }
-  .mlp-list button.mlp-heart.on { color: #aecfa4; }
-}
-.mlp-list button.mlp-row {
-  width: 100%; display: flex; align-items: center; gap: 10px;
-  border: 1px solid transparent; border-radius: 13px;
-  background: transparent; color: inherit;
-  font-family: inherit; font-size: 13px; line-height: 1.5; text-align: left;
-  padding: 9px 11px; cursor: pointer;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-list button.mlp-row:hover { background: #eaf1e4; }
-@media (prefers-color-scheme: dark) {
-  .mlp-list button.mlp-row:hover { background: #2b4533; }
-}
-.mlp-list li.active button.mlp-row { background: #e4eeda; border-color: #b9d1ab; font-weight: 700; }
-@media (prefers-color-scheme: dark) {
-  .mlp-list li.active button.mlp-row { background: #2e4a36; border-color: #4d7355; }
-}
+.mlp-list button.mlp-heart:hover { color: #E8DEC6; background: rgba(242, 237, 216, .06); }
+.mlp-list button.mlp-heart.on { color: var(--mp-amber-2); }
 .mlp-main { flex: 1 1 auto; min-width: 0; display: block; }
 .mlp-name {
-  display: block; flex: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  display: block; flex: 1 1 auto; min-width: 0;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 13.5px; letter-spacing: .03em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  transition: transform 200ms var(--ease, cubic-bezier(.32,.72,0,1));
 }
+.mlp-list button.mlp-row:hover .mlp-name { transform: translateX(2px); }
 .mlp-sub {
   display: block; margin-top: 1px;
-  font-size:12px; line-height: 1.3; color: #5d6f5d;
+  font-family: var(--mp-mono); font-size: 12px; line-height: 1.35;
+  letter-spacing: .01em; color: var(--mp-muted);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-@media (prefers-color-scheme: dark) { .mlp-sub { color: #8ba187; } }
 .mlp-num {
-  flex: 0 0 auto; min-width: 24px; height: 24px;
-  display: grid; place-items:center; border-radius: 8px;
-  font: 700 12px/1 ui-monospace, monospace;
-  background: #e5eedd; color: #557b4d;
+  flex: 0 0 auto; min-width: 22px; height: auto;
+  display: grid; place-items: center;
+  font-family: var(--mp-mono); font-size: 12px; font-weight: 500; line-height: 1;
+  letter-spacing: .02em; color: #C08A3E;
 }
-@media (prefers-color-scheme: dark) {
-  .mlp-num { background: #334f3a; color: #aecfa4; }
-}
-/* 列表左边那一小格：原站照片的缩略；没有照片的曲目就是一块编号牌。
-   尺寸统一，两行字始终对齐。 */
+/* 左边那一小格：原站的照片或原站的线描图，不画任何替身 */
 .mlp-cover {
   position: relative; flex: 0 0 auto;
   width: 46px; height: 32px; border-radius: 7px; overflow: hidden;
   display: grid; place-items: center;
-  background: #e5eedd; color: #557b4d;
+  background: rgba(242, 237, 216, .07); color: #C8C1AD;
+  border: 1px solid rgba(242, 237, 216, .10);
   pointer-events: none;
 }
-.mlp-cover-n {
-  position: relative; z-index: 0;
-  font: 700 12px/1 ui-monospace, monospace; letter-spacing: .02em;
-}
+.mlp-cover-n { position: relative; z-index: 0; font: 500 12px/1 var(--mp-mono); letter-spacing: .02em; }
 .mlp-cover img {
   position: absolute; inset: 0; z-index: 1;
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: saturate(.92) contrast(1.02);
+  filter: saturate(.9) contrast(1.02) brightness(.94);
 }
-@media (prefers-color-scheme: dark) {
-  .mlp-cover { background: #334f3a; color: #aecfa4; }
-  .mlp-cover img { filter: saturate(.82) contrast(1.04) brightness(.86); }
-}
-/* 听海那一列用的是原站的黑线描小图：一张浅纸当底，图缩在中间不裁切。
-   深色下把线条翻成浅色，纸底也随之压深——和照片缩略不一样，这里不能模糊填满。 */
-.mlp-cover-ico { background: #f3efe2; box-shadow: inset 0 0 0 1px rgba(60,80,60,.14); }
-.mlp-cover-ico img { object-fit: contain; padding: 3px 5px; filter: none; }
-@media (prefers-color-scheme: dark) {
-  .mlp-cover-ico { background: #26382b; box-shadow: inset 0 0 0 1px rgba(180,205,175,.18); }
-  .mlp-cover-ico img { filter: invert(.88) sepia(.04); }
-}
-.mlp-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mlp-cover-ico { background: rgba(242, 237, 216, .055); box-shadow: none; }
+.mlp-cover-ico img { object-fit: contain; padding: 4px 6px; filter: invert(1) brightness(1.02); opacity: .86; }
 .mlp-eq { flex: 0 0 auto; display: none; align-items: flex-end; gap: 2.5px; height: 12px; }
 .mlp-list li.active .mlp-eq { display: inline-flex; }
-.mlp-eq i { width: 3px; border-radius: 2px; background: #557b4d; height: 100%; }
-@media (prefers-color-scheme: dark) { .mlp-eq i { background: #aecfa4; } }
-.mlp-eq i { animation: musicLibEq .9s ease-in-out infinite; }
+.mlp-eq i { width: 3px; border-radius: 2px; background: var(--mp-amber); height: 100%; animation: musicLibEq .9s ease-in-out infinite; }
 .mlp-eq i:nth-child(2) { animation-delay: .22s; }
 .mlp-eq i:nth-child(3) { animation-delay: .44s; }
 .mlp-list li.active:not(.paused) .mlp-eq i { animation-play-state: running; }
@@ -242,550 +444,167 @@ body.mlp-dragging { cursor: grabbing; user-select: none; -webkit-user-select: no
   50%      { transform: scaleY(1); }
 }
 
+/* ------------------------------------------------------------
+   进度 · 控制 · 音量
+   ------------------------------------------------------------ */
 .mlp-progress { display: flex; align-items: center; gap: 9px; margin-top: 13px; }
 .mlp-time {
-  flex: 0 0 auto; font: 600 12px/1.2 ui-monospace, monospace;
-  color: #5d6f5d; font-variant-numeric: tabular-nums;
+  flex: 0 0 auto; font-family: var(--mp-mono);
+  font-size: 12px; line-height: 1.2; font-weight: 500;
+  color: var(--mp-muted); font-variant-numeric: tabular-nums;
 }
-@media (prefers-color-scheme: dark) { .mlp-time { color: #aabbab; } }
 .mlp-track {
   position: relative; flex: 1 1 auto; height: 6px; border-radius: 99px;
-  background: #dde6d5; cursor: pointer; touch-action: none;
+  background: rgba(242, 237, 216, .13); cursor: pointer; touch-action: none;
 }
-/* 6px 的进度条手指很难点准：向上下各扩 8px 透明点击区，视觉粗细不变。 */
 .mlp-track::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; bottom: -8px; }
-@media (prefers-color-scheme: dark) { .mlp-track { background: #3a5241; } }
 .mlp-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
   border-radius: 99px;
-  background: #5c8457;
+  background: linear-gradient(90deg, var(--mp-amber), var(--mp-amber-2));
 }
 .mlp-inner {
   position: absolute; right: -5px; top: 50%; width: 10px; height: 10px;
-  border-radius: 50%; background: #4d7451;
-  border: 2px solid #fbfcf5; box-shadow: 0 1px 4px rgba(25,42,30,.3);
-  transform: translateY(-50%); opacity: 0; transition: opacity var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+  border-radius: 50%; background: var(--mp-cream);
+  border: 2px solid var(--mp-bg); box-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+  transform: translateY(-50%); opacity: 0; transition: opacity 200ms ease;
 }
 .mlp-track:hover .mlp-inner, .mlp-track.dragging .mlp-inner { opacity: 1; }
-@media (prefers-color-scheme: dark) { .mlp-inner { border-color: #2a3f30; } }
 
-.mlp-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 13px; }
+.mlp-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 12px; }
 .mlp-btn {
   border: 0; background: none; cursor: pointer;
-  color: #4a6a54; padding: 6px; border-radius: 50%;
+  color: #D6CEB8; padding: 6px; border-radius: 50%;
   display: grid; place-items: center; font-family: inherit;
   min-width: 36px; min-height: 36px;
-  transition: color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)), background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+  transition: color 200ms ease, transform 200ms ease, background 200ms ease;
 }
-.mlp-btn:hover { color: #38543c; background: #e9f0e3; }
+.mlp-btn:hover { color: var(--mp-cream); background: rgba(242, 237, 216, .07); }
 .mlp-btn:active { transform: scale(.92); }
-@media (prefers-color-scheme: dark) {
-  .mlp-btn { color: #b9d1ab; }
-  .mlp-btn:hover { background: #2b4533; color: #dbead0; }
-}
 .mlp-btn svg { width: 19px; height: 19px; display: block; }
 .mlp-toggle {
-  width: 44px; height: 44px;
-  background: #5c8457; color: #fffdf6;
-  box-shadow: 0 7px 18px rgba(66, 107, 73, .35);
+  width: 46px; height: 46px;
+  background: var(--mp-amber); color: var(--mp-ink);
+  box-shadow: 0 10px 26px rgba(245, 166, 35, .28);
 }
-.mlp-toggle:hover { color: #fffdf6; filter: brightness(1.06); }
+.mlp-toggle:hover { color: var(--mp-ink); background: #FFB53C; filter: none; }
 .mlp-toggle .icn-pause { display: none; }
 .mlp-toggle.playing .icn-play { display: none; }
 .mlp-toggle.playing .icn-pause { display: block; }
 
 .mlp-volume { display: flex; align-items: center; gap: 9px; margin-top: 12px; }
-.mlp-volume svg { flex: 0 0 auto; width: 15px; height: 15px; color: #7a8a77; }
-@media (prefers-color-scheme: dark) { .mlp-volume svg { color: #aabbab; } }
+.mlp-volume svg { flex: 0 0 auto; width: 15px; height: 15px; color: var(--mp-muted); }
 .mlp-volume input[type="range"] {
-  /* 元素盒子里给到 16px 高，滑条本身仍由系统画成细轨（accent-color 决定颜色），
-     4px 的盒子在手机上几乎点不中，扩到 16px 只是让命中区变大，视觉粗细不变。 */
   flex: 1 1 auto; height: 16px; margin: 0; padding: 0;
-  accent-color: #5f8a52; cursor: pointer; background: transparent;
+  accent-color: var(--mp-amber); cursor: pointer; background: transparent;
 }
 @media (max-width: 420px) { .mlp-volume input[type="range"] { height: 20px; } }
 .mlp-vol-label {
-  flex: 0 0 auto; font: 600 12px/1 ui-monospace, monospace;
-  color: #5d6f5d; min-width: 26px; text-align: right;
-}
-@media (prefers-color-scheme: dark) { .mlp-vol-label { color: #aabbab; } }
-
-.mlp-footnote {
-  margin: 12px 0 0; text-align: center;
-  font-size:12px; letter-spacing: .05em; color: #667861;
-}
-@media (prefers-color-scheme: dark) { .mlp-footnote { color: #7e9480; } }
-
-@media (max-width: 420px) {
-  .music-lib-fab { right: calc(14px + env(safe-area-inset-right)); top: calc(14px + env(safe-area-inset-top)); width: 44px; height: 44px; }
-  .music-lib-fab img.icn-ncm { width: 25px; height: 25px; }
-  .music-lib-fab svg { width: 19px; height: 19px; }
-  .music-lib-panel { right: calc(10px + env(safe-area-inset-right)); bottom: calc(68px + env(safe-area-inset-bottom)); width: min(292px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right))); padding: 14px 13px 12px; }
-  .music-lib-panel[style*="left"] { max-width: calc(100vw - 16px); }
+  flex: 0 0 auto; font-family: var(--mp-mono);
+  font-size: 12px; font-weight: 500; line-height: 1;
+  color: var(--mp-muted); min-width: 30px; text-align: right;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .music-lib-fab, .music-lib-panel, .mlp-list button,
-  .mlp-btn, .mlp-inner, .mlp-eq i { animation: none !important; transition: none !important; }
-  .music-lib-fab.playing::after { animation: none; opacity: .5; }
-}
-
-/* 键盘焦点：音乐库是自己画的控件，浏览器默认焦点环被平铺色块盖住，这里统一补上。 */
-.music-lib-fab:focus-visible,
-.mlp-tab:focus-visible, .mlp-search-input:focus-visible, .mlp-go:focus-visible,
-.mlp-close:focus-visible, .mlp-zoom:focus-visible, .mlp-heart:focus-visible,
-.mlp-row:focus-visible, .mlp-btn:focus-visible {
-  outline: 3px solid rgba(98, 146, 82, .55); outline-offset: 2px;
-}
-/* 新增的三枚控件也补上焦点环：随机、铺满屏幕 */
-.mlp-room-shuffle:focus-visible, .mlp-room-fs:focus-visible,
-.mlp-im-shuffle:focus-visible {
-  outline: 3px solid rgba(247, 243, 230, .85); outline-offset: 2px;
-}
-
-/* 触控屏：34px 的点击区对拇指仍偏小，统一撑到 44×44（图标本身尺寸不变）。
-   设置页也加载这份样式，所以规则放在这里而不是只写在首页的覆盖层。 */
-@media (pointer: coarse) {
-  .mlp-close, .mlp-zoom, .mlp-list button.mlp-heart { min-width: 44px; min-height: 44px; }
-}
-
-/* ============================================================
-   2026-10 · 纸质档案同款：音乐库也做成一张夹在页边的纸条
-   只覆盖颜色、圆角、字与分隔，不动尺寸、拖动、缩放与点击区。
-   ============================================================ */
-.music-lib-panel {
-  border-color:#cfc8b4; border-radius:3px;
-  background:#f8f5ea; background-image:url("ink/paper.webp");
-  color:#23322a;
-  font-family:"Noto Serif SC","Songti SC","Source Han Serif SC","SimSun",serif;
-  box-shadow:0 26px 60px rgba(35,50,42,.2);
-  backdrop-filter:none; -webkit-backdrop-filter:none;
-  padding:18px 17px 15px;
-}
-.mlp-title { font-size:13px; font-weight:600; letter-spacing:.16em; }
-.mlp-title svg { color:#a3483a; }
-.mlp-tab {
-  border-color:#cfc8b4; border-radius:2px; color:#4a5a4c;
-  font-size:12px; letter-spacing:.08em; padding:8px 10px;
-}
-.mlp-tab:hover { background:rgba(70,100,70,.06); color:#46653f; }
-.mlp-tab.on { background:#2f4536; border-color:#2f4536; color:#f7f3e6; }
-.mlp-search-input {
-  border-color:#cfc8b4; border-radius:2px; background:#fffdf4; color:#23322a;
-  font-size:12.5px; padding:9px 12px;
-}
-.mlp-search-input:focus { border-color:#46653f; box-shadow:0 0 0 3px rgba(70,101,63,.16); }
-.mlp-search-input::placeholder { color:#6b7a68; }
-.mlp-go { border-radius:2px; background:#2f4536; color:#f7f3e6; }
-.mlp-status { border-radius:2px; background:rgba(70,100,70,.07); color:#46653f; }
-.mlp-close, .mlp-zoom { border-radius:2px; color:#4a5a4c; }
-.mlp-close:hover, .mlp-zoom:not(:disabled):hover { color:#46653f; background:rgba(70,100,70,.08); }
-.mlp-list { gap:0; }
-.mlp-list button.mlp-row {
-  border-radius:0; border-bottom:1px solid rgba(207,200,180,.55);
-  font-size:13.5px; padding:10px 8px;
-}
-.mlp-list button.mlp-row:hover { background:rgba(70,100,70,.06); }
-.mlp-list li.active button.mlp-row {
-  background:rgba(70,100,70,.08); border-color:transparent;
-  box-shadow:inset 2px 0 0 #46653f;
-}
-.mlp-num {
-  min-width:21px; height:auto; border-radius:0; background:none;
-  color:#46653f; font:700 12px/1 "JetBrains Mono",ui-monospace,monospace; letter-spacing:.04em;
-}
-/* 缩略图在纸墨风格里也收成小方片：细边、直角，和名字牌上的小图一致 */
-.mlp-cover {
-  width:44px; height:30px; border-radius:2px;
-  background:rgba(70,100,70,.08); color:#46653f;
-  border:1px solid rgba(207,200,180,.7);
-}
-.mlp-cover-ico { background:#f6f2e5; box-shadow:none; }
-.mlp-eq i { background:#46653f; }
-.mlp-track { border-radius:2px; background:#ded7c4; }
-.mlp-fill { border-radius:2px; background:#46653f; }
-.mlp-inner { background:#46653f; border-color:#f8f5ea; }
-.mlp-btn { border-radius:2px; color:#4a5a4c; }
-.mlp-btn:hover { background:rgba(70,100,70,.08); color:#46653f; }
-.mlp-toggle { border-radius:2px; background:#2f4536; color:#f7f3e6; box-shadow:0 7px 18px rgba(35,50,42,.2); }
-.mlp-toggle:hover { color:#f7f3e6; background:#3a5744; filter:none; }
-.mlp-volume input[type="range"] { accent-color:#46653f; }
-.mlp-footnote { font-size:12px; letter-spacing:.1em; color:#5c6e5c; }
-@media (max-width:420px) { .music-lib-panel { padding:15px 13px 12px; } }
-@media (prefers-color-scheme: dark) {
-  .music-lib-panel { background:#202d25; border-color:#3c4a3e; color:#ece6d6; box-shadow:0 26px 60px rgba(0,0,0,.4); }
-  .mlp-title svg { color:#d08a7c; }
-  .mlp-tab { border-color:#3c4a3e; color:#c4c0ae; }
-  .mlp-tab:hover { background:rgba(169,199,155,.08); color:#ece6d6; }
-  .mlp-tab.on { background:#a9c79b; border-color:#a9c79b; color:#16211a; }
-  .mlp-search-input { background:#1a241e; border-color:#3c4a3e; color:#ece6d6; }
-  .mlp-search-input::placeholder { color:#93a38e; }
-  .mlp-go { background:#a9c79b; color:#16211a; }
-  .mlp-status { background:rgba(169,199,155,.1); color:#c9e2c0; }
-  .mlp-close, .mlp-zoom { color:#c4c0ae; }
-  .mlp-close:hover, .mlp-zoom:not(:disabled):hover { background:rgba(169,199,155,.1); color:#ece6d6; }
-  .mlp-list button.mlp-row { border-bottom-color:#3c4a3e; }
-  .mlp-list button.mlp-row:hover { background:rgba(169,199,155,.07); }
-  .mlp-list li.active button.mlp-row { background:rgba(169,199,155,.12); box-shadow:inset 2px 0 0 #a9c79b; }
-  .mlp-num { color:#a9c79b; }
-  .mlp-cover { background:rgba(169,199,155,.12); color:#a9c79b; border-color:#3c4a3e; }
-  .mlp-cover-ico { background:#1a241e; box-shadow:none; }
-  .mlp-eq i { background:#a9c79b; }
-  .mlp-track { background:#3c4a3e; }
-  .mlp-fill { background:#a9c79b; }
-  .mlp-inner { background:#a9c79b; border-color:#202d25; }
-  .mlp-btn { color:#c4c0ae; }
-  .mlp-btn:hover { background:rgba(169,199,155,.1); color:#ece6d6; }
-  .mlp-toggle { background:#a9c79b; color:#16211a; }
-  .mlp-toggle:hover { background:#bcd4ad; color:#16211a; }
-  .mlp-volume input[type="range"] { accent-color:#a9c79b; }
-  .mlp-footnote { color:#a7b0a2; }
-}
-
-/* ============================================================
-   2026-10 · 声音档案：四间房（音笺 / 听海 / 林间 / 找歌）
-   听海、林间是两间可以一直开着的房间：头图是一张水彩的景，
-   播放时画面慢慢起伏，海面有光、林子里有细小的浮尘。
-   只讲风景，页面上不出现任何站点或作者名（来源见包内「声音来源.txt」）。
-   ============================================================ */
-.mlp-lede {
-  margin: 0 0 10px; font-size: 12px; line-height: 1.7;
-  letter-spacing: .03em; color: #6b7a68;
-}
-
-/* 四个标签收成纸上的小标题：选中只多一道下划线，不抢注意力 */
-.mlp-tab {
-  border: 0; border-bottom: 1px solid transparent; border-radius: 0;
-  background: transparent; padding: 7px 2px 6px;
-  font-size: 12px; letter-spacing: .12em;
-}
-.mlp-tab:hover { background: transparent; color: #46653f; }
-.mlp-tab.on {
-  background: transparent; border-bottom-color: #2f4536;
-  color: #23322a; font-weight: 700;
-}
-
-.mlp-room {
-  position: relative; margin: 0 0 9px; overflow: hidden;
-  border: 1px solid #cfc8b4; border-radius: 2px; background: #d9d4c1;
-  --mlp-veil: 19,29,23;
-}
-/* 实时海面铺在上面时，遮罩从"森绿"换成"夜蓝"：透明度一位不改，
-   只是不再把蓝色的海压成灰绿。字对比度另在牌子那一处补了一层（见 .mlp-room-cap）。 */
-.mlp-room.sea-live { --mlp-veil: 8,17,22; }
-/* 画面本体：canvas 铺满卡片，播放时 JS 让它活着 */
-.mlp-room-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  display: block;
-}
-/* 听海换上 three.js 实时海面时，是在这张 2D 画布旁边再叠一张 WebGL 的，
-   位置尺寸完全照抄，两张只露一张；WebGL 用不了就退回下面这张。 */
-canvas.mlp-sea3d { display: block; }
-canvas.mlp-sea3d-drag { cursor: grab; touch-action: none; }
-canvas.mlp-sea3d-drag:active { cursor: grabbing; }
-.mlp-room-veil {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(19,29,23,.12) 0%, rgba(19,29,23,.03) 26%, rgba(19,29,23,.06) 46%, rgba(19,29,23,.60) 100%),
-    linear-gradient(90deg, rgba(19,29,23,.08), rgba(19,29,23,0) 48%);
-  /* 用变量那一套；不支持 var 的浏览器就用上面这行绿色原样。
-     上半这道原先 .30，是按旧那套墨绿海面配的；海面回到原站的青之后，
-     它把整片天压成了灰的——降到 .12，海和天重新露出来。底部 .60
-     （原 .66）仍旧够：白题词与两枚圆钮另有自己的深底，牌子 .74。 */
-  background:
-    linear-gradient(180deg, rgba(var(--mlp-veil),.12) 0%, rgba(var(--mlp-veil),.03) 26%, rgba(var(--mlp-veil),.06) 46%, rgba(var(--mlp-veil),.60) 100%),
-    linear-gradient(90deg, rgba(var(--mlp-veil),.08), rgba(var(--mlp-veil),0) 48%);
-}
-.mlp-room-tools {
-  position: absolute; top: 8px; right: 8px; z-index: 4;
-  display: flex; gap: 6px;
-}
-.mlp-room-copy {
-  position: relative; z-index: 2;
-  min-height: 156px; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 13px 14px 12px; color: #f7f3e6;
-}
-.mlp-room-line {
-  margin: 5px 0 11px; font-size: 17.5px; font-weight: 600;
-  letter-spacing: .1em; line-height: 1.35;
-  text-shadow: 0 1px 12px rgba(15,24,18,.5);
-}
-/* 此刻这一段海 / 这片林子的名字牌（满屏那行小字的卡片版）
-   左边一小张"这个地方"的照片，右边是名字和地点 */
-.mlp-room-cap {
-  position: absolute; z-index: 3; top: 9px; left: 10px; margin: 0;
-  display: flex; align-items: center; gap: 8px;
-  max-width: calc(100% - 100px);
-  padding: 5px 9px 5px 8px; border-radius: 2px;
-  background: rgba(19,29,23,.74);
-  border-left: 2px solid rgba(169,199,155,.85);
-  color: #f7f3e6; pointer-events: none;
-}
-/* 牌子底 .74 是量出来的，不是随手定的。这里原先是 .44，换上二十七片新封面之后
-   左上角普遍比旧那批亮（最亮的一片实测 215 上下），.44 压不住那种天：
-   12px 的曲名最差只剩 3.95:1、地点只剩 2.64:1，两条都低于该守的 4.5:1。
-   垫到 .74 之后逐条复量（Temp/contrast_rooms.py，九段海 + 二十七片林全量），
-   最差的一片曲名 8.50:1、地点 5.48:1，最倒霉的那一笔也还有 7.58 与 5.03。
-   实时海面的上半是更亮的天光，同样 .44 时实测只剩 4.25 与 3.23，
-   所以海面上换成同透明度、但属于海的那一支：复量最差 9.87 与 6.90。
-   两边的竖线与字色一位没动。 */
-.mlp-room.sea-live .mlp-room-cap {
-  background: rgba(6,14,20,.74);
-  border-left-color: rgba(154,206,206,.85);
-}
-.mlp-cap-photo {
-  flex: none; width: 28px; height: 28px; object-fit: cover; display: block;
-  border: 1px solid rgba(247,243,230,.5); border-radius: 2px;
-  background: rgba(10,18,14,.4);
-  filter: saturate(.9) contrast(1.02);
-}
-.mlp-cap-photo[hidden] { display: none; }
-.mlp-room-cap-txt {
-  display: flex; flex-direction: column; gap: 1px; min-width: 0; overflow: hidden;
-}
-.mlp-room-cap-name {
-  font-size: 12px; line-height: 1.45; font-weight: 600; letter-spacing: .06em;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  text-shadow: 0 1px 8px rgba(15,24,18,.5);
-}
-.mlp-room-cap-sub {
-  font-size: 12px; line-height: 1.4; letter-spacing: .04em;
-  color: rgba(247,243,230,.78);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.mlp-room-actions { display: flex; align-items: center; gap: 8px; }
-.mlp-room-play {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: 7px;
-  border: 1px solid rgba(247,243,230,.45); border-radius: 999px;
-  background: rgba(19,29,23,.42); color: #f7f3e6;
-  font-family: inherit; font-size: 12px; letter-spacing: .16em;
-  padding: 8px 14px 8px 12px; min-height: 38px; cursor: pointer;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-room-play:hover { background: rgba(19,29,23,.6); border-color: rgba(247,243,230,.72); }
-.mlp-room-play-ic { display: grid; place-items: center; width: 14px; height: 14px; }
-.mlp-room-play .mlp-room-play-ic svg { width: 13px; height: 13px; }
-.mlp-room-play .icn-pause { display: none; }
-.mlp-room-play.playing .icn-play { display: none; }
-.mlp-room-play.playing .icn-pause { display: block; }
-/* 「随机去一片」：轻轻一枚圆钮，和播放键并排 */
-.mlp-room-shuffle {
-  display: grid; place-items: center;
-  width: 38px; min-height: 38px; padding: 0;
-  border: 1px solid rgba(247,243,230,.32); border-radius: 999px;
-  background: rgba(19,29,23,.3); color: rgba(247,243,230,.92);
-  cursor: pointer;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-room-shuffle svg { width: 15px; height: 15px; }
-.mlp-room-shuffle:hover { background: rgba(19,29,23,.55); border-color: rgba(247,243,230,.66); transform: rotate(18deg); }
-.mlp-room-shuffle:active { transform: rotate(18deg) scale(.94); }
-
-.mlp-room-note {
-  margin: 0 0 8px; padding: 0 2px;
-  font-size: 12px; line-height: 1.7; letter-spacing: .02em;
-  color: #5c6e5c;
-}
-
-/* ============================================================
+/* ------------------------------------------------------------
    听海 · 十五层混音板
    三片海一排（互斥），其余十二层三列排开（可叠加）。
-   小图一律用原站那套线描图，不外画任何一张。
-   开着的层染成深绿、线条翻成纸色；正在出声的那几枚角上有一点微光。
-   ============================================================ */
-.mlp-mix { margin: 0 0 4px; }
+   ------------------------------------------------------------ */
+.mlp-mix {
+  margin: 0 0 4px; max-height: 232px; overflow-y: auto; overscroll-behavior: contain;
+  padding-right: 2px; scrollbar-gutter: stable;
+  scrollbar-width: thin; scrollbar-color: rgba(242, 237, 216, .18) transparent;
+}
+@media (min-height: 800px) { .mlp-mix { max-height: 302px; } }
+@media (min-height: 960px) { .mlp-mix { max-height: 360px; } }
+.mlp-mix::-webkit-scrollbar { width: 6px; }
+.mlp-mix::-webkit-scrollbar-thumb { background: rgba(242, 237, 216, .18); border-radius: 99px; }
+.mlp-mix::-webkit-scrollbar-track { background: transparent; }
 .mlp-mix[hidden], .mlp-list[hidden] { display: none !important; }
 .mlp-mix-h {
   margin: 2px 2px 7px;
-  font-size: 12px; line-height: 1.4; letter-spacing: .12em;
-  color: #5c6e5c;
+  font-size: 12px; line-height: 1.4; letter-spacing: .16em;
+  color: #8E9AB2;
 }
 .mlp-mix-grid {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px; margin: 0 0 10px;
+  gap: 6px; margin: 0 0 11px;
 }
 .mlp-mix-tile {
   position: relative; min-width: 0;
   display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 8px 3px 7px;
-  border: 1px solid rgba(207,200,180,.95); border-radius: 2px;
-  background: #fffdf4; color: #3d4d3f;
+  padding: 9px 3px 8px;
+  border: 1px solid var(--mp-line); border-radius: 11px;
+  background: #101725; color: #D3CCB8;
   font-family: inherit; font-size: 12px; line-height: 1.3; letter-spacing: .03em;
   cursor: pointer; text-align: center;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
 }
-.mlp-mix-tile:hover { background: #f2f4e7; border-color: #98ab8c; }
-.mlp-mix-tile.main { padding-top: 10px; padding-bottom: 9px; }
-.mlp-mix-tile.on { background: #2f4536; border-color: #2f4536; color: #f7f3e6; }
-.mlp-mix-tile.on:hover { background: #3a5744; border-color: #3a5744; }
+.mlp-mix-tile:hover { background: #162032; border-color: var(--mp-line-strong); }
+.mlp-mix-tile.main { padding-top: 11px; padding-bottom: 10px; }
+.mlp-mix-tile.on {
+  background: linear-gradient(160deg, #F7B24A 0%, #E8903D 100%);
+  border-color: rgba(255, 196, 106, .9); color: var(--mp-ink);
+  box-shadow: 0 8px 22px rgba(245, 166, 35, .22);
+}
+.mlp-mix-tile.on:hover { background: linear-gradient(160deg, #FFBC59 0%, #F09A45 100%); }
 .mlp-mix-ic { display: grid; place-items: center; width: 100%; height: 26px; }
 .mlp-mix-tile.main .mlp-mix-ic { height: 30px; }
 .mlp-mix-ic img {
   width: 26px; height: 26px; max-width: 100%; object-fit: contain; display: block;
-  filter: none; transition: filter var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
+  filter: invert(1) brightness(1.02); opacity: .82;
+  transition: filter 200ms ease, opacity 200ms ease;
 }
 .mlp-mix-tile.main .mlp-mix-ic img { width: 30px; height: 30px; }
-.mlp-mix-tile.on .mlp-mix-ic img { filter: invert(1) brightness(1.08); }
+.mlp-mix-tile.on .mlp-mix-ic img { filter: none; opacity: 1; }
 .mlp-mix-name {
   display: block; max-width: 100%; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
 }
 .mlp-mix-tile.live::after {
-  content: ""; position: absolute; top: 6px; right: 6px;
-  width: 4px; height: 4px; border-radius: 50%;
-  background: #cfe3c2; box-shadow: 0 0 0 2px rgba(207,227,194,.18);
+  content: ""; position: absolute; top: 7px; right: 7px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #2A1B06; box-shadow: 0 0 0 2px rgba(42, 27, 6, .18);
   animation: mlpMixBreathe 2.4s ease-in-out infinite;
 }
-@keyframes mlpMixBreathe {
-  0%, 100% { opacity: .5; }
-  50%      { opacity: 1; }
-}
-/* 十五层放在一张小卡里，一屏看不完：让这一块自己轻轻滚动 */
-.mlp-mix {
-  max-height: 214px; overflow-y: auto; overscroll-behavior: contain;
-  padding-right: 2px; scrollbar-gutter: stable;
-  scrollbar-width: thin; scrollbar-color: rgba(70,100,70,.32) transparent;
-}
-/* 桌面高一点：三片海与十二层环境尽量多露几行，少翻一次 */
-@media (min-height: 800px) { .mlp-mix { max-height: 300px; } }
-@media (min-height: 960px) { .mlp-mix { max-height: 372px; } }
-.mlp-mix::-webkit-scrollbar { width: 6px; }
-.mlp-mix::-webkit-scrollbar-thumb { background: rgba(70,100,70,.28); border-radius: 99px; }
-.mlp-mix::-webkit-scrollbar-track { background: transparent; }
-.mlp-mix-tile:focus-visible {
-  outline: 3px solid rgba(98,146,82,.55); outline-offset: 2px;
+@keyframes mlpMixBreathe { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+
+/* 房间模式：收起单曲的那套控制，只留风景、说明和清单 */
+.room-open .mlp-controls { display: none; }
+.room-open .mlp-list { max-height: 176px; }
+.music-lib-panel.room-open {
+  width: min(414px, calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
 }
 /* 听海没有"随机去一片"：哪几层出声由上面这十五枚决定 */
 .mlp-room[data-room="sea"] .mlp-room-shuffle,
 .mlp-immerse[data-room="sea"] .mlp-im-shuffle { display: none; }
 
-/* 细一点的滚动条，别打断纸面 */
-.mlp-list { scrollbar-width: thin; scrollbar-color: rgba(70,100,70,.32) transparent; }
-.mlp-list::-webkit-scrollbar { width: 6px; }
-.mlp-list::-webkit-scrollbar-thumb { background: rgba(70,100,70,.28); border-radius: 99px; }
-.mlp-list::-webkit-scrollbar-track { background: transparent; }
-
-/* 房间模式：进度条和播放控制收起来，只留头图、说明和一张声音清单 */
-.room-open .mlp-controls { display: none; }
-/* 清单正好露出三整行（每行 58.84px），不让第四行断在半截字上 */
-.room-open .mlp-list { max-height: 177px; }
-.music-lib-panel.room-open {
-  width: min(340px, calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right)));
-}
-
-@media (prefers-color-scheme: dark) {
-  .mlp-lede { color: #93a38e; }
-  .mlp-tab { border-bottom-color: transparent; color: #c4c0ae; }
-  .mlp-tab:hover { background: transparent; color: #ece6d6; }
-  .mlp-tab.on { background: transparent; border-bottom-color: #a9c79b; color: #ece6d6; }
-  .mlp-room { border-color: #3c4a3e; background: #202d25; }
-  .mlp-room-note { color: #a7b0a2; }
-  .mlp-list { scrollbar-color: rgba(169,199,155,.35) transparent; }
-  .mlp-list::-webkit-scrollbar-thumb { background: rgba(169,199,155,.3); }
-  .mlp-mix-h { color: #93a38e; }
-  .mlp-mix-tile { background: #1a241e; border-color: #3c4a3e; color: #c4c0ae; }
-  .mlp-mix-tile:hover { background: #243329; border-color: #5a715c; }
-  .mlp-mix-tile.on { background: #a9c79b; border-color: #a9c79b; color: #16211a; }
-  .mlp-mix-tile.on:hover { background: #bcd4ad; border-color: #bcd4ad; }
-  .mlp-mix-tile.on .mlp-mix-ic img { filter: none; }
-  /* 原站那套线描图是深墨画的：暗色下放在 #1a241e 的牌子上等于看不见。
-     没选中的那几枚反过来印成浅色；选中那枚仍是浅底深墨。 */
-  .mlp-mix-tile:not(.on) .mlp-mix-ic img { filter: invert(1) brightness(1.06); opacity: .88; }
-  .mlp-mix-tile.live::after { background: #16211a; box-shadow: 0 0 0 2px rgba(22,33,26,.18); }
-  .mlp-mix { scrollbar-color: rgba(169,199,155,.35) transparent; }
-  .mlp-mix::-webkit-scrollbar-thumb { background: rgba(169,199,155,.3); }
-}
-
-@media (max-width: 420px) {
-  /* 手机上房卡原本压到 112px，左上角的名字牌（47px 高）和房间里那句
-     "让大海陪着你"会叠在一起：实测 375×667 重叠 32.5px、375×812 同样重叠。
-     卡片抬回桌面那一档的高度，两行字各占各的位置。 */
-  .mlp-room-copy { min-height: 158px; padding: 13px 12px 11px; }
-  .mlp-room-line { font-size: 16.5px; }
-  .music-lib-panel.room-open { width: min(335px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right))); }
-  /* 窄屏把每行收矮一点，156px 里正好放三整行（3 × 50.84px），不留半截字 */
-  .room-open .mlp-list button.mlp-row { padding-top: 6px; padding-bottom: 6px; }
-  .room-open .mlp-list { max-height: 153px; }
-  .mlp-mix { max-height: 196px; }
-  .mlp-mix-grid { gap: 5px; }
-  .mlp-mix-tile { padding: 7px 2px 6px; }
-}
-@media (max-height: 620px) {
-  .mlp-room-copy { min-height: 100px; }
-  .room-open .mlp-list { max-height: 118px; }
-  .mlp-mix { max-height: 150px; }
-  /* 屏幕不够高时面板已经顶到上沿，卡片不能再长：这一档收掉名字牌，
-     当前播的是哪一段，下面的清单里高亮的那一行已经说清楚了。 */
-  .mlp-room-cap { display: none; }
-}
-
-@media (pointer: coarse) {
-  .mlp-room-play { min-height: 44px; }
-}
-
-.mlp-room-play:focus-visible {
-  outline: 3px solid rgba(247, 243, 230, .85);
-  outline-offset: 2px;
-}
-
-/* ---------- 铺满屏幕：头图上的一枚小按钮 ---------- */
-.mlp-room-fs {
-  position: absolute; top: 8px; right: 8px; z-index: 3;
-  width: 34px; height: 34px; min-height: 34px; padding: 0;
-  display: grid; place-items: center;
-  border: 1px solid rgba(247,243,230,.38); border-radius: 2px;
-  background: rgba(19,29,23,.42); color: #f7f3e6;
-  cursor: pointer;
-  transition: background var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1)),
-              border-color var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-room-fs svg { width: 14px; height: 14px; }
-.mlp-room-fs:hover { background: rgba(19,29,23,.62); border-color: rgba(247,243,230,.7); }
-.mlp-room-fs:focus-visible { outline: 3px solid rgba(247,243,230,.85); outline-offset: 2px; }
-
-/* ============================================================
-   全屏收听：同一间房，画面铺满，文字只留一句题词
-   盖住音乐库面板，但低于启动画面、公告与结局视频
-   ============================================================ */
+/* ------------------------------------------------------------
+   铺满屏幕：同一间房，风景铺开
+   ------------------------------------------------------------ */
 html.mlp-immersed, html.mlp-immersed body { overflow: hidden; }
-
 .mlp-immerse {
+  --mp-bg: #070B14;
+  --mp-cream: #F2EDD8;
+  --mp-amber: #F5A623;
+  --mp-ink: #171006;
   position: fixed; inset: 0; z-index: 9550;
-  overflow: hidden; background: #13211b;
-  --mlp-veil: 19,29,23;
+  overflow: hidden; background: var(--mp-bg);
+  --mlp-veil: 5, 9, 16;
   opacity: 0; visibility: hidden;
   transition: opacity 600ms ease, visibility 0s linear 600ms;
+  font-family: var(--font-ui, "Noto Sans SC", "PingFang SC", system-ui, sans-serif);
 }
-.mlp-immerse.sea-live { --mlp-veil: 8,17,22; }
+.mlp-immerse.sea-live { --mlp-veil: 4, 10, 19; }
 .mlp-immerse[hidden] { display: none; }
 .mlp-immerse:not(.open) { pointer-events: none; }
-.mlp-immerse.open {
-  opacity: 1; visibility: visible;
-  transition: opacity 700ms ease;
-}
-
-.mlp-im-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  display: block;
-}
+.mlp-immerse.open { opacity: 1; visibility: visible; transition: opacity 700ms ease; }
+.mlp-im-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .mlp-im-veil {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(125% 95% at 50% 8%, rgba(19,29,23,0) 30%, rgba(19,29,23,.08) 78%, rgba(19,29,23,.20) 100%),
-    radial-gradient(90% 78% at 4% 96%, rgba(19,29,23,.74) 0%, rgba(19,29,23,.52) 42%, rgba(19,29,23,0) 78%),
-    linear-gradient(180deg, rgba(19,29,23,.12) 0%, rgba(19,29,23,.02) 24%, rgba(19,29,23,.03) 60%, rgba(19,29,23,.16) 100%);
-  /* 顶部原先 .46——那一层是给墨绿的海配的，原站的青天一上来就被罩成了阴天。
-     现在只留 .12；底部也不再整条压黑（.72），改成左下角一团深水，
-     正好托住题词与那行小字，右边整片海仍然是亮的。 */
-  background:
-    radial-gradient(125% 95% at 50% 8%, rgba(var(--mlp-veil),0) 30%, rgba(var(--mlp-veil),.08) 78%, rgba(var(--mlp-veil),.20) 100%),
-    radial-gradient(90% 78% at 4% 96%, rgba(var(--mlp-veil),.74) 0%, rgba(var(--mlp-veil),.52) 42%, rgba(var(--mlp-veil),0) 78%),
-    linear-gradient(180deg, rgba(var(--mlp-veil),.12) 0%, rgba(var(--mlp-veil),.02) 24%, rgba(var(--mlp-veil),.03) 60%, rgba(var(--mlp-veil),.16) 100%);
+    radial-gradient(125% 95% at 50% 8%, rgba(var(--mlp-veil), 0) 30%, rgba(var(--mlp-veil), .10) 78%, rgba(var(--mlp-veil), .24) 100%),
+    radial-gradient(90% 78% at 4% 96%, rgba(var(--mlp-veil), .78) 0%, rgba(var(--mlp-veil), .54) 42%, rgba(var(--mlp-veil), 0) 78%),
+    linear-gradient(180deg, rgba(var(--mlp-veil), .18) 0%, rgba(var(--mlp-veil), .02) 24%, rgba(var(--mlp-veil), .03) 60%, rgba(var(--mlp-veil), .20) 100%);
 }
 .mlp-im-top {
   position: absolute; z-index: 3; left: 0; right: 0; top: 0;
@@ -793,177 +612,126 @@ html.mlp-immersed, html.mlp-immersed body { overflow: hidden; }
   padding: calc(16px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) 0 calc(18px + env(safe-area-inset-left));
 }
 .mlp-im-kicker {
+  font-family: var(--font-prose, "Noto Serif SC", serif);
   font-size: 12px; line-height: 1.2; letter-spacing: .34em; text-indent: .34em;
-  /* 手机上海天空几乎发白，.42 的底托不住白字（实测 3.4:1）；压到 .64 才稳 */
-  color: #f7f3e6; background: rgba(19,29,23,.64);
-  padding: 6px 12px 6px 15px; border-radius: 2px;
+  color: var(--mp-cream); background: rgba(7, 11, 20, .7);
+  padding: 7px 13px 7px 16px; border-radius: 7px;
+  border-left: 2px solid var(--mp-amber);
 }
 .mlp-im-close {
   flex: none; width: 40px; height: 40px; min-height: 40px; padding: 0;
   display: grid; place-items: center;
-  border: 1px solid rgba(247,243,230,.4); border-radius: 999px;
-  background: rgba(19,29,23,.6); color: #f7f3e6;
-  font-family: inherit; font-size: 20px; line-height: 1;
-  cursor: pointer;
-  transition: background var(--dur-fast, 200ms) ease, border-color var(--dur-fast, 200ms) ease;
+  border: 1px solid rgba(242, 237, 216, .4); border-radius: 999px;
+  background: rgba(7, 11, 20, .62); color: var(--mp-cream);
+  font-family: inherit; font-size: 20px; line-height: 1; cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
 }
-.mlp-im-close:hover { background: rgba(19,29,23,.62); border-color: rgba(247,243,230,.72); }
-
+.mlp-im-close:hover { background: rgba(7, 11, 20, .82); border-color: rgba(242, 237, 216, .72); }
 .mlp-im-copy {
   position: absolute; z-index: 3;
   left: calc(clamp(22px, 6vw, 76px) + env(safe-area-inset-left));
   right: calc(clamp(22px, 8vw, 96px) + env(safe-area-inset-right));
   bottom: calc(clamp(30px, 9vh, 88px) + env(safe-area-inset-bottom));
-  max-width: 620px; color: #f7f3e6;
+  max-width: 620px; color: var(--mp-cream);
 }
 .mlp-im-line {
-  margin: 0; font-size: clamp(26px, 4.4vw, 44px); font-weight: 600;
+  margin: 0;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: clamp(26px, 4.4vw, 44px); font-weight: 600;
   letter-spacing: .16em; line-height: 1.3;
-  text-shadow: 0 2px 26px rgba(10,18,14,.55);
+  text-shadow: 0 2px 30px rgba(4, 8, 14, .7);
 }
-/* 「此刻在你耳边 · 曲名 · 地点」：满屏画面上的那行小字。
-   这块和房卡左上角那枚是同一张牌子，所以底也垫成一样：原先只有一道竖线、
-   字直接浮在照片上，逐条量过二十七片林子的封面（Temp/contrast_rooms.py）才露出来——
-   有一片（法国 · 贝勒加德圣玛丽）地点那行中位只剩 4.13:1、运气最差的那一笔
-   掉到 2.60:1，都守不住 12px 该过的 4.5:1；「此刻在你耳边」中位 4.86 也只是擦过。
-   海面那一档本来就够（地点 8.22），垫上底只会更好，
-   两间房也就仍是同一张牌子，不是两套东西。 */
 .mlp-im-cap {
   margin: 14px 0 0; display: flex; align-items: baseline; flex-wrap: wrap;
   column-gap: 10px; row-gap: 2px;
-  padding: 6px 12px 6px 11px; border-left: 2px solid rgba(169,199,155,.85);
-  border-radius: 2px; background: rgba(19,29,23,.74);
+  padding: 7px 13px 7px 12px; border-radius: 8px;
+  border-left: 2px solid var(--mp-amber);
+  background: rgba(7, 11, 20, .78);
 }
-/* 海面上那道竖线换成海里的青色，牌子底也跟着换成海里那支，跟房卡一致 */
-.mlp-immerse.sea-live .mlp-im-cap {
-  border-left-color: rgba(154,206,206,.85);
-  background: rgba(6,14,20,.74);
-}
-.mlp-im-cap-lead {
-  font-size: 12px; letter-spacing: .18em; color: rgba(247,243,230,.66);
-}
-.mlp-im-cap-name {
-  font-size: 15px; font-weight: 600; letter-spacing: .08em;
-  text-shadow: 0 1px 14px rgba(10,18,14,.5);
-}
-.mlp-im-cap-sub {
-  font-size: 12px; letter-spacing: .06em; color: rgba(247,243,230,.72);
-}
-/* 满屏画面上的地点小图 + 「这片海是实时画的」提示 */
+.mlp-im-cap-lead { font-size: 12px; letter-spacing: .18em; color: #C9C2AE; }
+.mlp-im-cap-name { font-size: 15px; font-weight: 600; letter-spacing: .08em; text-shadow: 0 1px 14px rgba(4, 8, 14, .6); }
+.mlp-im-cap-sub { font-size: 12px; letter-spacing: .06em; color: #BCB5A2; }
 .mlp-im-cap-photo {
   flex: none; align-self: center; width: 44px; height: 44px; object-fit: cover;
   display: block; margin-right: 2px;
-  border: 1px solid rgba(247,243,230,.5); border-radius: 2px;
-  background: rgba(10,18,14,.4);
+  border: 1px solid rgba(242, 237, 216, .45); border-radius: 7px;
+  background: rgba(10, 16, 26, .5);
   filter: saturate(.9) contrast(1.02);
 }
 .mlp-im-cap-photo[hidden] { display: none; }
-/* 原站线描小图当小照时：不裁切、垫一张浅纸，黑线才落得住 */
 .mlp-cap-photo.is-ico,
 .mlp-im-cap-photo.is-ico {
-  object-fit: contain; padding: 3px;
-  background: #f3efe2; filter: none;
+  object-fit: contain; padding: 4px;
+  background: #EDE7D6; filter: none;
 }
-.mlp-im-drag-hint {
-  margin: 12px 0 0; font-size: 12px; line-height: 1.7; letter-spacing: .05em;
-  color: rgba(247,243,230,.74);
-  text-shadow: 0 1px 14px rgba(10,18,14,.6);
-}
+.mlp-im-drag-hint { margin: 12px 0 0; font-size: 12px; line-height: 1.7; letter-spacing: .05em; color: #B9C2D2; text-shadow: 0 1px 14px rgba(4, 8, 14, .7); }
 .mlp-im-drag-hint[hidden] { display: none; }
 .mlp-im-note {
   margin: 12px 0 0; max-width: 30em;
-  font-size: 13px; line-height: 1.85; letter-spacing: .03em;
-  color: rgba(247,243,230,.84);
-  text-shadow: 0 1px 14px rgba(10,18,14,.45);
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 13px; line-height: 1.9; letter-spacing: .03em; color: #D5CEBC;
+  text-shadow: 0 1px 14px rgba(4, 8, 14, .6);
 }
-.mlp-im-actions {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  margin-top: 20px;
-}
+.mlp-im-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
 .mlp-im-play {
   display: inline-flex; align-items: center; gap: 9px;
-  min-height: 48px; padding: 12px 22px 12px 18px;
-  border: 1px solid rgba(247,243,230,.6); border-radius: 999px;
-  background: rgba(247,243,230,.94); color: #1c2a22;
+  min-height: 48px; padding: 12px 23px 12px 19px;
+  border: 1px solid var(--mp-amber); border-radius: 999px;
+  background: var(--mp-amber); color: var(--mp-ink);
   font-family: inherit; font-size: 13px; letter-spacing: .18em;
   cursor: pointer;
-  transition: background var(--dur-fast, 200ms) ease, transform var(--dur-fast, 200ms) ease;
+  transition: background 200ms ease, transform 200ms ease;
 }
-.mlp-im-play:hover { background: #fff; }
+.mlp-im-play:hover { background: #FFB53C; }
 .mlp-im-play:active { transform: translateY(1px); }
 .mlp-im-play-ic { display: grid; place-items: center; width: 16px; height: 16px; }
-.mlp-im-play-ic svg { width: 14px; height: 14px; }
+.mlp-im-play-ic svg { width: 14px; height: 14px; fill: currentColor; }
 .mlp-im-play .icn-play { display: block; }
 .mlp-im-play .icn-pause { display: none; }
 .mlp-im-play.playing .icn-play { display: none; }
 .mlp-im-play.playing .icn-pause { display: block; }
-/* 全屏里的「随机去一片」：描边胶囊，安静地挨着播放键 */
 .mlp-im-shuffle {
   display: inline-flex; align-items: center; gap: 8px;
-  min-height: 48px; padding: 12px 20px 12px 17px;
-  border: 1px solid rgba(247,243,230,.5); border-radius: 999px;
-  background: rgba(19,29,23,.35); color: #f7f3e6;
+  min-height: 48px; padding: 12px 21px 12px 18px;
+  border: 1px solid rgba(242, 237, 216, .45); border-radius: 999px;
+  background: rgba(7, 11, 20, .42); color: var(--mp-cream);
   font-family: inherit; font-size: 13px; letter-spacing: .14em;
   cursor: pointer;
-  transition: background var(--dur-fast, 200ms) ease, border-color var(--dur-fast, 200ms) ease;
+  transition: background 200ms ease, border-color 200ms ease;
 }
 .mlp-im-shuffle svg { width: 15px; height: 15px; }
-.mlp-im-shuffle:hover { background: rgba(19,29,23,.55); border-color: rgba(247,243,230,.75); }
+.mlp-im-shuffle:hover { background: rgba(7, 11, 20, .68); border-color: rgba(242, 237, 216, .75); }
 .mlp-im-shuffle:active { transform: translateY(1px); }
-.mlp-im-hint {
-  font-size: 12px; letter-spacing: .04em;
-  color: rgba(247,243,230,.62);
+.mlp-im-hint { font-size: 12px; letter-spacing: .04em; color: #AAB4C6; }
+
+/* ------------------------------------------------------------
+   焦点环：深底上一道琥珀
+   ------------------------------------------------------------ */
+.music-lib-fab:focus-visible,
+.mlp-tab:focus-visible, .mlp-search-input:focus-visible, .mlp-go:focus-visible,
+.mlp-close:focus-visible, .mlp-zoom:focus-visible, .mlp-heart:focus-visible,
+.mlp-row:focus-visible, .mlp-btn:focus-visible, .mlp-mix-tile:focus-visible {
+  outline: 2px solid rgba(245, 166, 35, .9); outline-offset: 2px;
+}
+.mlp-room-shuffle:focus-visible, .mlp-room-fs:focus-visible,
+.mlp-im-shuffle:focus-visible, .mlp-im-close:focus-visible,
+.mlp-room-play:focus-visible, .mlp-im-play:focus-visible {
+  outline: 2px solid rgba(245, 166, 35, .95); outline-offset: 3px;
 }
 
-@media (max-width: 600px) {
-  .mlp-im-copy { bottom: calc(26px + env(safe-area-inset-bottom)); right: calc(20px + env(safe-area-inset-right)); }
-  .mlp-im-line { letter-spacing: .12em; }
-  .mlp-im-cap-lead { display: none; }
-  .mlp-im-note { font-size: 12px; line-height: 1.8; }
-  .mlp-im-hint { display: none; }
-  .mlp-im-top { padding-top: calc(12px + env(safe-area-inset-top)); }
-  .mlp-im-shuffle { min-height: 44px; padding: 10px 16px 10px 14px; }
-  .mlp-im-play { min-height: 44px; padding: 10px 18px 10px 15px; }
-}
-
+/* 触控：命中区撑到 44，视觉尺寸不变 */
 @media (pointer: coarse) {
-  .mlp-room-fs { width: 40px; height: 40px; min-height: 40px; }
-  .mlp-room-shuffle { width: 44px; min-height: 44px; }
+  .mlp-close, .mlp-zoom, .mlp-list button.mlp-heart, .mlp-room-fs { min-width: 44px; min-height: 44px; }
+  .mlp-btn { min-width: 44px; min-height: 44px; }
   .mlp-room-play { min-height: 44px; }
+  .mlp-room-shuffle { width: 44px; min-height: 44px; }
   .mlp-im-close { width: 44px; height: 44px; min-height: 44px; }
   .mlp-im-shuffle { min-height: 48px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mlp-immerse, .mlp-immerse.open { transition: none; }
-  .mlp-room-shuffle:hover { transform: none; }
-}
-
-/* ============================================================
-   2026-10 · 两间声音房换上"活画面"，面板再往安静里磨了一遍
-   - 听海：每段海画一片自己的海面（canvas，见 music-player.js 场景引擎）
-   - 林间：每片林子画一片自己的林相（canvas）
-   - 房卡左上角一枚名字牌，全屏画面上有"此刻在你耳边"
-   - 随机去一片：面板房间与全屏层各一枚
-   - 面板：更轻的边、更静的过渡、列表与状态提示更柔
-   字号地板仍是 12px，焦点环、减少动态效果、暗色主题都跟上。
-   ============================================================ */
-
-/* 状态提示像一句轻话：淡入，不跳 */
-.mlp-status { animation: mlpStatusIn .45s var(--ease, cubic-bezier(.32,.72,0,1)); }
-@keyframes mlpStatusIn {
-  from { opacity: 0; transform: translateY(2px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* 列表行：悬停时名字轻轻向右一点，像被指了一下 */
-.mlp-list button.mlp-row .mlp-name,
-.mlp-list button.mlp-row .mlp-sub {
-  transition: transform var(--dur-fast, 200ms) var(--ease, cubic-bezier(.32,.72,0,1));
-}
-.mlp-list button.mlp-row:hover .mlp-name { transform: translateX(2px); }
-
-/* 页签之间的一次呼吸：切换时内容整体轻轻浮现 */
+/* ------------------------------------------------------------
+   换房时，内容轻轻浮现一次
+   ------------------------------------------------------------ */
 .music-lib-panel .mlp-list,
 .music-lib-panel .mlp-room,
 .music-lib-panel .mlp-search,
@@ -975,22 +743,71 @@ html.mlp-immersed, html.mlp-immersed body { overflow: hidden; }
   to   { opacity: 1; transform: none; }
 }
 
-/* 面板边线再轻半档，少一点"框住"的感觉 */
-.music-lib-panel { border-color: rgba(190, 182, 160, .8); }
-@media (prefers-color-scheme: dark) {
-  .music-lib-panel { border-color: rgba(78, 94, 80, .8); }
+/* ------------------------------------------------------------
+   窄屏 / 矮屏：把窗与房卡各收半档，仍保证一屏放得下
+   ------------------------------------------------------------ */
+@media (max-width: 420px) {
+  .music-lib-fab { right: calc(14px + env(safe-area-inset-right)); top: calc(14px + env(safe-area-inset-top)); width: 44px; height: 44px; }
+  .music-lib-fab img.icn-ncm { width: 25px; height: 25px; }
+  .music-lib-fab svg { width: 19px; height: 19px; }
+  .music-lib-panel {
+    right: calc(10px + env(safe-area-inset-right)); bottom: calc(68px + env(safe-area-inset-bottom));
+    width: min(392px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+    padding: 15px 14px 13px; border-radius: 16px;
+  }
+  .music-lib-panel[style*="left"] { max-width: calc(100vw - 16px); }
+  .music-lib-panel.room-open { width: min(392px, calc(100vw - 20px - env(safe-area-inset-left) - env(safe-area-inset-right))); }
+  .mlp-lede { font-size: 12.5px; margin-bottom: 11px; }
+  .mlp-tabs { gap: 6px; margin-bottom: 11px; }
+  .mlp-tab { aspect-ratio: 4 / 5; border-radius: 10px; }
+  .mlp-tab-t { bottom: 8px; letter-spacing: .12em; }
+  .mlp-win-n { top: 5px; left: 6px; }
+  .mlp-room-copy { min-height: 156px; padding: 12px 12px 11px; }
+  .mlp-room-line { font-size: 17px; letter-spacing: .08em; }
+  .mlp-room-note { line-height: 1.8; }
+  .mlp-list { max-height: 206px; }
+  .room-open .mlp-list { max-height: 160px; }
+  .room-open .mlp-list button.mlp-row { padding-top: 6px; padding-bottom: 6px; }
+  .mlp-mix { max-height: 206px; }
+  .mlp-mix-grid { gap: 5px; }
+  .mlp-mix-tile { padding: 8px 2px 7px; }
+  .mlp-room-cap { max-width: calc(100% - 94px); }
+}
+@media (max-height: 640px) {
+  .mlp-lede { margin-bottom: 9px; font-size: 12px; line-height: 1.75; }
+  .mlp-tabs { margin-bottom: 9px; }
+  .mlp-tab { aspect-ratio: 1 / 1; }
+  .mlp-tab-t { bottom: 6px; }
+  .mlp-tab.on .mlp-tab-t::after { margin-top: 4px; }
+  .mlp-room-copy { min-height: 118px; padding: 10px 12px 10px; }
+  .mlp-room-line { font-size: 16.5px; margin-bottom: 9px; }
+  .mlp-room-note { display: none; }
+  .room-open .mlp-list { max-height: 108px; }
+  .mlp-list { max-height: 150px; }
+  .mlp-mix { max-height: 150px; }
+  .mlp-controls { margin-top: 8px; }
+  .mlp-progress { margin-top: 9px; }
+  .mlp-volume { margin-top: 8px; }
 }
 
-/* 名字牌在窄卡里也别顶到按钮 */
-@media (max-width: 420px) {
-  .mlp-room-cap { max-width: calc(100% - 92px); }
+@media (max-width: 600px) {
+  .mlp-im-copy { bottom: calc(26px + env(safe-area-inset-bottom)); right: calc(20px + env(safe-area-inset-right)); }
+  .mlp-im-line { letter-spacing: .12em; }
+  .mlp-im-cap-lead { display: none; }
+  .mlp-im-note { font-size: 12px; line-height: 1.85; }
+  .mlp-im-hint { display: none; }
+  .mlp-im-top { padding-top: calc(12px + env(safe-area-inset-top)); }
+  .mlp-im-shuffle { min-height: 44px; padding: 10px 16px 10px 14px; }
+  .mlp-im-play { min-height: 44px; padding: 10px 18px 10px 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .music-lib-fab, .music-lib-panel, .mlp-list button, .mlp-tab, .mlp-tab img,
+  .mlp-btn, .mlp-inner, .mlp-eq i, .mlp-mix-tile, .mlp-immerse, .mlp-immerse.open { animation: none !important; transition: none !important; }
+  .music-lib-fab.playing::after { animation: none; opacity: .5; }
   .mlp-status, .music-lib-panel .mlp-list,
   .music-lib-panel .mlp-room, .music-lib-panel .mlp-search,
   .music-lib-panel .mlp-mix { animation: none !important; }
-  .mlp-list button.mlp-row .mlp-name,
-  .mlp-list button.mlp-row .mlp-sub { transition: none !important; }
+  .mlp-room-shuffle:hover { transform: none; }
   .mlp-mix-tile.live::after { animation: none !important; opacity: .8; }
 }
