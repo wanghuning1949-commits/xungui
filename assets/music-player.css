@@ -811,3 +811,419 @@ html.mlp-immersed, html.mlp-immersed body { overflow: hidden; }
   .mlp-room-shuffle:hover { transform: none; }
   .mlp-mix-tile.live::after { animation: none !important; opacity: .8; }
 }
+
+/* ============================================================
+   夜听 · 全屏工作室版（mlp-studio）
+   一屏四间房：左边四张照片做成的墙，右边一句大字与这一间的内容，
+   底下一条播放坞。夜里的一间编辑部，字大、话少、留白多。
+   - 仍只动 .mlp-* 作用域；所有原有钩子（tab / room / list / mix）不变。
+   - 字号 12px 起；底上的正文按 4.5:1 配。
+   ============================================================ */
+body.mlp-studio-open { overflow: hidden; }
+
+.music-lib-panel.mlp-studio {
+  inset: 0; left: 0; top: 0; right: 0; bottom: 0;
+  width: auto; height: 100vh; height: 100dvh; max-height: none;
+  padding: 0; border: 0; border-radius: 0;
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  background-color: var(--mp-bg);
+  background-image:
+    radial-gradient(66% 52% at 78% -8%, rgba(245, 166, 35, .085) 0%, rgba(245, 166, 35, 0) 64%),
+    radial-gradient(52% 48% at -6% 106%, rgba(104, 135, 192, .10) 0%, rgba(104, 135, 192, 0) 62%),
+    linear-gradient(180deg, #0C111D 0%, var(--mp-bg) 42%, #090C15 100%);
+  box-shadow: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  opacity: 0; transform: none; transform-origin: center;
+  overflow: hidden;
+  transition: opacity 300ms ease, visibility 0s linear 300ms;
+}
+.music-lib-panel.mlp-studio.open {
+  opacity: 1; transform: none; visibility: visible;
+  transition: opacity 420ms var(--ease, cubic-bezier(.32,.72,0,1)), visibility 0s;
+}
+.music-lib-panel.mlp-studio > * { min-width: 0; }
+
+/* ---------- 顶栏：一行小字，一条细线 ---------- */
+.music-lib-panel.mlp-studio .mlp-head {
+  display: flex; align-items: center; gap: 18px;
+  min-height: 74px; height: auto; margin: 0;
+  padding: env(safe-area-inset-top) clamp(22px, 4.2vw, 64px) 0;
+  border-bottom: 1px solid rgba(242, 237, 216, .10);
+}
+.music-lib-panel.mlp-studio .mlp-title {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 17px; font-weight: 600; letter-spacing: .26em;
+  color: var(--mp-cream);
+}
+.music-lib-panel.mlp-studio .mlp-title svg { width: 17px; height: 17px; color: var(--mp-amber); }
+.mlp-head-div { flex: none; width: 1px; height: 15px; background: rgba(242, 237, 216, .22); }
+.mlp-head-meta {
+  font-family: var(--mp-mono); font-size: 12px; line-height: 1;
+  letter-spacing: .24em; color: #8595B2;
+}
+.mlp-head-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.mlp-head-hint {
+  font-family: var(--mp-mono); font-size: 12px; letter-spacing: .14em;
+  color: #8595B2;
+}
+.music-lib-panel.mlp-studio .mlp-close {
+  flex: none; width: 42px; height: 42px; min-width: 42px; min-height: 42px;
+  border: 1px solid rgba(242, 237, 216, .26); border-radius: 999px;
+  color: var(--mp-cream); font-size: 20px; line-height: 1;
+}
+.music-lib-panel.mlp-studio .mlp-close:hover {
+  color: var(--mp-cream); background: rgba(242, 237, 216, .09); border-color: rgba(242, 237, 216, .52);
+}
+
+/* ---------- 舞台：左墙 · 右稿 ---------- */
+.music-lib-panel.mlp-studio .mlp-stage {
+  display: grid; grid-template-columns: minmax(280px, 39%) minmax(0, 1fr);
+  gap: clamp(28px, 4.4vw, 72px);
+  width: 100%; max-width: 1720px; min-height: 0;
+  margin: 0 auto;
+  padding: clamp(22px, 3.4vh, 38px) clamp(22px, 4.2vw, 64px) 0;
+}
+
+/* 左：四张照片，叠成一面墙 */
+.music-lib-panel.mlp-studio .mlp-wall {
+  display: flex; flex-direction: column; min-height: 0; min-width: 0;
+  padding-bottom: clamp(18px, 2.4vh, 26px);
+}
+.mlp-wall-h {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  margin: 0 0 14px;
+}
+.mlp-wall-k {
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 13px; letter-spacing: .26em; color: var(--mp-cream);
+}
+.mlp-wall-n {
+  font-family: var(--mp-mono); font-size: 12px; letter-spacing: .12em; color: #8595B2;
+}
+.music-lib-panel.mlp-studio .mlp-tabs {
+  flex: 1 1 auto; min-height: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px;
+}
+.music-lib-panel.mlp-studio .mlp-tab {
+  aspect-ratio: auto; height: 100%; min-height: 0;
+  border-radius: 13px; border: 1px solid rgba(242, 237, 216, .13);
+  background: #0E1422;
+}
+.music-lib-panel.mlp-studio .mlp-win::after {
+  background:
+    linear-gradient(180deg, rgba(8, 11, 19, .04) 26%, rgba(8, 11, 19, .38) 56%, rgba(8, 11, 19, .88) 84%, rgba(8, 11, 19, .97) 100%),
+    linear-gradient(0deg, rgba(8, 11, 19, .22), rgba(8, 11, 19, 0) 42%);
+}
+.music-lib-panel.mlp-studio .mlp-win img {
+  filter: saturate(.72) brightness(.64) contrast(1.06);
+  transform: scale(1.015);
+}
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-win img {
+  filter: saturate(.98) brightness(.92) contrast(1.02);
+  transform: scale(1);
+}
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-win::after {
+  background:
+    linear-gradient(180deg, rgba(8, 11, 19, 0) 30%, rgba(8, 11, 19, .30) 58%, rgba(8, 11, 19, .86) 84%, rgba(8, 11, 19, .96) 100%),
+    linear-gradient(0deg, rgba(8, 11, 19, .16), rgba(8, 11, 19, 0) 42%);
+}
+.music-lib-panel.mlp-studio .mlp-win-n {
+  top: 11px; left: 11px; padding: 3px 6px 2px; border-radius: 4px;
+  border: 1px solid rgba(242, 237, 216, .18);
+  background: rgba(7, 10, 18, .74);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  text-shadow: none;
+  font-family: var(--mp-mono); font-size: 12px; letter-spacing: .12em;
+  color: rgba(242, 237, 216, .92);
+}
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-win-n { color: var(--mp-amber); }
+.music-lib-panel.mlp-studio .mlp-tab-t {
+  left: 15px; right: 15px; bottom: 14px; text-align: left;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: clamp(16px, 1.35vw, 21px); font-weight: 600;
+  letter-spacing: .16em; text-indent: 0;
+  color: rgba(242, 237, 216, .86); text-shadow: 0 2px 14px rgba(5, 8, 14, .8);
+}
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-tab-t { color: var(--mp-cream); }
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-tab-t::after {
+  width: 26px; height: 1px; margin: 9px 0 0; background: var(--mp-amber);
+}
+.mlp-tab-en {
+  display: block; margin-top: 5px;
+  font-family: var(--mp-mono); font-size: 12px; font-weight: 400;
+  letter-spacing: .16em; color: rgba(242, 237, 216, .62);
+}
+.music-lib-panel.mlp-studio .mlp-tab.on .mlp-tab-en { color: rgba(242, 237, 216, .78); }
+.mlp-wall-foot {
+  margin: 14px 0 0;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 12px; line-height: 1.9; letter-spacing: .05em; color: #93A3BF;
+}
+
+/* 右：门牌 · 一句大字 · 这一间的内容 */
+.music-lib-panel.mlp-studio .mlp-sheet {
+  min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: 2px 10px 36px 0;
+  scrollbar-width: thin; scrollbar-color: rgba(242, 237, 216, .16) transparent;
+  scrollbar-gutter: stable;
+}
+.music-lib-panel.mlp-studio .mlp-sheet::-webkit-scrollbar { width: 8px; }
+.music-lib-panel.mlp-studio .mlp-sheet::-webkit-scrollbar-thumb { background: rgba(242, 237, 216, .16); border-radius: 99px; }
+.music-lib-panel.mlp-studio .mlp-sheet::-webkit-scrollbar-track { background: transparent; }
+/* 下面还有内容时，底边柔下去，像纸页压进夜里 */
+.music-lib-panel.mlp-studio .mlp-sheet.scroll-more {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 34px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 34px), transparent 100%);
+}
+.music-lib-panel.mlp-studio .mlp-stage.scroll-more {
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - 30px), transparent 100%);
+}
+
+.mlp-kicker {
+  display: flex; align-items: center; gap: 14px;
+  margin: 0 0 clamp(16px, 2.4vh, 24px);
+  font-family: var(--mp-mono); font-size: 12px; line-height: 1;
+  letter-spacing: .22em; color: #8595B2;
+}
+.mlp-kicker-num { color: var(--mp-amber); }
+.mlp-kicker-rule { flex: none; width: 34px; height: 1px; background: rgba(242, 237, 216, .24); }
+.mlp-kicker-name {
+  font-family: var(--font-ui, "Noto Sans SC", sans-serif);
+  font-size: 12px; letter-spacing: .34em; text-indent: .34em; color: var(--mp-cream);
+}
+.mlp-kicker-en { color: #7E8EAB; letter-spacing: .24em; }
+
+.music-lib-panel.mlp-studio .mlp-lede {
+  position: relative; margin: 0; padding: 0;
+  max-width: 17em;
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: clamp(28px, 3.6vw, 56px); font-weight: 600;
+  line-height: 1.34; letter-spacing: .035em;
+  color: var(--mp-cream); text-wrap: balance;
+}
+.music-lib-panel.mlp-studio .mlp-lede::before { display: none; }
+.music-lib-panel.mlp-studio .mlp-desc {
+  margin: clamp(16px, 2.2vh, 22px) 0 0; max-width: 38em;
+  font-family: var(--font-ui, "Noto Sans SC", sans-serif);
+  font-size: 13.5px; line-height: 1.95; letter-spacing: .045em;
+  color: #A9B6CC;
+}
+
+.music-lib-panel.mlp-studio .mlp-scene {
+  margin-top: clamp(20px, 3.2vh, 32px);
+  border-top: 1px solid rgba(242, 237, 216, .10);
+  padding-top: clamp(16px, 2.5vh, 24px);
+}
+
+/* ---------- 听海 / 林间：一扇大窗 ---------- */
+.music-lib-panel.mlp-studio .mlp-room {
+  height: clamp(240px, 31vh, 340px);
+  margin: 0 0 0; border-radius: 14px;
+}
+.music-lib-panel.mlp-studio .mlp-room-copy {
+  height: 100%; min-height: 0;
+  padding: clamp(18px, 3vh, 30px) clamp(18px, 2.4vw, 30px) clamp(16px, 2.4vh, 24px);
+}
+.music-lib-panel.mlp-studio .mlp-room-line {
+  margin: 0 0 16px; padding: 8px 20px 9px 14px;
+  font-size: clamp(20px, 1.7vw, 27px); letter-spacing: .1em; line-height: 1.45;
+}
+.music-lib-panel.mlp-studio .mlp-room-cap { top: 16px; left: 16px; max-width: calc(100% - 120px); }
+.music-lib-panel.mlp-studio .mlp-room-fs { top: 15px; right: 15px; width: 38px; height: 38px; min-height: 38px; background: rgba(9, 13, 22, .68); border-color: rgba(242, 237, 216, .48); }
+/* 房间说明已经在标题下说过一遍，不再重复第二遍 */
+.music-lib-panel.mlp-studio .mlp-room-note { display: none; }
+
+/* ---------- 清单：一行一首，像目录 ---------- */
+.music-lib-panel.mlp-studio .mlp-list {
+  max-height: none; overflow: visible; gap: 0;
+  border-top: 1px solid rgba(242, 237, 216, .08);
+}
+.music-lib-panel.mlp-studio .mlp-list li { border-bottom: 1px solid rgba(242, 237, 216, .08); }
+.music-lib-panel.mlp-studio .mlp-list li:first-child { border-top: 0; }
+.music-lib-panel.mlp-studio .mlp-list button.mlp-row {
+  gap: 14px; padding: 12px 8px; border: 0; border-radius: 0;
+  font-size: 14px; background: transparent;
+}
+.music-lib-panel.mlp-studio .mlp-list button.mlp-row:hover { background: rgba(242, 237, 216, .045); }
+.music-lib-panel.mlp-studio .mlp-list li.active button.mlp-row {
+  background: linear-gradient(90deg, rgba(245, 166, 35, .10) 0%, rgba(245, 166, 35, .015) 58%, rgba(245, 166, 35, 0) 100%);
+  border-color: transparent; box-shadow: inset 2px 0 0 var(--mp-amber);
+}
+.music-lib-panel.mlp-studio .mlp-name { font-size: 15.5px; letter-spacing: .06em; }
+.music-lib-panel.mlp-studio .mlp-sub { font-size: 12px; color: #93A3BF; }
+.music-lib-panel.mlp-studio .mlp-num { min-width: 26px; justify-items: start; color: #C08A3E; letter-spacing: .08em; }
+.music-lib-panel.mlp-studio .mlp-cover { width: 50px; height: 35px; border-radius: 5px; }
+.music-lib-panel.mlp-studio .mlp-list button.mlp-heart { min-width: 40px; min-height: 40px; }
+
+/* ---------- 听海混音板：三片海一排，周围的声音四列 ---------- */
+.music-lib-panel.mlp-studio .mlp-mix { max-height: none; overflow: visible; padding-right: 0; }
+.music-lib-panel.mlp-studio .mlp-mix-h {
+  margin: 4px 0 10px;
+  font-family: var(--mp-mono); font-size: 12px; letter-spacing: .2em; color: #8595B2;
+}
+.music-lib-panel.mlp-studio .mlp-mix-grid { gap: 8px; margin-bottom: 22px; }
+.music-lib-panel.mlp-studio .mlp-mix > .mlp-mix-grid:nth-child(4) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.music-lib-panel.mlp-studio .mlp-mix-tile { border-radius: 10px; padding: 13px 5px 11px; gap: 6px; }
+.music-lib-panel.mlp-studio .mlp-mix-tile.main { padding-top: 15px; padding-bottom: 13px; }
+.music-lib-panel.mlp-studio .mlp-mix-name { font-size: 12px; letter-spacing: .04em; }
+.music-lib-panel.mlp-studio .mlp-mix-tile.main .mlp-mix-name { font-size: 13px; }
+/* 三片海：图标和名字并排，一排就选得走，不必先把整块滚出来 */
+.music-lib-panel.mlp-studio .mlp-mix-tile.main {
+  flex-direction: row; align-items: center; justify-content: center;
+  gap: 8px; min-height: 50px; padding: 8px 10px;
+}
+.music-lib-panel.mlp-studio .mlp-mix-tile.main .mlp-mix-ic {
+  width: 26px; height: 26px; flex: 0 0 26px;
+}
+.music-lib-panel.mlp-studio .mlp-mix-tile.main .mlp-mix-ic img { width: 24px; height: 24px; }
+.music-lib-panel.mlp-studio .mlp-mix-tile.main .mlp-mix-name { text-align: left; }
+
+/* ---------- 找歌 ---------- */
+.music-lib-panel.mlp-studio .mlp-search { gap: 10px; margin: 0 0 16px; }
+.music-lib-panel.mlp-studio .mlp-search-input {
+  font-size: 13px; padding: 13px 16px; border-radius: 9px;
+  border-color: rgba(242, 237, 216, .14); background: #0F1524;
+}
+.music-lib-panel.mlp-studio .mlp-search-input::placeholder { color: #8D9AB3; }
+.music-lib-panel.mlp-studio .mlp-go { padding: 0 16px; min-width: 46px; min-height: 46px; border-radius: 9px; }
+.music-lib-panel.mlp-studio .mlp-status { margin: 0 0 16px; padding: 10px 14px; font-size: 12px; }
+
+/* ---------- 底坞：进度 · 播放 · 音量 ---------- */
+.music-lib-panel.mlp-studio .mlp-dock {
+  display: flex; align-items: center; gap: clamp(16px, 2.6vw, 36px);
+  margin: 0;
+  padding: 13px clamp(22px, 4.2vw, 64px) calc(13px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(242, 237, 216, .12);
+  background: rgba(8, 11, 19, .74);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.mlp-dock-meta { flex: 0 0 auto; display: flex; flex-direction: column; gap: 3px; min-width: 0; max-width: 180px; }
+.mlp-dock-k {
+  font-family: var(--mp-mono); font-size: 12px; line-height: 1.2;
+  letter-spacing: .22em; color: #8595B2;
+}
+.mlp-dock-t {
+  font-family: var(--font-prose, "Noto Serif SC", serif);
+  font-size: 16px; line-height: 1.4; letter-spacing: .1em; color: var(--mp-cream);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.music-lib-panel.mlp-studio .mlp-progress { flex: 1 1 auto; min-width: 0; margin: 0; gap: 12px; }
+.music-lib-panel.mlp-studio .mlp-time { font-size: 12px; color: #93A3BF; }
+.music-lib-panel.mlp-studio .mlp-track { height: 3px; background: rgba(242, 237, 216, .16); }
+.music-lib-panel.mlp-studio .mlp-fill { background: linear-gradient(90deg, var(--mp-amber), var(--mp-amber-2)); }
+.music-lib-panel.mlp-studio .mlp-inner { border-color: var(--mp-bg); }
+.music-lib-panel.mlp-studio .mlp-controls {
+  flex: 0 0 auto; margin: 0 0 0 auto; gap: 8px; justify-content: flex-end;
+}
+.music-lib-panel.mlp-studio .mlp-btn { width: 38px; height: 38px; min-width: 38px; min-height: 38px; color: #CFC7B2; }
+.music-lib-panel.mlp-studio .mlp-toggle {
+  width: 50px; height: 50px; min-width: 50px; min-height: 50px;
+  background: var(--mp-amber); color: var(--mp-ink);
+  box-shadow: 0 8px 22px rgba(245, 166, 35, .22);
+}
+.music-lib-panel.mlp-studio .mlp-toggle:hover { background: #FFB53C; color: var(--mp-ink); }
+.music-lib-panel.mlp-studio .mlp-volume { flex: 0 1 170px; min-width: 128px; margin: 0; gap: 9px; }
+.music-lib-panel.mlp-studio .mlp-vol-label { font-size: 12px; color: #93A3BF; }
+/* 听海 / 林间：坞里只留一枚播放键，前后切歌会离开这一间 */
+.music-lib-panel.mlp-studio.room-open .mlp-controls { display: flex; }
+.music-lib-panel.mlp-studio.room-open .mlp-controls > .mlp-btn:not(.mlp-toggle) { display: none; }
+.music-lib-panel.mlp-studio.room-open .mlp-list { max-height: none; }
+.music-lib-panel.mlp-studio.room-open { width: auto; }
+
+/* ---------- 中等屏 ---------- */
+@media (max-width: 1180px) {
+  .music-lib-panel.mlp-studio .mlp-stage { grid-template-columns: minmax(250px, 35%) minmax(0, 1fr); gap: 32px; }
+  .music-lib-panel.mlp-studio .mlp-lede { font-size: clamp(27px, 4vw, 44px); }
+  .music-lib-panel.mlp-studio .mlp-dock-meta { display: none; }
+  .music-lib-panel.mlp-studio .mlp-mix > .mlp-mix-grid:nth-child(4) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- 平板 / 手机：照片墙在上，稿子在下 ---------- */
+@media (max-width: 900px) {
+  .music-lib-panel.mlp-studio .mlp-head {
+    gap: 12px; min-height: 62px;
+    padding: env(safe-area-inset-top) 18px 0;
+  }
+  .music-lib-panel.mlp-studio .mlp-title { font-size: 15.5px; letter-spacing: .2em; }
+  .music-lib-panel.mlp-studio .mlp-title svg { width: 15px; height: 15px; }
+  .mlp-head-div, .mlp-head-meta, .mlp-head-hint { display: none; }
+  .music-lib-panel.mlp-studio .mlp-close { width: 38px; height: 38px; min-width: 38px; min-height: 38px; }
+  .music-lib-panel.mlp-studio .mlp-stage {
+    display: block; overflow-y: auto; overscroll-behavior: contain;
+    padding: 18px 18px 28px;
+  }
+  .music-lib-panel.mlp-studio .mlp-wall { padding-bottom: 24px; }
+  .mlp-wall-h { margin-bottom: 10px; }
+  .music-lib-panel.mlp-studio .mlp-tabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: none; height: auto; gap: 8px;
+  }
+  .music-lib-panel.mlp-studio .mlp-tab { height: auto; aspect-ratio: 4 / 5; border-radius: 10px; }
+  .music-lib-panel.mlp-studio .mlp-tab-t {
+    left: 10px; right: 10px; bottom: 9px;
+    font-size: 14px; letter-spacing: .12em;
+  }
+  .mlp-tab-en { margin-top: 4px; font-size: 12px; letter-spacing: .08em; }
+  .music-lib-panel.mlp-studio .mlp-tab.on .mlp-tab-t::after { width: 18px; margin-top: 6px; }
+  .mlp-wall-foot { display: none; }
+  .music-lib-panel.mlp-studio .mlp-sheet { overflow: visible; padding: 6px 0 0; scrollbar-gutter: auto; }
+  .music-lib-panel.mlp-studio .mlp-lede { max-width: 20em; font-size: clamp(27px, 5.2vw, 38px); }
+  .music-lib-panel.mlp-studio .mlp-desc { font-size: 13px; }
+  .music-lib-panel.mlp-studio .mlp-mix > .mlp-mix-grid:nth-child(4) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .music-lib-panel.mlp-studio .mlp-room { height: clamp(220px, 29vh, 268px); }
+  .music-lib-panel.mlp-studio .mlp-dock {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "progress progress" "controls volume";
+    row-gap: 10px; column-gap: 14px;
+    padding: 11px 18px calc(11px + env(safe-area-inset-bottom));
+  }
+  .music-lib-panel.mlp-studio .mlp-progress { grid-area: progress; }
+  .music-lib-panel.mlp-studio .mlp-controls { grid-area: controls; margin: 0; justify-content: flex-start; gap: 6px; }
+  .music-lib-panel.mlp-studio .mlp-volume { grid-area: volume; width: auto; min-width: 96px; max-width: 170px; }
+  .music-lib-panel.mlp-studio .mlp-btn { width: 42px; height: 42px; min-width: 42px; min-height: 42px; }
+  .music-lib-panel.mlp-studio .mlp-toggle { width: 46px; height: 46px; min-width: 46px; min-height: 46px; }
+}
+
+/* ---------- 窄手机 ---------- */
+@media (max-width: 600px) {
+  .music-lib-panel.mlp-studio .mlp-head { min-height: 56px; padding-left: 15px; padding-right: 12px; }
+  .music-lib-panel.mlp-studio .mlp-stage { padding: 14px 15px 24px; }
+  .mlp-wall-h { margin-bottom: 8px; }
+  .music-lib-panel.mlp-studio .mlp-tabs { gap: 6px; }
+  .music-lib-panel.mlp-studio .mlp-tab { aspect-ratio: 3 / 4; border-radius: 9px; }
+  .music-lib-panel.mlp-studio .mlp-win-n { top: 8px; left: 9px; font-size: 12px; }
+  .music-lib-panel.mlp-studio .mlp-tab-t { left: 8px; right: 8px; bottom: 8px; font-size: 13px; letter-spacing: .08em; }
+  .mlp-tab-en { display: none; }
+  .music-lib-panel.mlp-studio .mlp-wall { padding-bottom: 18px; }
+  .music-lib-panel.mlp-studio .mlp-kicker { gap: 10px; margin-bottom: 13px; }
+  .mlp-kicker-rule { width: 20px; }
+  .music-lib-panel.mlp-studio .mlp-lede { font-size: clamp(26px, 7.3vw, 32px); line-height: 1.42; letter-spacing: .03em; }
+  .music-lib-panel.mlp-studio .mlp-desc { margin-top: 14px; font-size: 12.5px; line-height: 1.9; }
+  .music-lib-panel.mlp-studio .mlp-scene { margin-top: 22px; padding-top: 18px; }
+  .music-lib-panel.mlp-studio .mlp-room { height: 230px; border-radius: 11px; }
+  .music-lib-panel.mlp-studio .mlp-room-copy { padding: 14px 14px 13px; }
+  .music-lib-panel.mlp-studio .mlp-room-line { font-size: 19px; margin-bottom: 12px; padding: 6px 14px 7px 10px; }
+  .music-lib-panel.mlp-studio .mlp-room-cap { top: 10px; left: 10px; max-width: calc(100% - 78px); }
+  .music-lib-panel.mlp-studio .mlp-room-fs { top: 9px; right: 9px; width: 36px; height: 36px; min-height: 36px; }
+  .music-lib-panel.mlp-studio .mlp-room-note { margin: 10px 0 18px; font-size: 12px; }
+  .music-lib-panel.mlp-studio .mlp-list button.mlp-row { padding: 10px 4px; gap: 10px; }
+  .music-lib-panel.mlp-studio .mlp-name { font-size: 14.5px; }
+  .music-lib-panel.mlp-studio .mlp-cover { width: 44px; height: 31px; }
+  .music-lib-panel.mlp-studio .mlp-mix-grid { gap: 6px; margin-bottom: 18px; }
+  .music-lib-panel.mlp-studio .mlp-mix-tile { padding: 10px 3px 9px; }
+  .music-lib-panel.mlp-studio .mlp-mix-ic img { width: 22px; height: 22px; }
+  .music-lib-panel.mlp-studio .mlp-mix-tile.main .mlp-mix-ic img { width: 25px; height: 25px; }
+  .music-lib-panel.mlp-studio .mlp-vol-label { display: none; }
+  .music-lib-panel.mlp-studio .mlp-search-input { font-size: 12.5px; padding: 12px 13px; }
+}
+
+@media (pointer: coarse) {
+  .music-lib-panel.mlp-studio .mlp-tab { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-lib-panel.mlp-studio, .music-lib-panel.mlp-studio.open { transition: none !important; }
+}

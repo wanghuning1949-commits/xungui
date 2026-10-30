@@ -92,6 +92,13 @@
     forest: '不必解释自己，树影会替你把沉默接住。',
     search: '想找一首，刚好说中今天说不清的心情。',
   };
+  /* 全屏版式里的门牌与一行小注：只描述这间房里有什么，不催人。 */
+  const ROOM_META = {
+    fav:    { num: '01', name: '音笺', en: 'NOTES',  desc: '四首单曲，加上你收下的。放在这里，它们不会走。' },
+    sea:    { num: '02', name: '听海', en: 'TIDE',   desc: '十五层海声。三片海挑一片，其余的一层层叠上去，海面会铺满整页。' },
+    forest: { num: '03', name: '林间', en: 'WOODS',  desc: '二十七片林子，从世界各地来的。循环着，不会停，也不用一直听着。' },
+    search: { num: '04', name: '找歌', en: 'SEARCH', desc: '想不起名字也没关系。把还记得的几个字放进来，慢慢找。' },
+  };
 
   const API_SEARCH = '/.netlify/functions/music-search';
   const GDS_API = 'https://music-api.gdstudio.xyz/api.php';
@@ -167,94 +174,123 @@
 
   /* ---------- 面板 ---------- */
   const panel = document.createElement('div');
-  panel.className = 'music-lib-panel';
+  panel.className = 'music-lib-panel mlp-studio';
   panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
   panel.setAttribute('aria-label', '音乐库');
+  panel.setAttribute('tabindex', '-1');
   panel.innerHTML = `
-    <div class="mlp-head">
+    <header class="mlp-head">
       <span class="mlp-title">${icn.note}音乐库</span>
+      <span class="mlp-head-div" aria-hidden="true"></span>
+      <span class="mlp-head-meta">夜听 · NIGHT STUDIO</span>
       <span class="mlp-head-right">
-        <button type="button" class="mlp-zoom" data-act="zoomout" aria-label="缩小面板" title="缩小">−</button>
-        <button type="button" class="mlp-zoom" data-act="zoomin" aria-label="放大面板" title="放大">+</button>
-        <button type="button" class="mlp-close" data-act="close" aria-label="收起声音档案" title="收起">×</button>
+        <span class="mlp-head-hint">ESC 收起</span>
+        <button type="button" class="mlp-close" data-act="close" aria-label="收起音乐库" title="收起（Esc）">×</button>
       </span>
-    </div>
-    <p class="mlp-lede">有些歌不必听懂，它只是替你把那一天留下来。</p>
-    <div class="mlp-tabs" role="tablist" aria-label="四间房">
-      <button type="button" class="mlp-tab on" data-tab="fav" role="tab" aria-selected="true">
-        <span class="mlp-win"><img src="./assets/music-library/window-note.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">01</span></span>
-        <span class="mlp-tab-t">音笺</span>
-      </button>
-      <button type="button" class="mlp-tab" data-tab="sea" role="tab" aria-selected="false">
-        <span class="mlp-win"><img src="./assets/music-library/window-sea.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">02</span></span>
-        <span class="mlp-tab-t">听海</span>
-      </button>
-      <button type="button" class="mlp-tab" data-tab="forest" role="tab" aria-selected="false">
-        <span class="mlp-win"><img src="./assets/music-library/window-forest.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">03</span></span>
-        <span class="mlp-tab-t">林间</span>
-      </button>
-      <button type="button" class="mlp-tab" data-tab="search" role="tab" aria-selected="false">
-        <span class="mlp-win"><img src="./assets/music-library/window-search.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">04</span></span>
-        <span class="mlp-tab-t">找歌</span>
-      </button>
-    </div>
-    <div class="mlp-room" data-room hidden>
-      <canvas class="mlp-room-canvas" aria-hidden="true"></canvas>
-      <div class="mlp-room-veil" aria-hidden="true"></div>
-      <div class="mlp-room-tools">
-        <button type="button" class="mlp-room-fs" data-act="roomfs" aria-label="铺满屏幕听" title="铺满屏幕">${icn.expand}</button>
-      </div>
-      <figure class="mlp-room-cap">
-        <img class="mlp-cap-photo" alt="" aria-hidden="true" hidden>
-        <span class="mlp-room-cap-txt">
-          <span class="mlp-room-cap-name"></span>
-          <span class="mlp-room-cap-sub"></span>
-        </span>
-      </figure>
-      <div class="mlp-room-copy">
-        <p class="mlp-room-line"></p>
-        <div class="mlp-room-actions">
-          <button type="button" class="mlp-room-play" data-act="roomplay" aria-label="播放这间房的声音">
-            <span class="mlp-room-play-ic" aria-hidden="true">${icn.play}${icn.pause}</span><span class="mlp-room-play-t">播放</span>
-          </button>
-          <button type="button" class="mlp-room-shuffle" data-act="roomshuffle" aria-label="随机去一片" title="随机去一片">${icn.shuffle}</button>
+    </header>
+    <div class="mlp-stage">
+      <aside class="mlp-wall">
+        <div class="mlp-wall-h">
+          <span class="mlp-wall-k">四间房</span>
+          <span class="mlp-wall-n">01 — 04</span>
         </div>
-      </div>
-    </div>
-    <p class="mlp-room-note" hidden></p>
-    <div class="mlp-search" hidden>
-      <input type="search" class="mlp-search-input" placeholder="输入歌名 / 歌手，回车搜索" maxlength="40" aria-label="搜索歌曲">
-      <button type="button" class="mlp-go" data-act="go" aria-label="搜索" title="搜索">${icn.zoom}</button>
-    </div>
-    <div class="mlp-status" hidden></div>
-    <div class="mlp-mix" hidden></div>
-    <ul class="mlp-list">
-      ${TRACKS.map((t, i) => `
-        <li data-idx="${i}" class="${i === state.idx ? 'active paused' : ''}">
-          <button type="button" class="mlp-row" data-idx="${i}" title="${t.name}">
-            <span class="mlp-num">${String(i + 1).padStart(2, '0')}</span>
-            <span class="mlp-main"><span class="mlp-name">${esc(t.name)}</span></span>
-            <span class="mlp-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="mlp-tabs" role="tablist" aria-label="四间房">
+          <button type="button" class="mlp-tab on" data-tab="fav" role="tab" aria-selected="true">
+            <span class="mlp-win"><img src="./assets/music-library/window-note.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">01</span></span>
+            <span class="mlp-tab-t">音笺<span class="mlp-tab-en">NOTES</span></span>
           </button>
-        </li>`).join('')}
-    </ul>
-    <div class="mlp-progress">
-      <span class="mlp-time mlp-cur">0:00</span>
-      <div class="mlp-track" role="slider" aria-label="播放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="mlp-fill"><div class="mlp-inner"></div></div>
+          <button type="button" class="mlp-tab" data-tab="sea" role="tab" aria-selected="false">
+            <span class="mlp-win"><img src="./assets/music-library/window-sea.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">02</span></span>
+            <span class="mlp-tab-t">听海<span class="mlp-tab-en">TIDE</span></span>
+          </button>
+          <button type="button" class="mlp-tab" data-tab="forest" role="tab" aria-selected="false">
+            <span class="mlp-win"><img src="./assets/music-library/window-forest.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">03</span></span>
+            <span class="mlp-tab-t">林间<span class="mlp-tab-en">WOODS</span></span>
+          </button>
+          <button type="button" class="mlp-tab" data-tab="search" role="tab" aria-selected="false">
+            <span class="mlp-win"><img src="./assets/music-library/window-search.jpg" alt="" decoding="async" draggable="false"><span class="mlp-win-n">04</span></span>
+            <span class="mlp-tab-t">找歌<span class="mlp-tab-en">SEARCH</span></span>
+          </button>
+        </div>
+        <p class="mlp-wall-foot">挑一间待着。灯会一直亮着。</p>
+      </aside>
+      <section class="mlp-sheet" aria-label="房间内容">
+        <p class="mlp-kicker">
+          <span class="mlp-kicker-num">01</span>
+          <span class="mlp-kicker-rule" aria-hidden="true"></span>
+          <span class="mlp-kicker-name">音笺</span>
+          <span class="mlp-kicker-en">NOTES</span>
+        </p>
+        <p class="mlp-lede">有些歌不必听懂，它只是替你把那一天留下来。</p>
+        <p class="mlp-desc">四首单曲，加上你收下的。放在这里，它们不会走。</p>
+        <div class="mlp-scene">
+          <div class="mlp-room" data-room hidden>
+            <canvas class="mlp-room-canvas" aria-hidden="true"></canvas>
+            <div class="mlp-room-veil" aria-hidden="true"></div>
+            <div class="mlp-room-tools">
+              <button type="button" class="mlp-room-fs" data-act="roomfs" aria-label="铺满屏幕听" title="铺满屏幕">${icn.expand}</button>
+            </div>
+            <figure class="mlp-room-cap">
+              <img class="mlp-cap-photo" alt="" aria-hidden="true" hidden>
+              <span class="mlp-room-cap-txt">
+                <span class="mlp-room-cap-name"></span>
+                <span class="mlp-room-cap-sub"></span>
+              </span>
+            </figure>
+            <div class="mlp-room-copy">
+              <p class="mlp-room-line"></p>
+              <div class="mlp-room-actions">
+                <button type="button" class="mlp-room-play" data-act="roomplay" aria-label="播放这间房的声音">
+                  <span class="mlp-room-play-ic" aria-hidden="true">${icn.play}${icn.pause}</span><span class="mlp-room-play-t">播放</span>
+                </button>
+                <button type="button" class="mlp-room-shuffle" data-act="roomshuffle" aria-label="随机去一片" title="随机去一片">${icn.shuffle}</button>
+              </div>
+            </div>
+          </div>
+          <p class="mlp-room-note" hidden></p>
+          <div class="mlp-search" hidden>
+            <input type="search" class="mlp-search-input" placeholder="输入歌名 / 歌手，回车搜索" maxlength="40" aria-label="搜索歌曲">
+            <button type="button" class="mlp-go" data-act="go" aria-label="搜索" title="搜索">${icn.zoom}</button>
+          </div>
+          <div class="mlp-status" hidden></div>
+          <div class="mlp-mix" hidden></div>
+          <ul class="mlp-list">
+            ${TRACKS.map((t, i) => `
+              <li data-idx="${i}" class="${i === state.idx ? 'active paused' : ''}">
+                <button type="button" class="mlp-row" data-idx="${i}" title="${t.name}">
+                  <span class="mlp-num">${String(i + 1).padStart(2, '0')}</span>
+                  <span class="mlp-main"><span class="mlp-name">${esc(t.name)}</span></span>
+                  <span class="mlp-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+                </button>
+              </li>`).join('')}
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer class="mlp-dock">
+      <div class="mlp-dock-meta">
+        <span class="mlp-dock-k">房间</span>
+        <span class="mlp-dock-t">音笺 · NOTES</span>
       </div>
-      <span class="mlp-time mlp-dur">--:--</span>
-    </div>
-    <div class="mlp-controls">
-      <button type="button" class="mlp-btn" data-act="prev" aria-label="上一首" title="上一首">${icn.prev}</button>
-      <button type="button" class="mlp-btn mlp-toggle" data-act="toggle" aria-label="播放或暂停" title="播放 / 暂停">${icn.play}${icn.pause}</button>
-      <button type="button" class="mlp-btn" data-act="next" aria-label="下一首" title="下一首">${icn.next}</button>
-    </div>
-    <div class="mlp-volume">
-      ${icn.vol}
-      <input type="range" min="0" max="1" step="0.01" value="${state.volume}" aria-label="音量">
-      <span class="mlp-vol-label">${Math.round(state.volume * 100)}%</span>
-    </div>`;
+      <div class="mlp-progress">
+        <span class="mlp-time mlp-cur">0:00</span>
+        <div class="mlp-track" role="slider" aria-label="播放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="mlp-fill"><div class="mlp-inner"></div></div>
+        </div>
+        <span class="mlp-time mlp-dur">--:--</span>
+      </div>
+      <div class="mlp-controls">
+        <button type="button" class="mlp-btn" data-act="prev" aria-label="上一首" title="上一首">${icn.prev}</button>
+        <button type="button" class="mlp-btn mlp-toggle" data-act="toggle" aria-label="播放或暂停" title="播放 / 暂停">${icn.play}${icn.pause}</button>
+        <button type="button" class="mlp-btn" data-act="next" aria-label="下一首" title="下一首">${icn.next}</button>
+      </div>
+      <div class="mlp-volume">
+        ${icn.vol}
+        <input type="range" min="0" max="1" step="0.01" value="${state.volume}" aria-label="音量">
+        <span class="mlp-vol-label">${Math.round(state.volume * 100)}%</span>
+      </div>
+    </footer>`;
 
   /* ---------- 全屏听：同一间房的画面铺满屏幕（不改动页面本身） ---------- */
   const immerse = document.createElement('div');
@@ -417,6 +453,13 @@
   const roomNote = $('.mlp-room-note');
   const progressEl = $('.mlp-progress');
   const ledeEl = $('.mlp-lede');
+  const descEl = $('.mlp-desc');
+  const kickerNum = $('.mlp-kicker-num');
+  const kickerName = $('.mlp-kicker-name');
+  const kickerEn = $('.mlp-kicker-en');
+  const dockTab = $('.mlp-dock-t');
+  const sheetEl = $('.mlp-sheet');
+  const stageEl = $('.mlp-stage');
   const imArt = immerse.querySelector('.mlp-im-canvas');
   const imKicker = immerse.querySelector('.mlp-im-kicker');
   const imLine = immerse.querySelector('.mlp-im-line');
@@ -1226,6 +1269,7 @@
     items = [...listEl.querySelectorAll('li')];
     refreshActive();
     syncScrollHint(listEl);
+    requestAnimationFrame(() => { syncScrollHint(sheetEl); syncScrollHint(stageEl); });
   }
   function listData() {
     if (tab === 'search') return results.map(t => ({ name: t.name, artist: t.artist, id: t.id }));
@@ -1252,13 +1296,26 @@
     setStatus('');
     updateRoomUI();
     renderList();
+    if (sheetEl) sheetEl.scrollTop = 0;
+    if (stageEl) stageEl.scrollTop = 0;
+    syncScrollHint(sheetEl);
+    syncScrollHint(stageEl);
+    requestAnimationFrame(() => { syncScrollHint(sheetEl); syncScrollHint(stageEl); });
     if (isOpen()) { clampScaleToFit(); positionPanel(); }
   }
   /* 四个页签各有一句自己的话：换房就换，不重复。 */
   function updateLede() {
-    if (!ledeEl) return;
     const text = LEDES[tab] || '';
-    if (ledeEl.textContent !== text) ledeEl.textContent = text;
+    if (ledeEl && ledeEl.textContent !== text) ledeEl.textContent = text;
+    const meta = ROOM_META[tab];
+    if (meta) {
+      if (kickerNum) kickerNum.textContent = meta.num;
+      if (kickerName) kickerName.textContent = meta.name;
+      if (kickerEn) kickerEn.textContent = meta.en;
+      if (descEl) descEl.textContent = meta.desc;
+      if (dockTab) dockTab.textContent = `${meta.name} · ${meta.en}`;
+    }
+    panel.dataset.tab = tab;
   }
   /* 听海 / 林间的房间画面与文案。只讲风景，不提任何站点或作者。 */
   function trackScene(ctx) {
@@ -1438,10 +1495,16 @@
     positionPanel();
     panel.classList.add('open');
     setPanelHidden(false);
+    document.body.classList.add('mlp-studio-open');
+    setTimeout(() => { try { panel.focus({ preventScroll: true }); } catch (_) {} }, 60);
+    requestAnimationFrame(() => { syncScrollHint(sheetEl); syncScrollHint(stageEl); });
   }
   function closePanel() {
+    if (!isOpen()) return;
     panel.classList.remove('open');
     setPanelHidden(true);
+    document.body.classList.remove('mlp-studio-open');
+    try { fab.focus({ preventScroll: true }); } catch (_) {}
   }
   /* 收起状态：inert 一次解决焦点、Tab、读屏三种"隐形可达"；
      老浏览器不认 inert 时，CSS 里的 visibility:hidden 仍然会把按钮踢出 Tab 序列。 */
@@ -1474,6 +1537,11 @@
   // 面板始终锚定在悬浮标旁（默认放上方；放大或贴近屏幕边缘时自动夹紧回屏内）
   function positionPanel() {
     if (!document.body.contains(panel)) return;
+    // 全屏工作室版：面板铺满视口，不再跟随悬浮标，也不留任何内联定位
+    if (panel.classList.contains('mlp-studio')) {
+      panel.style.left = ''; panel.style.top = ''; panel.style.right = ''; panel.style.bottom = '';
+      return;
+    }
     const r = fab.getBoundingClientRect();
     const w = window.innerWidth, h = window.innerHeight;
     const pRect = panel.getBoundingClientRect();
@@ -1493,10 +1561,12 @@
     panel.style.left = `${left / z}px`; panel.style.top = `${top / z}px`;
   }
   function applyScale() {
+    if (panel.classList.contains('mlp-studio')) { panel.style.zoom = ''; return; }
     panel.style.zoom = state.scale === 1 ? '' : String(state.scale);
   }
   // 当前视口下放得下的最大缩放档（即便被裁夹紧也要保证面板在屏内可见）
   function maxFittingScale() {
+    if (panel.classList.contains('mlp-studio')) return 1;
     const prevZoom = panel.style.zoom;
     panel.style.zoom = '';
     const bW = panel.offsetWidth, bH = panel.offsetHeight;
@@ -2021,6 +2091,20 @@
     if (!immerse.hidden) { closeImmerse(); return; }
     if (isOpen()) closePanel();
   });
+  /* 全屏面板：Tab 只在面板里打转，不落到被盖住的页面上 */
+  panel.addEventListener('keydown', e => {
+    if (e.key !== 'Tab' || !isOpen()) return;
+    const stops = [...panel.querySelectorAll('button:not([disabled]), input, [href], [tabindex="0"]')]
+      .filter(el => !el.closest('[hidden]') && el.offsetParent !== null);
+    if (!stops.length) return;
+    const first = stops[0], last = stops[stops.length - 1];
+    const at = stops.indexOf(document.activeElement);
+    if (e.shiftKey) {
+      if (at <= 0) { e.preventDefault(); last.focus(); }
+    } else if (at === -1 || at === stops.length - 1) {
+      e.preventDefault(); first.focus();
+    }
+  });
 
   /* ---------- 初始化（不自动播放） ---------- */
   function init() {
@@ -2028,10 +2112,12 @@
     document.body.appendChild(fab);
     document.body.appendChild(panel);
     document.body.appendChild(immerse);
-    [mixEl, listEl].forEach(el => {
+    [mixEl, listEl, sheetEl, stageEl].forEach(el => {
       if (el) el.addEventListener('scroll', () => syncScrollHint(el), { passive: true });
     });
-    window.addEventListener('resize', () => { syncScrollHint(listEl); syncScrollHint(mixEl); });
+    window.addEventListener('resize', () => {
+      syncScrollHint(listEl); syncScrollHint(mixEl); syncScrollHint(sheetEl); syncScrollHint(stageEl);
+    });
     try { immerse.inert = true; } catch (_) {}
     setPanelHidden(true);           /* 初始是收起态：先把 13 个按钮移出 Tab 序列 */
     applyPos();
